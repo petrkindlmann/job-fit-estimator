@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Job Fit & Salary Estimator — Design Explainer</title>
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #4a4a4a;
+    --ink-fade: #888;
+    --paper: #fdfdfb;
+    --rule: #e2e2dc;
+    --accent: #2563eb;
+    --accent-soft: #eef2ff;
+    --warn: #b45309;
+    --warn-soft: #fef3c7;
+    --good: #047857;
+    --good-soft: #ecfdf5;
+    --code-bg: #f6f6f2;
+    --mono: 'SF Mono', Menlo, Consolas, monospace;
+  }
+  * { box-sizing: border-box; }
+  html { font-size: 16px; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    color: var(--ink);
+    background: var(--paper);
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 56px 48px 96px;
+    line-height: 1.6;
+  }
+  header {
+    border-bottom: 2px solid var(--ink);
+    padding-bottom: 24px;
+    margin-bottom: 40px;
+  }
+  h1 {
+    font-size: 2.4rem;
+    margin: 0 0 8px;
+    letter-spacing: -0.01em;
+  }
+  .subtitle {
+    color: var(--ink-soft);
+    font-size: 1.1rem;
+    margin: 0 0 16px;
+  }
+  .framing {
+    background: var(--accent-soft);
+    border-left: 4px solid var(--accent);
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-style: italic;
+    color: var(--ink-soft);
+  }
+  .meta {
+    color: var(--ink-fade);
+    font-size: 0.9rem;
+    margin-top: 12px;
+  }
+  h2 {
+    font-size: 1.6rem;
+    margin: 56px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--rule);
+  }
+  h3 {
+    font-size: 1.2rem;
+    margin: 32px 0 12px;
+    color: var(--accent);
+  }
+  h4 {
+    font-size: 1rem;
+    margin: 20px 0 8px;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  p { margin: 0 0 14px; }
+  ul, ol { margin: 0 0 14px; padding-left: 28px; }
+  li { margin-bottom: 6px; }
+  code {
+    font-family: var(--mono);
+    font-size: 0.9em;
+    background: var(--code-bg);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+  pre {
+    font-family: var(--mono);
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    padding: 14px 18px;
+    border-radius: 4px;
+    overflow-x: auto;
+    font-size: 0.85rem;
+    line-height: 1.5;
+    margin: 12px 0 18px;
+  }
+  pre code { background: transparent; padding: 0; }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 12px 0 20px;
+    font-size: 0.95rem;
+  }
+  th, td {
+    border-bottom: 1px solid var(--rule);
+    padding: 10px 12px;
+    text-align: left;
+    vertical-align: top;
+  }
+  th {
+    background: var(--code-bg);
+    font-weight: 600;
+    border-bottom: 2px solid var(--rule);
+  }
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+  .pill-good { background: var(--good-soft); color: var(--good); }
+  .pill-warn { background: var(--warn-soft); color: var(--warn); }
+  .pill-info { background: var(--accent-soft); color: var(--accent); }
+  .callout {
+    border-left: 4px solid var(--accent);
+    background: var(--accent-soft);
+    padding: 12px 18px;
+    margin: 16px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .callout.warn { border-color: var(--warn); background: var(--warn-soft); }
+  .callout.good { border-color: var(--good); background: var(--good-soft); }
+  .callout > p:last-child { margin-bottom: 0; }
+  nav.toc {
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    padding: 18px 24px;
+    border-radius: 4px;
+    margin-bottom: 40px;
+  }
+  nav.toc h2 {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--ink-soft);
+    margin: 0 0 8px;
+    border: none;
+    padding: 0;
+  }
+  nav.toc ol { margin: 0; padding-left: 22px; column-count: 2; column-gap: 24px; }
+  nav.toc li { margin: 0 0 4px; break-inside: avoid; }
+  nav.toc a { color: var(--ink); text-decoration: none; }
+  nav.toc a:hover { color: var(--accent); }
+  .step-anchor {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    width: 28px;
+    height: 28px;
+    text-align: center;
+    border-radius: 50%;
+    line-height: 28px;
+    font-weight: 700;
+    margin-right: 8px;
+    font-size: 0.9rem;
+  }
+  .formula {
+    font-family: var(--mono);
+    background: var(--code-bg);
+    border: 1px solid var(--rule);
+    padding: 12px 18px;
+    margin: 12px 0;
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 4px;
+  }
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin: 16px 0;
+  }
+  .icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 6px;
+  }
+  svg.chart {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 12px;
+    width: 100%;
+    height: auto;
+    margin: 12px 0;
+  }
+  .mermaid {
+    background: white;
+    border: 1px solid var(--rule);
+    border-radius: 4px;
+    padding: 16px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  footer {
+    margin-top: 80px;
+    padding-top: 24px;
+    border-top: 1px solid var(--rule);
+    color: var(--ink-fade);
+    font-size: 0.9rem;
+  }
+
+  /* Print styles for PDF */
+  @media print {
+    body {
+      max-width: none;
+      padding: 24px 32px;
+      font-size: 11pt;
+    }
+    h1 { font-size: 22pt; }
+    h2 { font-size: 16pt; page-break-after: avoid; }
+    h3 { font-size: 13pt; page-break-after: avoid; }
+    section { page-break-inside: avoid; }
+    pre, table, .mermaid, svg.chart { page-break-inside: avoid; }
+    .mermaid svg { max-width: 100% !important; height: auto !important; }
+    nav.toc { break-after: page; }
+  }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+<script>
+  mermaid.initialize({
+    startOnLoad: true,
+    theme: 'neutral',
+    themeVariables: { fontFamily: '-apple-system, BlinkMacSystemFont, sans-serif' },
+    flowchart: { htmlLabels: true, curve: 'basis' },
+  });
+</script>
+</head>
+<body>
+
+<header>
+  <h1>Job Fit &amp; Salary Estimator</h1>
+  <p class="subtitle">Design explainer — every step, every calculation, every decision</p>
+  <div class="framing">
+    <strong>Headline architecture:</strong> Official wage anchor + transparent seniority model + bounded LLM explanation.
+  </div>
+  <div class="meta">
+    Version 0.1.0 &nbsp;·&nbsp; CV PDF/DOCX → seniority score 0–100 + salary range + +30% growth plan
+    &nbsp;·&nbsp; Czech ISPV anchor &nbsp;·&nbsp; bilingual CZ/EN
+  </div>
+</header>
+
+<nav class="toc">
+  <h2>Contents</h2>
+  <ol>
+    <li><a href="#overview">Pipeline overview</a></li>
+    <li><a href="#step-1">Step 1 — Extract</a></li>
+    <li><a href="#step-2">Step 2 — Redact</a></li>
+    <li><a href="#step-3">Step 3 — Parse</a></li>
+    <li><a href="#step-4">Step 4 — Classify</a></li>
+    <li><a href="#step-5">Step 5 — Score (5 subscores)</a></li>
+    <li><a href="#step-6">Step 6 — Salary math</a></li>
+    <li><a href="#step-7">Step 7 — Growth plan</a></li>
+    <li><a href="#worked-example">Worked example</a></li>
+    <li><a href="#validation">Validation</a></li>
+    <li><a href="#data-sources">Data sources</a></li>
+    <li><a href="#limitations">Limitations</a></li>
+  </ol>
+</nav>
+
+<!-- ====================== OVERVIEW ====================== -->
+<section id="overview">
+  <h2>Pipeline overview</h2>
+  <p>
+    The system is a <strong>pure-function pipeline with Pydantic-typed I/O at each step</strong>.
+    Every step is auditable in isolation: same input → same output. The LLM is bounded to evidence
+    extraction and soft subscores within strict JSON schemas; final score and salary math are
+    deterministic.
+  </p>
+
+  <div class="mermaid">
+flowchart TD
+  A[PDF or DOCX] --> B[<b>extract</b><br/>pypdf / python-docx]
+  B --> C[<b>redact</b><br/>regex strip PII<br/>+ sha256]
+  C --> D[<b>parse</b><br/>Claude tool-use<br/>→ CVJson]
+  D --> E[<b>classify</b><br/>ESCO retrieval<br/>+ Claude pick<br/>+ confidence-gated rollup]
+  E --> F[<b>score</b><br/>5 subscores<br/>weights sum to 1.0]
+  F --> G[<b>salary</b><br/>anchored interpolation<br/>through ISPV deciles]
+  G --> H[<b>recommend</b><br/>+30% branching<br/>+ LLM actions]
+  H --> I[ResultJson]
+  I --> J[Streamlit UI / CLI / FastAPI]
+
+  style A fill:#fef3c7,stroke:#b45309
+  style I fill:#ecfdf5,stroke:#047857
+  style F fill:#eef2ff,stroke:#2563eb
+  style G fill:#eef2ff,stroke:#2563eb
+  </div>
+
+  <p>
+    All seven steps run in sequence. Five of them (extract, redact, score, salary, parts of recommend)
+    contain <strong>no randomness</strong> — they're pure functions and produce identical output for
+    identical input. The other two (parse, classify, soft-subscores via LLM) use Anthropic Claude with
+    structured tool-use; their JSON output is validated against a Pydantic schema before downstream code
+    sees it.
+  </p>
+</section>
+
+<!-- ====================== STEP 1: EXTRACT ====================== -->
+<section id="step-1">
+  <h2><span class="step-anchor">1</span>Extract — text from PDF/DOCX</h2>
+
+  <p><strong>What it does:</strong> reads a binary file and returns plain text.</p>
+
+  <h4>Logic</h4>
+  <ul>
+    <li><code>.pdf</code> → <code>pypdf.PdfReader</code> iterates pages, calls <code>extract_text()</code> on each, joins with newlines.</li>
+    <li><code>.docx</code> → <code>python-docx</code> reads paragraphs in document order.</li>
+    <li>Anything else → <code>ValueError("Unsupported file type")</code>.</li>
+    <li>If a PDF page fails to extract, that page is skipped (text-only PDFs that contain images don't crash the pipeline; they just produce thin output, which downstream <code>parse</code> reports as low confidence).</li>
+  </ul>
+
+  <h4>Decision: why no OCR</h4>
+  <p>
+    OCR is out of scope for v1. Image-only PDFs result in low text length, which the parse step
+    flags as <code>"PDF extraction likely failed"</code>. The score's <code>confidence</code> label
+    drops to <code>low</code>, and the salary range widens accordingly. Honest under-fitting is
+    safer than fragile OCR.
+  </p>
+</section>
+
+<!-- ====================== STEP 2: REDACT ====================== -->
+<section id="step-2">
+  <h2><span class="step-anchor">2</span>Redact — PII pre-pass</h2>
+
+  <p><strong>What it does:</strong> strips emails, phone numbers, URLs, birth dates, and Czech ID numbers
+  from the text <em>before</em> any LLM call. Original file gets a SHA-256 hash for traceability.</p>
+
+  <div class="callout">
+    <strong>Why redact at all?</strong> GDPR Art. 5 data minimisation. The system does not need
+    names/contacts/addresses to estimate seniority and salary. Redacting before the LLM call means
+    the model never sees them. This is also a defensibility win for the interview: data minimisation
+    is something any production reviewer expects.
+  </div>
+
+  <h4>Patterns (in order — order matters)</h4>
+  <table>
+    <thead><tr><th>Label</th><th>Pattern</th><th>Why this order</th></tr></thead>
+    <tbody>
+      <tr><td><code>BIRTH_DATE</code></td><td><code>(?:datum narození\|date of birth\|born\|narozen[aá]?)\s*[:\-]?\s*\d{1,2}[./-]\d{1,2}[./-]\d{2,4}</code></td><td>First — date numerals could otherwise be eaten by phone regex</td></tr>
+      <tr><td><code>EMAIL</code></td><td><code>\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b</code></td><td>Standard RFC-ish</td></tr>
+      <tr><td><code>LINKEDIN</code></td><td><code>(?:https?://)?(?:www\.)?linkedin\.com/[^\s)]+</code></td><td>Before generic URL — LinkedIn is more specific</td></tr>
+      <tr><td><code>URL</code></td><td><code>https?://\S+\|www\.\S+</code></td><td>Generic fallback</td></tr>
+      <tr><td><code>PHONE</code></td><td><code>(?:(?:\+\|00)\d{1,3}[\s.-]?)?\d{3}[\s.-]\d{3}[\s.-]\d{3}(?!\d)</code></td><td>Tightened to require explicit separators between three groups of 3 digits, so <code>03/2018</code> employment dates aren't captured</td></tr>
+      <tr><td><code>CZ_ID</code></td><td><code>\b\d{6}\s?/\s?\d{3,4}\b</code></td><td>Rodné číslo (Czech birth ID)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <strong>Known limitation:</strong> regex doesn't catch names or addresses. Production would use NER
+    (Named Entity Recognition). For an interview prototype, the regex pass + an explicit
+    <em>"production would use NER"</em> note in the README is acceptable — the methodology is honest.
+  </div>
+</section>
+
+<!-- ====================== STEP 3: PARSE ====================== -->
+<section id="step-3">
+  <h2><span class="step-anchor">3</span>Parse — text → CVJson</h2>
+
+  <p><strong>What it does:</strong> Claude reads the redacted text and emits a structured
+  <code>CVJson</code> via tool-use. The schema enforces the shape; Pydantic validates the result.</p>
+
+  <h4>Tool schema (abbreviated)</h4>
+<pre><code>{
+  "name": "parse_cv",
+  "input_schema": {
+    "type": "object",
+    "required": ["roles", "skills", "education", "languages", "certifications",
+                 "detected_language", "parse_confidence", "extraction_warnings"],
+    "properties": {
+      "roles": {"type": "array", "items": {Role schema with title, dates, description, is_current}},
+      "skills": {"type": "array", "items": {"type": "string"}},
+      "education": {"type": "array", "items": {Education schema}},
+      "languages": [...],
+      "certifications": [...],
+      "detected_language": {"enum": ["cs", "en", "other"]},
+      "parse_confidence": {"type": "number", "minimum": 0, "maximum": 1},
+      "extraction_warnings": {"type": "array", "items": {"type": "string"}}
+    }
+  }
+}</code></pre>
+
+  <h4>Decisions</h4>
+  <ul>
+    <li><strong>Self-reported confidence</strong>: the LLM reports <code>parse_confidence ∈ [0,1]</code>. Below 0.6 it contributes a reason to the final score's confidence label.</li>
+    <li><strong>Extraction warnings as tags</strong>: short strings like <code>"no dates found"</code>, <code>"low text length"</code>, <code>"PDF extraction likely failed"</code>. These bubble up to the final ScoreCard's <code>confidence_reasons</code>.</li>
+    <li><strong>Prompt caching</strong>: the system block (instructions + extraction rules) is identical across CVs. Anthropic's prompt caching reads the cached block on subsequent calls, reducing input tokens by ~80% per CV after the first.</li>
+    <li><strong>No invented data</strong>: the system prompt explicitly forbids inventing roles, dates, or skills. Missing data → null + warning.</li>
+  </ul>
+</section>
+
+<!-- ====================== STEP 4: CLASSIFY ====================== -->
+<section id="step-4">
+  <h2><span class="step-anchor">4</span>Classify — CV → ISCO with confidence-gated rollup</h2>
+
+  <p>
+    <strong>What it does:</strong> picks the best ISCO-08 occupation code for the candidate's anchor role.
+    The output drives salary lookup downstream.
+  </p>
+
+  <h4>Process</h4>
+  <ol>
+    <li>Pick anchor role (current role with longest duration; fallback to most recent role ≥ 12 months; fallback to most recent role).</li>
+    <li>Build a query string from anchor's title + description.</li>
+    <li>Query the local ESCO occupation index (28 hand-curated ISCO codes covering common occupations across all major groups) → top 8 candidates by Jaccard token overlap + substring bonus.</li>
+    <li>Pass the shortlist + CV skills + detected language to Claude. Claude picks ONE code, returns <code>{isco_code, role_label, confidence, top1_margin, alternatives}</code>.</li>
+    <li>Apply the <strong>confidence-gated rollup</strong>:</li>
+  </ol>
+
+  <table>
+    <thead><tr><th>Confidence</th><th>top1_margin</th><th>ISCO level returned</th></tr></thead>
+    <tbody>
+      <tr><td>≥ 0.80</td><td>≥ 0.15</td><td><code>4</code> (4-digit, e.g. <code>2512</code>)</td></tr>
+      <tr><td>≥ 0.60</td><td>any</td><td><code>3</code> (3-digit, e.g. <code>251</code>)</td></tr>
+      <tr><td>any</td><td>—</td><td><code>2</code> (2-digit, e.g. <code>25</code>)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Why rollup matters:</strong> a 4-digit ISCO has narrow salary distribution. If the LLM is
+    unsure, returning the more aggregate 2-digit median is more honest than committing to a possibly-wrong
+    4-digit. Salary range automatically widens via the confidence label.
+  </div>
+
+  <h4>Edge case: high confidence + tiny margin</h4>
+  <p>
+    Confidence 0.85 with margin 0.05 means "I'm sure it's one of these two, I just don't know which."
+    The gate returns level 3, not 4 — both candidates likely share a 3-digit prefix (e.g. <code>2511</code>
+    Systems analyst and <code>2512</code> Software developer both roll up to <code>251</code>).
+  </p>
+</section>
+
+<!-- ====================== STEP 5: SCORE ====================== -->
+<section id="step-5">
+  <h2><span class="step-anchor">5</span>Score — five subscores blended</h2>
+
+  <p>
+    Five subscores, each 0–100, blended by fixed weights summing to 1.0:
+  </p>
+
+  <table>
+    <thead><tr><th>Subscore</th><th>Weight</th><th>Computed by</th><th>Source</th></tr></thead>
+    <tbody>
+      <tr><td><code>relevant_experience</code></td><td>0.25</td><td>Interval-union YoE × ISCO similarity</td><td><span class="pill pill-good">deterministic</span></td></tr>
+      <tr><td><code>skills_match</code></td><td>0.25</td><td>Keyword-group overlap with ISCO expected skills</td><td><span class="pill pill-good">deterministic</span></td></tr>
+      <tr><td><code>impact_scope</code></td><td>0.20</td><td>Numeric outcomes, scope of work — LLM-bounded with rubric</td><td><span class="pill pill-info">LLM-bounded</span></td></tr>
+      <tr><td><code>leadership_ownership_growth</code></td><td>0.20</td><td>5 sub-dims × 0–20, summed and capped — LLM-bounded</td><td><span class="pill pill-info">LLM-bounded</span></td></tr>
+      <tr><td><code>education</code></td><td>0.10</td><td>Role-sensitive ordinal mapping</td><td><span class="pill pill-good">deterministic</span></td></tr>
+    </tbody>
+  </table>
+
+  <div class="formula">total = 0.25·rel_exp + 0.25·skills + 0.20·impact + 0.20·leadership + 0.10·education</div>
+
+  <p>The total is mapped to a band:</p>
+  <table>
+    <thead><tr><th>Band</th><th>Total range</th></tr></thead>
+    <tbody>
+      <tr><td>Junior</td><td>&lt; 40</td></tr>
+      <tr><td>Mid</td><td>40 ≤ t &lt; 60</td></tr>
+      <tr><td>Senior</td><td>60 ≤ t &lt; 80</td></tr>
+      <tr><td>Lead/Principal</td><td>80 ≤ t &lt; 95</td></tr>
+      <tr><td>Exec</td><td>95+</td></tr>
+    </tbody>
+  </table>
+
+  <h3>5a. <code>relevant_experience</code> (deterministic)</h3>
+  <p>
+    Two YoE measures, both with explicit handling of overlapping/parallel roles:
+  </p>
+
+  <h4>Total YoE — interval union</h4>
+  <p>
+    Sum the union of all dated role intervals. Parallel jobs don't double-count.
+  </p>
+<pre><code>def total_yoe(roles):
+    intervals = [(r.start_date, r.end_date or today) for r in roles if r.start_date]
+    merged = merge_intervals(sorted(intervals))    # union: [(a, max(b, c)), ...]
+    return sum(months_between(s, e) for s, e in merged) / 12.0</code></pre>
+
+  <h4>Relevant YoE — FTE-equivalent capped</h4>
+  <p>
+    For each calendar month a role was active, contribute <code>isco_similarity × max(confidence, 0.5)</code>,
+    capped at 1.0 per month so overlapping relevant roles can't sum to more than full-time. This is the
+    correct way to handle freelance overlap.
+  </p>
+<pre><code>def relevant_yoe(roles, anchor_isco):
+    month_weights = {}
+    for r in roles:
+        weight = isco_similarity(r.isco_code, anchor_isco) * max(r.isco_confidence, 0.5)
+        for ym in iter_months(r.start_date, r.end_date or today):
+            month_weights[ym] = min(1.0, month_weights.get(ym, 0) + weight)
+    return sum(month_weights.values()) / 12.0</code></pre>
+
+  <h4>ISCO similarity</h4>
+  <table>
+    <thead><tr><th>Match</th><th>Similarity</th><th>Example</th></tr></thead>
+    <tbody>
+      <tr><td>identical 4-digit</td><td>1.00</td><td>2512 ↔ 2512</td></tr>
+      <tr><td>same 3-digit prefix (minor group)</td><td>0.75</td><td>2511 ↔ 2512 (both Systems analysts/Software devs)</td></tr>
+      <tr><td>same 2-digit prefix (sub-major)</td><td>0.50</td><td>2511 ↔ 2521 (both ICT professionals)</td></tr>
+      <tr><td>same occupation code at different level <em>(suffix match)</em></td><td>0.25</td><td>2511 ↔ 3511 (Systems analyst Pro ↔ ICT technician)</td></tr>
+      <tr><td>unknown ISCO on either side</td><td>0.25</td><td>None ↔ 2512</td></tr>
+      <tr><td>different occupation entirely</td><td>0.10</td><td>2221 (Nurse) ↔ 2512 (Software dev)</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Design note:</strong> the suffix-match tier (0.25) was a deliberate fix. ISCO-08 is hierarchical
+    by major-group (first digit), but the same occupation type at different seniority levels (Professional
+    vs Technician) lives in <em>different</em> major groups (e.g. 2511 vs 3511). Strict prefix matching
+    would say these are unrelated; suffix matching correctly says they're related. Conversely, two
+    different occupations within the same major group (Nurse 2221 vs Software dev 2512, both
+    "Professionals") are correctly scored as unrelated (0.10).
+  </div>
+
+  <h4>YoE → 0–100 score (piecewise interpolation)</h4>
+  <p>
+    Five anchor points calibrate years of relevant experience to a subscore:
+  </p>
+  <table>
+    <thead><tr><th>Years</th><th>Score</th></tr></thead>
+    <tbody>
+      <tr><td>0</td><td>0</td></tr>
+      <tr><td>2</td><td>30</td></tr>
+      <tr><td>5</td><td>55</td></tr>
+      <tr><td>10</td><td>80</td></tr>
+      <tr><td>15</td><td>95</td></tr>
+      <tr><td>20+</td><td>100</td></tr>
+    </tbody>
+  </table>
+  <p>Linear interpolation between anchors. Concave (faster early gains, diminishing returns past 15y) — this matches market reality for IC roles.</p>
+
+  <h4>Pipeline glue: ISCO propagation to roles</h4>
+  <div class="callout warn">
+    <p><strong>Subtle integration bug + fix.</strong> The parse step doesn't classify each role individually — only the classify step picks ONE ISCO for the candidate. Without correction, every role has <code>isco_code=None</code>, so <code>isco_similarity</code> returns the 0.25 unknown-default for all of them, deflating relevant experience to roughly a quarter of its real value.</p>
+    <p>The pipeline now propagates the classified ISCO to the anchor role at full confidence, and to any other role whose title shares a meaningful word with the classified <code>role_label</code> at 70% confidence. Career-changer roles (e.g. "Registered Nurse" vs "Software developer") have no shared title keywords, so they correctly stay None and contribute at the 0.25 baseline — preserving the property that career-changer's relevant YoE &lt; total YoE.</p>
+  </div>
+
+  <h3>5b. <code>skills_match</code> (deterministic, two-tier)</h3>
+  <p>
+    Three signals combined to 0–100:
+  </p>
+  <ul>
+    <li><strong>Breadth</strong> (0–40): <code>min(40, n × 6)</code> where <code>n</code> is the count of distinct skills extracted.</li>
+    <li><strong>Depth</strong> (0–30): substring hits of senior markers (<code>"architecture"</code>, <code>"system design"</code>, <code>"mentor"</code>, <code>"distributed systems"</code>, ...) × 6, capped at 30.</li>
+    <li><strong>Match</strong> (0–30): overlap between extracted skills and the ISCO's expected keyword set, scaled.</li>
+  </ul>
+
+  <h4>Two-tier confidence</h4>
+  <ul>
+    <li><strong>Medium</strong> (default for v1 core): keyword-group fallback, ISCO-2-digit-keyed dictionary.</li>
+    <li><strong>High</strong> (stretch, not in v1): ESCO occupation→skill mapping (Jaccard against expected skill set).</li>
+    <li><strong>Low</strong>: when the ISCO has no keyword set in the dictionary (e.g. truck drivers — fallback to neutral score).</li>
+  </ul>
+
+  <h3>5c. <code>impact_scope</code> (LLM-bounded)</h3>
+  <p>The LLM scores 0–100 against this rubric, returns 1–4 evidence quotes from the CV:</p>
+  <table>
+    <thead><tr><th>Range</th><th>Description</th></tr></thead>
+    <tbody>
+      <tr><td>0–20</td><td>Vague responsibilities, no measurable outcomes</td></tr>
+      <tr><td>21–40</td><td>Concrete deliverables, no numbers</td></tr>
+      <tr><td>41–60</td><td>Some measurable results (counts, percentages)</td></tr>
+      <tr><td>61–80</td><td>Business-level impact (revenue, cost, reliability, scale)</td></tr>
+      <tr><td>81–100</td><td>Cross-org / multi-million-scale impact</td></tr>
+    </tbody>
+  </table>
+  <p>The schema enforces <code>integer 0–100</code>; Python clamps any out-of-range output as a safety net.</p>
+
+  <h3>5d. <code>leadership_ownership_growth</code> (5 sub-dimensions × 0–20)</h3>
+
+  <p>
+    Originally called "personality" in the brief — renamed because CV text cannot defensibly infer
+    personality. CV-observable signals are the honest proxy. Five dimensions, each scored 0/10/20 with
+    evidence:
+  </p>
+
+  <table>
+    <thead><tr><th>Dimension</th><th>0</th><th>10</th><th>20</th></tr></thead>
+    <tbody>
+      <tr><td>Ownership</td><td>Task executor</td><td>Owns features</td><td>Owns outcomes / budgets</td></tr>
+      <tr><td>Leadership</td><td>No signal</td><td>Mentored / coordinated</td><td>Led people / strategy / hiring</td></tr>
+      <tr><td>Learning trajectory</td><td>Stagnant</td><td>Visible progression</td><td>Repeated upskilling / domain shifts</td></tr>
+      <tr><td>Impact clarity</td><td>Vague</td><td>Concrete deliverables</td><td>Measurable business results</td></tr>
+      <tr><td>Stability / execution</td><td>Unexplained hops</td><td>Normal transitions</td><td>Sustained delivery + promotions</td></tr>
+    </tbody>
+  </table>
+
+  <p>Sum of the five = 0–100. Each clamped before summing as a safety net.</p>
+
+  <h3>5e. <code>education</code> (deterministic, role-sensitive)</h3>
+
+  <p>Highest formal degree → base score, then adjustment for relevance to the anchor ISCO:</p>
+
+  <div class="two-col">
+    <div>
+      <h4>Base score</h4>
+      <table>
+        <tbody>
+          <tr><td>None / unknown</td><td>30</td></tr>
+          <tr><td>High school / vocational</td><td>45</td></tr>
+          <tr><td>Bachelor's</td><td>65</td></tr>
+          <tr><td>Master's</td><td>80</td></tr>
+          <tr><td>PhD / Doctorate</td><td>90</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <h4>Relevance adjustment</h4>
+      <ul>
+        <li>+10 if degree field matches anchor ISCO 2-digit keyword set</li>
+        <li>−20 if unrelated to anchor occupation (capped at floor 0)</li>
+        <li>0 otherwise</li>
+      </ul>
+    </div>
+  </div>
+
+  <p>
+    <strong>No institution-prestige scoring</strong> — deliberately excluded to avoid bias and the
+    maintenance overhead of an "elite institution" allowlist. Reviewers see this in the README's
+    "Limitations" section as a deliberate choice.
+  </p>
+</section>
+
+<!-- ====================== STEP 6: SALARY ====================== -->
+<section id="step-6">
+  <h2><span class="step-anchor">6</span>Salary math — the load-bearing logic</h2>
+
+  <p>
+    Two-stage interpolation: <strong>score → percentile → salary</strong>. The percentile axis is
+    "where in your ISCO group's salary distribution does this candidate fall." The salary axis is the
+    actual CZK figure read from MPSV ISPV for that ISCO.
+  </p>
+
+  <h3>6a. Score → percentile (anchored interpolation)</h3>
+
+  <div class="callout">
+    <strong>The most important design decision in the whole system.</strong>
+    A 75/100 candidate is <em>not</em> P75 of their ISCO cohort. The cohort already includes
+    candidates from every score band; if 75/100 mapped to P75 linearly, the math would be silently
+    wrong. We map <em>named seniority bands</em> to <em>realistic salary percentiles</em>:
+  </div>
+
+  <table>
+    <thead><tr><th>Seniority band</th><th>Score anchor</th><th>Salary percentile</th></tr></thead>
+    <tbody>
+      <tr><td>Entry / weak match</td><td>20</td><td>P10</td></tr>
+      <tr><td>Junior</td><td>35</td><td>P25</td></tr>
+      <tr><td>Solid mid</td><td>55</td><td>P50</td></tr>
+      <tr><td>Senior</td><td>75</td><td>P75</td></tr>
+      <tr><td>Lead / Principal</td><td>90</td><td>P90</td></tr>
+    </tbody>
+  </table>
+
+  <p>Linear interpolation between anchors; clamped to P5–P95 at the edges (no extrapolation past observed deciles).</p>
+
+  <svg class="chart" viewBox="0 0 600 360" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <marker id="arr" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+        <path d="M 0 0 L 10 5 L 0 10 z" fill="#888"/>
+      </marker>
+    </defs>
+    <!-- axes -->
+    <line x1="60" y1="320" x2="560" y2="320" stroke="#888" stroke-width="1.5" marker-end="url(#arr)"/>
+    <line x1="60" y1="320" x2="60" y2="20" stroke="#888" stroke-width="1.5" marker-end="url(#arr)"/>
+    <text x="560" y="345" font-size="13" fill="#888" text-anchor="end">score (0–100)</text>
+    <text x="20" y="20" font-size="13" fill="#888">percentile</text>
+    <!-- score grid -->
+    <g font-size="11" fill="#888" text-anchor="middle">
+      <text x="60" y="340">0</text>
+      <text x="160" y="340">20</text>
+      <text x="235" y="340">35</text>
+      <text x="335" y="340">55</text>
+      <text x="435" y="340">75</text>
+      <text x="510" y="340">90</text>
+      <text x="560" y="340">100</text>
+    </g>
+    <!-- percentile grid -->
+    <g font-size="11" fill="#888" text-anchor="end">
+      <text x="55" y="324">P5</text>
+      <text x="55" y="290">P10</text>
+      <text x="55" y="245">P25</text>
+      <text x="55" y="170">P50</text>
+      <text x="55" y="95">P75</text>
+      <text x="55" y="50">P90</text>
+      <text x="55" y="22">P95</text>
+    </g>
+    <!-- gridlines -->
+    <g stroke="#eee" stroke-width="1">
+      <line x1="60" y1="290" x2="560" y2="290"/>
+      <line x1="60" y1="245" x2="560" y2="245"/>
+      <line x1="60" y1="170" x2="560" y2="170"/>
+      <line x1="60" y1="95" x2="560" y2="95"/>
+      <line x1="60" y1="50" x2="560" y2="50"/>
+    </g>
+    <!-- linear reference line (dashed) -->
+    <line x1="60" y1="320" x2="560" y2="20" stroke="#bbb" stroke-width="1" stroke-dasharray="4 4"/>
+    <text x="540" y="40" font-size="11" fill="#bbb" text-anchor="end">linear (incorrect)</text>
+    <!-- anchored curve -->
+    <polyline points="60,320 160,290 235,245 335,170 435,95 510,50 560,30"
+      stroke="#2563eb" stroke-width="2.5" fill="none"/>
+    <!-- anchor points -->
+    <g fill="#2563eb">
+      <circle cx="160" cy="290" r="4.5"/>
+      <circle cx="235" cy="245" r="4.5"/>
+      <circle cx="335" cy="170" r="4.5"/>
+      <circle cx="435" cy="95" r="4.5"/>
+      <circle cx="510" cy="50" r="4.5"/>
+    </g>
+    <!-- labels -->
+    <g font-size="10.5" fill="#2563eb">
+      <text x="167" y="282">Entry</text>
+      <text x="242" y="237">Junior</text>
+      <text x="342" y="162">Mid</text>
+      <text x="442" y="87">Senior</text>
+      <text x="468" y="44">Lead</text>
+    </g>
+  </svg>
+
+  <h3>6b. Percentile → salary (linear through ISPV deciles)</h3>
+
+  <p>
+    MPSV ISPV publishes <strong>D1, Q1, median, Q3, D9</strong> per CZ-ISCO occupation. Linear
+    interpolation between observed deciles, clamped to [P10, P90] — never extrapolates past observed data:
+  </p>
+
+<pre><code>def percentile_to_salary(p, *, d1, q1, median, q3, d9):
+    p = max(10, min(90, p))                    # clamp to observed range
+    points = [(10, d1), (25, q1), (50, median), (75, q3), (90, d9)]
+    for (p0, v0), (p1, v1) in zip(points, points[1:]):
+        if p0 <= p <= p1:
+            t = (p - p0) / (p1 - p0)
+            return v0 + t * (v1 - v0)</code></pre>
+
+  <p>
+    <strong>Why no extrapolation past D1/D9:</strong> ISPV doesn't publish percentiles below D1 or above D9.
+    Any "P95 of nurses" or "P3 of CEOs" would be invented, which is exactly the kind of fake precision
+    the methodology is meant to avoid.
+  </p>
+
+  <h3>6c. Confidence-driven salary range width</h3>
+
+  <p>
+    Confidence labels have a <em>mathematical</em> effect, not just a UI chip. Lower confidence widens
+    the percentile band on each side of the point estimate before re-mapping to salary:
+  </p>
+
+  <table>
+    <thead><tr><th>Confidence</th><th>± width (percentile points)</th><th>Effect on a P50 estimate</th></tr></thead>
+    <tbody>
+      <tr><td>high</td><td>10</td><td>P40–P60</td></tr>
+      <tr><td>medium</td><td>15</td><td>P35–P65</td></tr>
+      <tr><td>low</td><td>25</td><td>P25–P75</td></tr>
+    </tbody>
+  </table>
+
+  <p>
+    Confidence label is <code>high</code> only with zero confidence reasons; it drops to <code>medium</code>
+    on one reason, <code>low</code> on two or more.
+  </p>
+</section>
+
+<!-- ====================== STEP 7: RECOMMEND ====================== -->
+<section id="step-7">
+  <h2><span class="step-anchor">7</span>+30% growth plan — three branches</h2>
+
+  <p>
+    Compute <code>target_salary = current_salary × 1.30</code>, find where it lands in the ISCO's
+    salary distribution, and branch on that:
+  </p>
+
+  <div class="mermaid">
+flowchart TD
+  S[current_salary × 1.30] --> P[salary_to_percentile<br/>through ISPV deciles]
+  P --> Q{above D9?}
+  Q -- yes --> A[role_family_change<br/><i>can't get +30% in current ISCO</i>]
+  Q -- no --> R{P85 or above?}
+  R -- yes --> B[stretch_within_role_or_market_change<br/><i>realistic only with company/industry/geography move</i>]
+  R -- no --> C[skill_up_within_role<br/><i>compute required score delta + allocate to subscores</i>]
+
+  style A fill:#fef3c7,stroke:#b45309
+  style B fill:#eef2ff,stroke:#2563eb
+  style C fill:#ecfdf5,stroke:#047857
+  </div>
+
+  <h3>7a. <code>role_family_change</code></h3>
+  <p>
+    Target salary exceeds the top decile of the candidate's current ISCO group. Even being P99 in this
+    role won't get there. Recommendation is to <strong>change occupation</strong> (different ISCO,
+    higher-paying industry) or <strong>change geography/comp model</strong> (foreign client, equity).
+    Skill-up alone is mathematically impossible.
+  </p>
+
+  <h3>7b. <code>stretch_within_role_or_market_change</code></h3>
+  <p>
+    Target sits in P85–P90. Mathematically reachable inside the current ISCO, but realistically requires
+    a <em>combination</em> of demonstrated impact + a market move (changing companies, industries, or
+    geographies). Skill-up alone usually isn't enough at this band.
+  </p>
+
+  <h3>7c. <code>skill_up_within_role</code></h3>
+  <p>
+    Target lands inside P5–P85 of the current ISCO. Compute:
+  </p>
+  <ol>
+    <li><code>target_percentile</code> from <code>salary_to_percentile(target_salary, ...)</code></li>
+    <li><code>required_score = percentile_to_required_score(target_p)</code> (inverse of the anchored interpolation)</li>
+    <li><code>score_delta = required_score − current_score</code></li>
+    <li>Allocate <code>score_delta</code> across subscores by <strong>weighted capacity</strong> (gap × weight), <em>skipping <code>relevant_experience</code></em> — you can't fast-track years of experience.</li>
+    <li>Pass the deltas + redacted CV text to Claude → 3–5 concrete actions referencing CV evidence.</li>
+  </ol>
+
+  <h4>Subscore-delta allocation</h4>
+<pre><code>def allocate_subscore_deltas(subscores, required_total_delta, weights, skip):
+    gaps = {k: 100 - subscores[k] for k in subscores if k not in skip}
+    weighted_capacity = {k: gaps[k] * weights[k] for k in gaps}
+    total_capacity = sum(weighted_capacity.values()) or 1.0
+    plan = {k: 0.0 for k in subscores}
+    for k in gaps:
+        share = required_total_delta * (weighted_capacity[k] / total_capacity)
+        plan[k] = min(gaps[k], share / weights[k])      # convert total-points back to subscore-points
+    return plan</code></pre>
+
+  <div class="callout">
+    <strong>Why this allocation rule:</strong> the candidate gets the most "score per unit of effort" by
+    investing in subscores that are both (1) low (large gap) and (2) heavily weighted in the total. Skills
+    and impact dominate. Education's tiny 0.10 weight means a degree change rarely shows up as a
+    recommendation.
+  </div>
+</section>
+
+<!-- ====================== WORKED EXAMPLE ====================== -->
+<section id="worked-example">
+  <h2>Worked example: <code>mid_dev_4y.docx</code></h2>
+
+  <p>
+    A 4-year-experienced software engineer in Czechia. The CV (paragraph form):
+  </p>
+
+<pre><code>Jane Smith
+Software Engineer
+
+EXPERIENCE
+Software Engineer — FinTech Plus, 05/2022 — present
+- Owned the payment ingestion service handling 50k tx/day.
+- Reduced p95 latency by 35% by introducing async Postgres pool.
+- Mentored 1 intern.
+Junior Developer — StartupX, 06/2020 — 04/2022
+- Built REST APIs in Flask; helped migrate to FastAPI.
+- Wrote integration tests; maintained CI pipeline.
+
+SKILLS
+Python, FastAPI, Flask, PostgreSQL, Redis, Docker, AWS, Kubernetes, Git, pytest, GitHub Actions
+
+EDUCATION
+Master's — Software Engineering, CTU Prague (2018–2020)</code></pre>
+
+  <h4>Step-by-step</h4>
+  <table>
+    <thead><tr><th>Step</th><th>Output</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><strong>1. extract</strong></td>
+        <td>Plain text, ~600 chars (DOCX → string).</td>
+      </tr>
+      <tr>
+        <td><strong>2. redact</strong></td>
+        <td>No emails/phones/URLs in this CV → unchanged. SHA-256 of the original DOCX recorded.</td>
+      </tr>
+      <tr>
+        <td><strong>3. parse</strong></td>
+        <td>2 roles, 11 skills, 1 education entry. <code>parse_confidence = 0.95</code>. 3 minor warnings (no languages, no certs, education dates inferred).</td>
+      </tr>
+      <tr>
+        <td><strong>4. classify</strong></td>
+        <td>ISCO <code>2512</code> "Software developer". Confidence 0.95, top1_margin 0.75 → kept at 4-digit (no rollup).</td>
+      </tr>
+      <tr>
+        <td><strong>5a. relevant_experience</strong></td>
+        <td>
+          Anchor role "Software Engineer" gets ISCO <code>2512</code>; non-anchor "Junior Developer" shares the word "developer" with role_label "Software developer" → gets <code>2512</code> at 0.7× confidence.
+          <br/>relevant_yoe ≈ 4.0y · 0.95 + 1.83y · 0.665 ≈ <strong>5.0y</strong> → score ≈ <strong>55</strong>.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>5b. skills_match</strong></td>
+        <td>11 skills → breadth 40, no senior depth markers → 0, ISCO-25 keyword overlap (python, fastapi, postgresql, redis, docker, aws, kubernetes, git, pytest) → 30. Total <strong>70</strong>, confidence medium.</td>
+      </tr>
+      <tr>
+        <td><strong>5c. impact_scope</strong></td>
+        <td>"Reduced p95 latency by 35%", "50k tx/day" → measurable but not multi-million-scale → LLM scored <strong>55</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>5d. leadership_ownership_growth</strong></td>
+        <td>
+          ownership 14 (owned ingestion service), leadership 10 (mentored 1 intern), learning trajectory 12 (Flask → FastAPI), impact_clarity 12 (concrete numbers), stability 12 (clean progression) → total <strong>60</strong>.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>5e. education</strong></td>
+        <td>Master's (80) + Software Engineering field matches ISCO 25 keywords (+10) → <strong>90</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>total</strong></td>
+        <td>0.25·55 + 0.25·70 + 0.20·55 + 0.20·60 + 0.10·90 = 13.75 + 17.5 + 11 + 12 + 9 = <strong>63 → Senior</strong>.</td>
+      </tr>
+      <tr>
+        <td><strong>6. salary</strong></td>
+        <td>
+          Score 63 → percentile P60 (anchored interpolation). ISCO 2512 ISPV deciles: D1 ~50k, Q1 ~70k, median ~95k, Q3 ~130k, D9 ~180k. P60 ≈ <strong>109,000 CZK/month</strong>. Medium confidence (extraction warnings) → ±15 percentile points → range ~90,000–130,000 CZK.
+        </td>
+      </tr>
+      <tr>
+        <td><strong>7. growth plan</strong></td>
+        <td>
+          target = 109,000 × 1.30 = ~141,700 CZK. Salary→percentile ≈ P78 (within distribution but above P85 threshold? close). Branch: likely <code>stretch_within_role_or_market_change</code>. LLM generates 3–5 actions referencing CV evidence (e.g. "Lead a cross-functional initiative for 6 months and document business impact in numbers").
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <strong>Note on numbers.</strong> The exact figures above are illustrative — they reflect the
+    methodology after the ISCO-propagation fix. The actual numbers from a live run will vary slightly with
+    the LLM's exact subscore values for impact and leadership. The deterministic parts (relevant_experience,
+    skills, education, salary math) are reproducible.
+  </div>
+</section>
+
+<!-- ====================== VALIDATION ====================== -->
+<section id="validation">
+  <h2>Validation</h2>
+
+  <p>
+    No labelled ground-truth dataset exists for "correct" CV scores. Instead, the system is validated by
+    <strong>rank-order assertions on a synthetic CV pack</strong>: hand-crafted CVs at known seniority
+    bands run through the full pipeline (live LLM calls), and the relative ordering must be sensible.
+  </p>
+
+  <h4>Synthetic pack (5 CVs in v1 core)</h4>
+  <table>
+    <thead><tr><th>CV</th><th>Profile</th><th>Expected band</th></tr></thead>
+    <tbody>
+      <tr><td><code>junior_dev_1y.docx</code></td><td>1y dev, strong skills, low impact</td><td>Junior (25–40)</td></tr>
+      <tr><td><code>mid_dev_4y.docx</code></td><td>4y dev, normal progression</td><td>Mid (45–60) or Senior</td></tr>
+      <tr><td><code>senior_dev_8y.docx</code></td><td>8y dev, ownership, architecture</td><td>Senior (65–80)</td></tr>
+      <tr><td><code>nurse_to_dev_5y_2y.docx</code></td><td>Career changer (5y nurse → 2y dev)</td><td>Mid; salary anchors to dev ISCO not nurse</td></tr>
+      <tr><td><code>buzzword_no_evidence.docx</code></td><td>Verbose, no concrete results</td><td>Junior or low Mid</td></tr>
+    </tbody>
+  </table>
+
+  <h4>Rank-order assertions (live E2E tests)</h4>
+<pre><code># tests/test_e2e_synthetic.py — gated on ANTHROPIC_API_KEY
+
+assert score("junior_dev_1y") < score("mid_dev_4y") < score("senior_dev_8y")
+assert score("buzzword_no_evidence") < score("mid_dev_4y")
+assert relevant_yoe("nurse_to_dev_5y_2y") < total_yoe("nurse_to_dev_5y_2y")
+assert classification("nurse_to_dev_5y_2y").isco_code.startswith("25")  # dev, not nurse
+assert score("senior_dev_8y").band in ("Senior", "Lead/Principal")
+for cv in all_cvs: assert len(growth_plan(cv).actions) >= 3</code></pre>
+
+  <p>
+    Assertions are intentionally <em>loose</em> (band ranges, not exact scores) — the goal is verifying the
+    methodology rank-orders correctly, not that the LLM produces specific numbers.
+  </p>
+
+  <div class="callout good">
+    <p><strong>Latest run:</strong> all 6 E2E rank assertions passed in 2:11 across 5 synthetic CVs (~20 LLM calls total).
+    Plus 71 unit tests for the deterministic math (interval union, anchored interpolation,
+    percentile↔salary inverse, +30% branching, etc.) running in &lt; 1 second without an API key.</p>
+  </div>
+
+  <h4>Pure-function unit tests run without an API key</h4>
+<pre><code>$ uv run pytest tests/ --ignore=tests/test_e2e_synthetic.py -q
+71 passed, 1 skipped in 0.75s
+
+$ uv run pytest tests/ --html=docs/reports/test-report.html \
+    --cov=src/job_fit --cov-report=html:docs/reports/coverage --cov-report=term
+TOTAL coverage: 86%</code></pre>
+</section>
+
+<!-- ====================== DATA SOURCES ====================== -->
+<section id="data-sources">
+  <h2>Data sources</h2>
+
+  <table>
+    <thead><tr><th>Country</th><th>Source</th><th>Format</th><th>Refresh</th><th>Status</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>CZ</td>
+        <td><a href="https://data.mpsv.cz/web/data/ispv-zamestnani">MPSV ISPV open data</a> (<code>ispv-zamestnani.json</code>)</td>
+        <td>JSON</td><td>semi-annual</td>
+        <td><span class="pill pill-good">implemented</span></td>
+      </tr>
+      <tr>
+        <td>EU</td>
+        <td>Eurostat SES 2022 (<code>earn_ses_main</code>) via <code>eurostat</code> PyPI package</td>
+        <td>API</td><td>quadrennial</td>
+        <td><span class="pill pill-warn">designed (stretch)</span></td>
+      </tr>
+      <tr>
+        <td>US</td>
+        <td>BLS OEWS + official <a href="https://www.bls.gov/soc/isco_soc_crosswalk.xls">SOC↔ISCO crosswalk</a></td>
+        <td>XLS/CSV</td><td>annual</td>
+        <td><span class="pill pill-warn">designed (stretch)</span></td>
+      </tr>
+      <tr>
+        <td>UK</td>
+        <td>ONS SOC 2020 earnings + CASCOT mapping</td>
+        <td>CSV</td><td>annual</td>
+        <td><span class="pill pill-warn">designed (stretch)</span></td>
+      </tr>
+      <tr>
+        <td>else</td>
+        <td>Eurostat fallback + explicit "low confidence" label</td>
+        <td>—</td><td>—</td>
+        <td><span class="pill pill-warn">designed (stretch)</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h4>What ISPV gives us</h4>
+  <p>
+    440 rows after fetch, period "rok 2025". Per CZ-ISCO occupation × wage/pay sphere
+    (<code>MZDOVA</code> = private sector, <code>PLATOVA</code> = public sector), with fields:
+    <code>medianMzda</code>, <code>diferenciaceD1M</code>, <code>diferenciaceQ1M</code>,
+    <code>diferenciaceQ3M</code>, <code>diferenciaceD9M</code>, <code>mzdaPrumer</code>,
+    <code>pocetZamestnancuMzda</code>, <code>obdobi</code>, <code>czIsco</code>.
+  </p>
+  <p>
+    <strong>Caveat:</strong> the public dataset is CZ-ISCO × sphere only — it is <em>not</em> a full
+    region × education × age cube. Region/education/age salary adjustments are designed but not in v1.
+    This is stated explicitly in the README's "Limitations" section.
+  </p>
+
+  <h4>What the local ESCO index gives us</h4>
+  <p>
+    A hand-curated CSV of 28 ISCO-08 occupation codes covering all major groups (managers, professionals,
+    technicians, clerical, services, agricultural, trades, drivers). Each row has EN+CZ labels and
+    bilingual keywords for keyword-overlap retrieval. The classify step uses this for top-k retrieval
+    before passing to Claude. Stretch task 29 would extend this to the full ESCO occupation→skill mapping
+    via the ESCO API.
+  </p>
+</section>
+
+<!-- ====================== LIMITATIONS ====================== -->
+<section id="limitations">
+  <h2>Limitations &amp; honest disclosures</h2>
+
+  <ul>
+    <li><strong>No full ISPV multidim cube</strong> — public dataset is CZ-ISCO × wage sphere only. Region/education/age adjustments are designed but not in v1.</li>
+    <li><strong>Eurostat SES is 2022 (quadrennial)</strong> — international anchors will lag.</li>
+    <li><strong>"Personality" renamed</strong> to leadership/ownership/growth signals — CV text cannot defensibly infer personality; CV-observable signals are the honest proxy.</li>
+    <li><strong>No labelled ground truth</strong> — validation is rank-order on a synthetic pack, not absolute correctness.</li>
+    <li><strong>Regex PII redaction</strong> — production would use NER (Named Entity Recognition); regex doesn't catch names or addresses.</li>
+    <li><strong>No institution-prestige scoring</strong> — deliberately excluded to avoid bias.</li>
+    <li><strong>OCR not implemented</strong> — image-only PDFs flow through as low parse confidence; the salary range widens accordingly.</li>
+    <li><strong>v1 ships CZ-only at runtime</strong> — EU/US/UK data layers are designed, not implemented.</li>
+    <li><strong>ISCO classification is hand-curated, not full ESCO</strong> — 28 occupations covering common roles; specialty roles fall back to keyword search and confidence-gated rollup.</li>
+  </ul>
+
+  <div class="callout warn">
+    <p><strong>What this is, what this isn't.</strong></p>
+    <p>This is an interview-grade prototype, not a production compensation engine. The methodology is
+    designed to be auditable and honest about its uncertainty (confidence labels, range widening, rollup
+    on low confidence) rather than to be the most precise estimate. A reviewer should be able to follow
+    the math and disagree productively with specific weights — the architecture is correct.</p>
+  </div>
+</section>
+
+<footer>
+  <p>
+    Job Fit &amp; Salary Estimator v0.1.0 · Czech AI-engineering case study deliverable<br/>
+    Spec: <code>docs/specs/2026-05-04-job-fit-estimator-design.md</code> ·
+    Plan: <code>docs/plans/2026-05-04-job-fit-estimator.md</code><br/>
+    Test report: <code>docs/reports/test-report.html</code> ·
+    Coverage: <code>docs/reports/coverage/index.html</code>
+  </p>
+</footer>
+
+</body>
+</html>

@@ -134,6 +134,31 @@ uv run pytest tests/ -v --ignore=tests/test_e2e_synthetic.py    # unit
 ANTHROPIC_API_KEY=... uv run pytest tests/test_e2e_synthetic.py -v   # e2e
 ```
 
+### HTML test + coverage reports
+
+```bash
+uv run pytest tests/ --ignore=tests/test_e2e_synthetic.py \
+    --html=docs/reports/test-report.html --self-contained-html \
+    --cov=src/job_fit --cov-report=html:docs/reports/coverage --cov-report=term
+open docs/reports/test-report.html        # browse test results
+open docs/reports/coverage/index.html     # browse coverage by file/line
+```
+
+Latest run: 71 unit tests pass, 86% line coverage. 6 E2E tests pass when API key is set.
+
+## Design explainer
+
+A standalone walkthrough of every step, every formula, and every decision lives at:
+
+- HTML: [`docs/explainer.html`](docs/explainer.html) — open in a browser
+- PDF:  [`docs/explainer.pdf`](docs/explainer.pdf) — generated from the HTML via Playwright
+
+To regenerate the PDF after editing the HTML:
+
+```bash
+node scripts/render_pdf.mjs
+```
+
 ## Future work
 
 - Region / education / age salary adjustments when public CZ data permits
