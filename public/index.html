@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job Fit & Salary Estimator — Case study artifacts</title>
+<style>
+  :root {
+    --ink: #1a1a1a; --ink-soft: #4a4a4a; --ink-fade: #888;
+    --paper: #fdfdfb; --rule: #e2e2dc;
+    --accent: #2563eb; --accent-soft: #eef2ff;
+    --good: #047857; --good-soft: #ecfdf5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    color: var(--ink); background: var(--paper);
+    max-width: 760px; margin: 0 auto;
+    padding: 64px 32px 96px; line-height: 1.6;
+  }
+  header { border-bottom: 2px solid var(--ink); padding-bottom: 18px; margin-bottom: 32px; }
+  h1 { margin: 0 0 6px; font-size: 2rem; letter-spacing: -0.01em; }
+  .subtitle { color: var(--ink-soft); margin: 0; font-size: 1.05rem; }
+  .framing {
+    background: var(--accent-soft); border-left: 4px solid var(--accent);
+    padding: 14px 18px; margin: 20px 0; font-style: italic; color: var(--ink-soft);
+  }
+  h2 { font-size: 1.2rem; margin: 36px 0 12px; }
+  .card {
+    border: 1px solid var(--rule); border-radius: 6px;
+    padding: 20px 24px; margin: 14px 0; background: white;
+    transition: border-color 0.15s ease;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card h3 { margin: 0 0 6px; font-size: 1.1rem; }
+  .card h3 a { color: var(--ink); text-decoration: none; }
+  .card h3 a:hover { color: var(--accent); }
+  .card p { margin: 6px 0 10px; color: var(--ink-soft); font-size: 0.95rem; }
+  .card .links { font-size: 0.9rem; }
+  .card .links a {
+    color: var(--accent); text-decoration: none; margin-right: 14px;
+    border-bottom: 1px dotted var(--accent);
+  }
+  .card .links a:hover { border-bottom-style: solid; }
+  table { border-collapse: collapse; width: 100%; margin: 12px 0 6px; font-size: 0.9rem; }
+  th, td { border-bottom: 1px solid var(--rule); padding: 8px 10px; text-align: left; }
+  th { background: #f6f6f2; font-weight: 600; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; font-family: 'SF Mono', Menlo, monospace; }
+  .pill {
+    display: inline-block; padding: 2px 8px; border-radius: 999px;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.02em;
+  }
+  .pill-good { background: var(--good-soft); color: var(--good); }
+  .pill-info { background: var(--accent-soft); color: var(--accent); }
+  .pill-warn { background: #fef3c7; color: #b45309; }
+  footer {
+    margin-top: 64px; padding-top: 18px; border-top: 1px solid var(--rule);
+    color: var(--ink-fade); font-size: 0.85rem;
+  }
+  footer a { color: var(--ink-fade); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Job Fit &amp; Salary Estimator</h1>
+  <p class="subtitle">Case study deliverable — CV → 0–100 seniority score + salary range + +30% growth plan</p>
+</header>
+
+<div class="framing">
+  <strong>Headline architecture:</strong> Official wage anchor + transparent seniority model + bounded LLM explanation.
+</div>
+
+<p>
+  Python pipeline that takes a CV (PDF or DOCX), extracts and redacts PII, classifies the candidate
+  to an ISCO-08 occupation code, computes a hybrid score (deterministic + LLM-bounded), looks up
+  Czech ISPV salary deciles, and produces a +30% growth plan with three-way branching (skill up,
+  stretch, or change role family).
+</p>
+
+<h2>Artifacts</h2>
+
+<div class="card">
+  <h3><a href="/results.html">📊 Live tool results</a></h3>
+  <p>
+    The pipeline run end-to-end on five synthetic CVs spanning junior, mid, senior, career-changer
+    (nurse → developer), and a buzzword-heavy fake. Side-by-side scores, salary ranges, branch
+    decisions, LLM-quoted evidence, and recommended actions per CV.
+  </p>
+  <div class="links">
+    <a href="/results.html">HTML</a>
+    <a href="/results.pdf">PDF</a>
+  </div>
+</div>
+
+<div class="card">
+  <h3><a href="/explainer.html">📐 Design explainer</a></h3>
+  <p>
+    Walks through every step, every formula, and every design decision. Mermaid diagrams of the
+    pipeline and growth-plan branching, an SVG chart contrasting the anchored interpolation against
+    a (wrong) linear mapping, and a step-by-step worked example.
+  </p>
+  <div class="links">
+    <a href="/explainer.html">HTML</a>
+    <a href="/explainer.pdf">PDF</a>
+  </div>
+</div>
+
+<h2>Sample results — at a glance</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>CV</th>
+      <th class="num">Score</th>
+      <th>Band</th>
+      <th class="num">Salary point</th>
+      <th>+30% branch</th>
+      <th>ISCO</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>junior_dev_1y</code></td>
+      <td class="num">42</td>
+      <td><span class="pill pill-info">Mid</span></td>
+      <td class="num">81,884 CZK</td>
+      <td>skill_up_within_role</td>
+      <td><code>2512</code></td>
+    </tr>
+    <tr>
+      <td><code>mid_dev_4y</code></td>
+      <td class="num">64</td>
+      <td><span class="pill pill-good">Senior</span></td>
+      <td class="num">119,487 CZK</td>
+      <td>skill_up_within_role</td>
+      <td><code>2512</code></td>
+    </tr>
+    <tr>
+      <td><code>senior_dev_8y</code></td>
+      <td class="num">79</td>
+      <td><span class="pill pill-good">Senior</span></td>
+      <td class="num">122,534 CZK</td>
+      <td>role_family_change</td>
+      <td><code>251</code></td>
+    </tr>
+    <tr>
+      <td><code>nurse_to_dev_5y_2y</code></td>
+      <td class="num">50</td>
+      <td><span class="pill pill-info">Mid</span></td>
+      <td class="num">93,711 CZK</td>
+      <td>skill_up_within_role</td>
+      <td><code>2512</code></td>
+    </tr>
+    <tr>
+      <td><code>buzzword_no_evidence</code></td>
+      <td class="num">38</td>
+      <td><span class="pill pill-warn">Junior</span></td>
+      <td class="num">77,206 CZK</td>
+      <td>skill_up_within_role</td>
+      <td><code>112</code></td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="font-size: 0.9rem; color: var(--ink-soft);">
+  Rank order holds (junior &lt; mid &lt; senior). Career-changer correctly anchors to Software developer ISCO
+  (<code>2512</code>), not nurse ISCO. Senior dev gets <code>role_family_change</code> because a +30% increase
+  exceeds the top decile of their current ISCO group — the system correctly recommends pivoting role family
+  rather than skilling up further.
+</p>
+
+<footer>
+  <p>
+    Czech AI-engineering case study deliverable · Salary anchor: MPSV ISPV (data.mpsv.cz) ·
+    Pipeline: Python 3.11+ / Anthropic Claude tool-use · Streamlit + minimal CLI.
+  </p>
+</footer>
+
+</body>
+</html>
