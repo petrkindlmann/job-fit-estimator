@@ -1,0 +1,17 @@
+.env
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+data/cache/
+data/ispv/raw/
+data/eurostat/raw/
+data/bls/raw/
+data/esco/raw/
+*.egg-info/
+dist/
+build/
+.coverage
+htmlcov/
