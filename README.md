@@ -6,7 +6,7 @@
 > and FastAPI are implemented only where time permits and otherwise documented as extension points.
 
 **Live artifacts:**
-- 🚀 Run it live (upload your own CV): <https://job-fit-estimator.streamlit.app>
+- 🚀 Run it live (upload your own CV): <https://job-fit-petr.streamlit.app>
 - 📊 Sample results on 5 synthetic CVs: <https://job-fit.n8calls.com/results.html>
 - 📐 Design explainer (every step, formula, and decision): <https://job-fit.n8calls.com/explainer.html>
 - Landing page: <https://job-fit.n8calls.com>
