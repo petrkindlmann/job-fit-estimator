@@ -6,9 +6,10 @@
 > and FastAPI are implemented only where time permits and otherwise documented as extension points.
 
 **Live artifacts:**
-- 📊 Sample results on 5 synthetic CVs: <https://job-fit-estimator.pages.dev/results.html>
-- 📐 Design explainer (every step, formula, and decision): <https://job-fit-estimator.pages.dev/explainer.html>
-- Landing page: <https://job-fit-estimator.pages.dev>
+- 🚀 Run it live (upload your own CV): <https://job-fit-estimator.streamlit.app>
+- 📊 Sample results on 5 synthetic CVs: <https://job-fit.n8calls.com/results.html>
+- 📐 Design explainer (every step, formula, and decision): <https://job-fit.n8calls.com/explainer.html>
+- Landing page: <https://job-fit.n8calls.com>
 
 ## What it does
 
@@ -37,6 +38,20 @@ uv run streamlit run app/streamlit_app.py
 # 4b. ...or use the CLI
 uv run job-fit analyze samples/cvs/mid_dev_4y.docx --json
 ```
+
+### Deploy your own copy to Streamlit Community Cloud
+
+The repo is Streamlit-Cloud-ready (`requirements.txt`, `.streamlit/config.toml`,
+sys-path bridging in `app/streamlit_app.py`). One-time setup:
+
+1. Visit <https://share.streamlit.io> and sign in with GitHub.
+2. Click **New app**.
+3. Repo: `petrkindlmann/job-fit-estimator` · Branch: `main` · Main file path: `app/streamlit_app.py`.
+4. **App name** (= subdomain): `job-fit-estimator` (or pick another — first-come-first-served).
+5. **Advanced settings → Secrets**: paste the keys from `.streamlit/secrets.toml.example`.
+6. Click **Deploy**. The app boots in ~2 minutes; URL: `https://<app-name>.streamlit.app`.
+
+If you pick a different name, update the link in `public/index.html` and `README.md`.
 
 ## Pipeline
 

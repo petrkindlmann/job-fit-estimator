@@ -3,11 +3,25 @@
 Demo path (§16 of spec):
 1. Upload → 2. Parse → 3. Classify → 4. Score → 5. Salary → 6. Growth Plan → 7. Debug
 """
+import os
+import sys
 import tempfile
 from pathlib import Path
 
 import streamlit as st
-from job_fit.pipeline import analyze_cv
+
+# Bridge Streamlit Cloud secrets → environment so job_fit.llm picks them up.
+for _k in ("ANTHROPIC_API_KEY", "MODEL_ID", "LLM_PROVIDER"):
+    try:
+        if _k in st.secrets and _k not in os.environ:
+            os.environ[_k] = st.secrets[_k]
+    except (FileNotFoundError, st.runtime.secrets.StreamlitSecretNotFoundError):
+        pass
+
+# Make `src/` importable when Streamlit Cloud runs from the repo root.
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
+
+from job_fit.pipeline import analyze_cv  # noqa: E402
 
 st.set_page_config(page_title="Job Fit & Salary Estimator", layout="wide")
 st.title("Job Fit & Salary Estimator")
