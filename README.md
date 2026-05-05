@@ -5,6 +5,11 @@
 > and bounded LLM explanations. International salary sources, richer ESCO skill matching,
 > and FastAPI are implemented only where time permits and otherwise documented as extension points.
 
+**Live artifacts:**
+- 📊 Sample results on 5 synthetic CVs: <https://job-fit-estimator.pages.dev/results.html>
+- 📐 Design explainer (every step, formula, and decision): <https://job-fit-estimator.pages.dev/explainer.html>
+- Landing page: <https://job-fit-estimator.pages.dev>
+
 ## What it does
 
 Takes a CV (PDF or DOCX), produces:
