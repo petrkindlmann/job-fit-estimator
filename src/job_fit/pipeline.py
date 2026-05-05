@@ -1,10 +1,12 @@
+import re
 import time
 from pathlib import Path
 from typing import Optional
 from loguru import logger
 
+from job_fit.anchor import choose_anchor_role
 from job_fit.models import (
-    CVJson, ISCOClassification, ScoreCard, SalaryRange, GrowthPlan, ResultJson,
+    CVJson, ISCOClassification, ScoreCard, SalaryRange, GrowthPlan, ResultJson, Role,
 )
 from job_fit.extract import extract_text
 from job_fit.redact import redact_pii, hash_bytes
@@ -23,6 +25,41 @@ from job_fit.salary_math import (
 from job_fit.recommend import compute_growth_branch, allocate_subscore_deltas
 from job_fit.recommend_actions import generate_actions
 from job_fit.data.ispv import IspvIndex
+
+
+_TITLE_STOPWORDS = {
+    "senior", "junior", "principal", "lead", "staff", "the", "of", "and", "a",
+    "i", "ii", "iii", "iv", "v", "head", "chief", "associate",
+}
+
+
+def _title_words(text: str) -> set[str]:
+    return {w for w in re.findall(r"\w+", (text or "").lower()) if w not in _TITLE_STOPWORDS and len(w) >= 3}
+
+
+def _propagate_isco_to_roles(cv: CVJson, cls: ISCOClassification) -> None:
+    """Populate isco_code on the anchor role and any role whose title overlaps with cls.role_label.
+
+    Why: parse step extracts roles but doesn't classify per-role; classify step picks ONE ISCO.
+    Without this, every role gets isco_similarity=0.25 (default for unknown), under-weighting
+    relevant experience. We propagate cls.isco_code to roles that look like the same family.
+    Career-changer roles (e.g. nurse vs developer) won't share title keywords with the anchor,
+    so they correctly stay None and contribute at the 0.25 baseline.
+    """
+    if not cv.roles:
+        return
+    anchor = choose_anchor_role(cv.roles)
+    label_words = _title_words(cls.role_label)
+    for r in cv.roles:
+        if r.isco_code is not None:
+            continue
+        if r is anchor:
+            r.isco_code = cls.isco_code
+            r.isco_confidence = cls.confidence
+            continue
+        if label_words and (_title_words(r.title) & label_words):
+            r.isco_code = cls.isco_code
+            r.isco_confidence = cls.confidence * 0.7
 
 
 def analyze_cv(
@@ -62,6 +99,7 @@ def analyze_cv(
 
     # 5. Score subscores
     t = time.perf_counter()
+    _propagate_isco_to_roles(cv, cls)
     rel_y = relevant_yoe(cv.roles, anchor_isco=cls.isco_code)
     rel_score = relevant_yoe_to_score(rel_y)
     skills, skills_conf = score_skills_match(cv.skills, isco_code=cls.isco_code)
