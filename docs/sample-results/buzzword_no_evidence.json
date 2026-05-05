@@ -1,0 +1,186 @@
+{
+  "file": "buzzword_no_evidence.docx",
+  "ok": true,
+  "duration_s": 24.9,
+  "result": {
+    "cv": {
+      "roles": [
+        {
+          "title": "Chief Synergy Officer",
+          "company": "VisionCo",
+          "start_date": "2020-01-01",
+          "end_date": null,
+          "description": "Drove paradigm-shifting initiatives leveraging cutting-edge synergies. Spearheaded transformative outcomes through best-in-class methodologies. Enabled strategic alignment across cross-functional touchpoints.",
+          "is_current": true,
+          "raw_dates": "2020 — present",
+          "isco_code": "112",
+          "isco_confidence": 0.72
+        },
+        {
+          "title": "Senior Innovation Catalyst",
+          "company": "IdeaWorks",
+          "start_date": "2017-01-01",
+          "end_date": "2020-01-01",
+          "description": "Orchestrated holistic ecosystems of disruptive thought leadership. Empowered stakeholders via next-generation frameworks.",
+          "is_current": false,
+          "raw_dates": "2017 — 2020",
+          "isco_code": null,
+          "isco_confidence": 0.0
+        }
+      ],
+      "skills": [
+        "leadership",
+        "vision",
+        "strategy",
+        "innovation",
+        "transformation",
+        "synergy",
+        "alignment",
+        "empowerment"
+      ],
+      "education": [
+        {
+          "degree": "MBA",
+          "field": null,
+          "institution": "Famous Business School",
+          "start_date": null,
+          "end_date": "2017-01-01"
+        }
+      ],
+      "languages": [],
+      "certifications": [],
+      "detected_language": "en",
+      "parse_confidence": 0.75,
+      "extraction_warnings": [
+        "no specific months provided for dates, defaulting to January",
+        "no languages specified",
+        "no certifications found",
+        "skills are mostly soft/generic rather than technical"
+      ]
+    },
+    "classification": {
+      "isco_code": "112",
+      "isco_level": 3,
+      "role_label": "Managing director",
+      "confidence": 0.72,
+      "top1_margin": 0.25,
+      "alternatives": [
+        "2421",
+        "1330",
+        "2434"
+      ],
+      "rollup_reason": "low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit"
+    },
+    "score": {
+      "relevant_experience": 54,
+      "skills_match": 56,
+      "impact_scope": 15,
+      "leadership_ownership_growth": 35,
+      "education": 10,
+      "total": 38,
+      "band": "Junior",
+      "confidence": "low",
+      "confidence_reasons": [
+        "low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit",
+        "extraction warnings: no specific months provided for dates, defaulting to January, no languages specified, no certifications found, skills are mostly soft/generic rather than technical",
+        "skills_match used low-confidence fallback (no ISCO keyword set)"
+      ],
+      "evidence": {
+        "impact_scope": [
+          "Drove paradigm-shifting initiatives leveraging cutting-edge synergies",
+          "Orchestrated holistic ecosystems of disruptive thought leadership",
+          "Enabled strategic alignment across cross-functional touchpoints"
+        ],
+        "leadership_ownership_growth": [
+          "Chief Synergy Officer — VisionCo, 2020 — present",
+          "Senior Innovation Catalyst — IdeaWorks, 2017 — 2020",
+          "Spearheaded transformative outcomes through best-in-class methodologies",
+          "Empowered stakeholders via next-generation frameworks",
+          "MBA — Famous Business School (2017)"
+        ]
+      }
+    },
+    "salary": {
+      "point": 77206,
+      "low": 54881,
+      "high": 96863,
+      "percentile": 28.75,
+      "percentile_low": 10.0,
+      "percentile_high": 53.75,
+      "currency": "CZK",
+      "period": "month",
+      "confidence": "low",
+      "confidence_reasons": [
+        "low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit",
+        "extraction warnings: no specific months provided for dates, defaulting to January, no languages specified, no certifications found, skills are mostly soft/generic rather than technical",
+        "skills_match used low-confidence fallback (no ISCO keyword set)",
+        "data: AGGREGATE ISPV rok 2025"
+      ],
+      "isco_code": "112",
+      "isco_level": 3,
+      "data_source": "MPSV ISPV",
+      "data_year": 2025
+    },
+    "growth_plan": {
+      "branch": "skill_up_within_role",
+      "target_salary": 100368,
+      "target_percentile": 58.51948617461355,
+      "required_score": 62,
+      "score_delta": 24,
+      "subscore_deltas": {
+        "relevant_experience": 0.0,
+        "skills_match": 21.1,
+        "impact_scope": 40.8,
+        "leadership_ownership_growth": 31.2,
+        "education": 43.2
+      },
+      "message": "+30% is reachable inside your current ISCO with a score increase of ~24 points (target P59).",
+      "actions": [
+        "Enroll in a recognized executive leadership certification (e.g., Cornell Certificate in Executive Leadership or Harvard Advanced Leadership Initiative) within the next 3 months to close the 43.2-point education gap, supplementing your MBA with formal, credentialed training in C-suite strategic management.",
+        "Document and quantify the business impact of your 'paradigm-shifting initiatives' at VisionCo by attaching revenue growth figures, cost savings, market-share gains, or headcount/budget size you oversee (e.g., 'Led $20M P&L transformation' or 'Grew team from 15 to 60 FTEs'), then update your CV and LinkedIn to showcase measurable scope—this bridges the 40.8-point impact_scope and 31.2-point leadership_ownership_growth deltas.",
+        "Identify 3–4 high-demand technical or domain competencies for ISCO 112 executives (e.g., digital transformation, M&A integration, change management, or data-driven decision-making) and complete micro-credentials or projects in at least two of them by month 9, referencing these explicitly on your CV to address the 21.1-point skills_match gap.",
+        "Secure a board advisory seat, interim COO role, or consultancy engagement that requires P&L ownership or turnaround leadership within 6–9 months, leveraging your IdeaWorks and VisionCo track record to demonstrate expanded scope and accountability in your next CV iteration."
+      ]
+    },
+    "pipeline_meta": {
+      "steps": {
+        "extract": {
+          "duration_ms": 4
+        },
+        "redact": {
+          "duration_ms": 0,
+          "sha256": "58c69240e3e470acd3044e41d72c2f004a00294527aa1790008cf2c840158dd4"
+        },
+        "parse": {
+          "duration_ms": 6921,
+          "parse_confidence": 0.75,
+          "warnings": [
+            "no specific months provided for dates, defaulting to January",
+            "no languages specified",
+            "no certifications found",
+            "skills are mostly soft/generic rather than technical"
+          ]
+        },
+        "classify": {
+          "duration_ms": 2684,
+          "isco_level": 3,
+          "confidence": 0.72
+        },
+        "score": {
+          "duration_ms": 4132,
+          "relevant_yoe_years": 4.935,
+          "total_yoe_years": 9.333333333333334
+        },
+        "salary": {
+          "duration_ms": 19,
+          "percentile": 28.75
+        },
+        "recommend": {
+          "duration_ms": 11149,
+          "branch": "skill_up_within_role"
+        }
+      },
+      "total_duration_ms": 24911
+    }
+  }
+}

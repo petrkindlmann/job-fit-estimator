@@ -1,0 +1,200 @@
+{
+  "file": "senior_dev_8y.docx",
+  "ok": true,
+  "duration_s": 26.5,
+  "result": {
+    "cv": {
+      "roles": [
+        {
+          "title": "Tech Lead",
+          "company": "Globex",
+          "start_date": "2022-01-01",
+          "end_date": null,
+          "description": "Led the platform team (5 engineers); owned architecture and roadmap. Designed event-driven microservices handling 2M req/day across 4 regions. Reduced infrastructure spend by $180k/year through right-sizing. Mentored 4 mid-level engineers; introduced design-doc practice.",
+          "is_current": true,
+          "raw_dates": "01/2022 — present",
+          "isco_code": "251",
+          "isco_confidence": 0.75
+        },
+        {
+          "title": "Senior Engineer",
+          "company": "Acme",
+          "start_date": "2018-03-01",
+          "end_date": "2021-12-01",
+          "description": "Led migration from monolith to services; cut p99 latency 60%. Owned the search subsystem; introduced observability with Prometheus/Grafana.",
+          "is_current": false,
+          "raw_dates": "03/2018 — 12/2021",
+          "isco_code": null,
+          "isco_confidence": 0.0
+        },
+        {
+          "title": "Software Engineer",
+          "company": "Acme",
+          "start_date": "2016-09-01",
+          "end_date": "2018-02-01",
+          "description": "Built core ingestion pipelines in Python and Go.",
+          "is_current": false,
+          "raw_dates": "09/2016 — 02/2018",
+          "isco_code": "251",
+          "isco_confidence": 0.5249999999999999
+        }
+      ],
+      "skills": [
+        "python",
+        "go",
+        "distributed systems",
+        "system design",
+        "kubernetes",
+        "docker",
+        "aws",
+        "terraform",
+        "kafka",
+        "postgresql",
+        "redis",
+        "microservices",
+        "ci/cd",
+        "mentoring",
+        "architecture"
+      ],
+      "education": [
+        {
+          "degree": "Master's",
+          "field": "Computer Science",
+          "institution": "CTU Prague",
+          "start_date": "2014-01-01",
+          "end_date": "2016-12-31"
+        }
+      ],
+      "languages": [
+        {
+          "code": "cs",
+          "proficiency": null
+        },
+        {
+          "code": "en",
+          "proficiency": null
+        }
+      ],
+      "certifications": [],
+      "detected_language": "en",
+      "parse_confidence": 0.95,
+      "extraction_warnings": [
+        "education dates only have year, used Jan 1st and Dec 31st as defaults"
+      ]
+    },
+    "classification": {
+      "isco_code": "251",
+      "isco_level": 3,
+      "role_label": "Software and applications developer NEC",
+      "confidence": 0.75,
+      "top1_margin": 0.35,
+      "alternatives": [
+        "2521",
+        "2529",
+        "2513"
+      ],
+      "rollup_reason": "low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit"
+    },
+    "score": {
+      "relevant_experience": 51,
+      "skills_match": 100,
+      "impact_scope": 75,
+      "leadership_ownership_growth": 87,
+      "education": 90,
+      "total": 79,
+      "band": "Senior",
+      "confidence": "low",
+      "confidence_reasons": [
+        "low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit",
+        "extraction warnings: education dates only have year, used Jan 1st and Dec 31st as defaults"
+      ],
+      "evidence": {
+        "impact_scope": [
+          "Designed event-driven microservices handling 2M req/day across 4 regions",
+          "Reduced infrastructure spend by $180k/year through right-sizing",
+          "Led migration from monolith to services; cut p99 latency 60%"
+        ],
+        "leadership_ownership_growth": [
+          "Led the platform team (5 engineers); owned architecture and roadmap",
+          "Reduced infrastructure spend by $180k/year through right-sizing",
+          "Mentored 4 mid-level engineers; introduced design-doc practice",
+          "Led migration from monolith to services; cut p99 latency 60%",
+          "Progression: Software Engineer (2016) → Senior Engineer (2018) → Tech Lead (2022)",
+          "Owned the search subsystem; introduced observability with Prometheus/Grafana"
+        ]
+      }
+    },
+    "salary": {
+      "point": 122534,
+      "low": 88046,
+      "high": 148305,
+      "percentile": 79.0,
+      "percentile_low": 54.0,
+      "percentile_high": 90.0,
+      "currency": "CZK",
+      "period": "month",
+      "confidence": "low",
+      "confidence_reasons": [
+        "low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit",
+        "extraction warnings: education dates only have year, used Jan 1st and Dec 31st as defaults",
+        "data: AGGREGATE ISPV rok 2025"
+      ],
+      "isco_code": "251",
+      "isco_level": 3,
+      "data_source": "MPSV ISPV",
+      "data_year": 2025
+    },
+    "growth_plan": {
+      "branch": "role_family_change",
+      "target_salary": 159294,
+      "target_percentile": 93.70493240281851,
+      "required_score": null,
+      "score_delta": null,
+      "subscore_deltas": {},
+      "message": "+30% target exceeds the top decile of your current ISCO group. Skill development inside this role is unlikely to deliver +30%. Consider role-family change, geography, industry, or compensation model.",
+      "actions": [
+        "Transition into an Engineering Manager role (ISCO 1330) by leveraging your current Tech Lead experience managing 5 engineers, mentoring 4 mid-levels, and owning team roadmaps; target high-growth tech companies or scale-ups where EM salaries range $150k–$200k.",
+        "Pivot to a Solutions Architect or Principal Architect position (ISCO 2511) by positioning your microservices architecture design (2M req/day, 4-region deployment) and cost-optimization wins ($180k savings) as enterprise-client-facing expertise; pursue consultancies or AWS/GCP partner firms.",
+        "Move into Product Management (ISCO 1219 or 2431) by reframing your platform roadmap ownership, cross-functional leadership of 5 engineers, and system-level business impact (latency reduction, cost savings) as product strategy skills; target B2B SaaS companies seeking technical PMs with deep engineering empathy.",
+        "Explore Technical Program Management (ISCO 2432) by highlighting your migration leadership (monolith-to-services), multi-region infrastructure coordination, and mentoring/design-doc process work; apply to FAANG or large fintech firms where TPMs earn $140k–$180k base plus equity."
+      ]
+    },
+    "pipeline_meta": {
+      "steps": {
+        "extract": {
+          "duration_ms": 9
+        },
+        "redact": {
+          "duration_ms": 0,
+          "sha256": "e38b750c466f321dffef92a709c7936ea1e6ce7e2ad762fbd20d7dd2c8846378"
+        },
+        "parse": {
+          "duration_ms": 8650,
+          "parse_confidence": 0.95,
+          "warnings": [
+            "education dates only have year, used Jan 1st and Dec 31st as defaults"
+          ]
+        },
+        "classify": {
+          "duration_ms": 3147,
+          "isco_level": 3,
+          "confidence": 0.75
+        },
+        "score": {
+          "duration_ms": 4605,
+          "relevant_yoe_years": 4.4624999999999995,
+          "total_yoe_years": 9.5
+        },
+        "salary": {
+          "duration_ms": 19,
+          "percentile": 79.0
+        },
+        "recommend": {
+          "duration_ms": 10059,
+          "branch": "role_family_change"
+        }
+      },
+      "total_duration_ms": 26492
+    }
+  }
+}

@@ -1,0 +1,194 @@
+{
+  "file": "nurse_to_dev_5y_2y.docx",
+  "ok": true,
+  "duration_s": 28.7,
+  "result": {
+    "cv": {
+      "roles": [
+        {
+          "title": "Software Developer",
+          "company": "HealthTech",
+          "start_date": "2023-06-01",
+          "end_date": null,
+          "description": "Build patient-facing web app in TypeScript/Next.js + Python backend. Bridge between clinical staff and engineering team.",
+          "is_current": true,
+          "raw_dates": "06/2023 — present",
+          "isco_code": "2512",
+          "isco_confidence": 0.85
+        },
+        {
+          "title": "Registered Nurse",
+          "company": "Motol Hospital",
+          "start_date": "2018-09-01",
+          "end_date": "2023-05-01",
+          "description": "ICU care; coordinated handoffs across 3 shifts. Trained 6 newly-graduated nurses.",
+          "is_current": false,
+          "raw_dates": "09/2018 — 05/2023",
+          "isco_code": null,
+          "isco_confidence": 0.0
+        }
+      ],
+      "skills": [
+        "python",
+        "typescript",
+        "next.js",
+        "postgresql",
+        "rest apis",
+        "git",
+        "docker",
+        "patient care",
+        "clinical workflow design"
+      ],
+      "education": [
+        {
+          "degree": "Bachelor's",
+          "field": "Nursing",
+          "institution": null,
+          "start_date": null,
+          "end_date": "2018-01-01"
+        },
+        {
+          "degree": "Coding bootcamp",
+          "field": null,
+          "institution": null,
+          "start_date": null,
+          "end_date": "2023-01-01"
+        }
+      ],
+      "languages": [
+        {
+          "code": "cs",
+          "proficiency": null
+        }
+      ],
+      "certifications": [],
+      "detected_language": "en",
+      "parse_confidence": 0.85,
+      "extraction_warnings": [
+        "education dates incomplete - only year provided",
+        "no institution provided for education entries",
+        "language inferred from name only"
+      ]
+    },
+    "classification": {
+      "isco_code": "2512",
+      "isco_level": 4,
+      "role_label": "Software Developer",
+      "confidence": 0.85,
+      "top1_margin": 0.25,
+      "alternatives": [
+        "2513",
+        "2514",
+        "2519"
+      ],
+      "rollup_reason": null
+    },
+    "score": {
+      "relevant_experience": 39,
+      "skills_match": 70,
+      "impact_scope": 35,
+      "leadership_ownership_growth": 56,
+      "education": 45,
+      "total": 50,
+      "band": "Mid",
+      "confidence": "medium",
+      "confidence_reasons": [
+        "extraction warnings: education dates incomplete - only year provided, no institution provided for education entries, language inferred from name only"
+      ],
+      "evidence": {
+        "impact_scope": [
+          "Build patient-facing web app in TypeScript/Next.js + Python backend.",
+          "Bridge between clinical staff and engineering team.",
+          "Trained 6 newly-graduated nurses."
+        ],
+        "leadership_ownership_growth": [
+          "Build patient-facing web app in TypeScript/Next.js + Python backend.",
+          "Bridge between clinical staff and engineering team.",
+          "Trained 6 newly-graduated nurses.",
+          "Registered Nurse — Motol Hospital, 09/2018 — 05/2023 (5 years sustained in nursing)",
+          "Coding bootcamp (2023) followed by Software Developer role 06/2023 — present (career change)",
+          "Coordinated handoffs across 3 shifts."
+        ]
+      }
+    },
+    "salary": {
+      "point": 93711,
+      "low": 75971,
+      "high": 115402,
+      "percentile": 43.75,
+      "percentile_low": 28.75,
+      "percentile_high": 58.75,
+      "currency": "CZK",
+      "period": "month",
+      "confidence": "medium",
+      "confidence_reasons": [
+        "extraction warnings: education dates incomplete - only year provided, no institution provided for education entries, language inferred from name only",
+        "data: MZDOVA ISPV rok 2025"
+      ],
+      "isco_code": "2512",
+      "isco_level": 4,
+      "data_source": "MPSV ISPV",
+      "data_year": 2025
+    },
+    "growth_plan": {
+      "branch": "skill_up_within_role",
+      "target_salary": 121824,
+      "target_percentile": 62.68040290798717,
+      "required_score": 65,
+      "score_delta": 15,
+      "subscore_deltas": {
+        "relevant_experience": 0.0,
+        "skills_match": 12.9,
+        "impact_scope": 28.0,
+        "leadership_ownership_growth": 19.0,
+        "education": 23.7
+      },
+      "message": "+30% is reachable inside your current ISCO with a score increase of ~15 points (target P63).",
+      "actions": [
+        "Complete a recognized cloud certification (AWS Solutions Architect Associate or Microsoft Azure Developer) and apply it immediately by migrating one backend service in your HealthTech app to serverless functions; this will directly address your 12.9-point skills_match gap and make you competitive for mid-level roles requiring cloud-native proficiency.",
+        "Lead the scoping, technical design, and delivery of one greenfield feature (e.g., multi-language support or GDPR-compliant patient data export) that serves at least 10,000 end users, document the business impact (adoption metrics, NPS lift), and present findings to product leadership; this 28-point impact_scope gain will require you to move beyond feature-level contributions to system-level ownership.",
+        "Volunteer to mentor one junior engineer joining your team, lead bi-weekly architecture review sessions with the clinical-engineering group (leveraging your unique bridge role from your CV), and formally propose one process improvement (e.g., incident response runbook); these leadership activities will close the 19-point leadership_ownership_growth gap and position you for senior IC or team-lead tracks.",
+        "Enroll in a part-time, accredited Master's degree in Computer Science or Software Engineering (online programs at UK's Open University or Czech Technical University) and complete at least two core modules in algorithms and distributed systems within 12 months; the 23.7-point education delta signals that degree-level CS credentials are essential to reach your €121,824 target in the Central European market."
+      ]
+    },
+    "pipeline_meta": {
+      "steps": {
+        "extract": {
+          "duration_ms": 5
+        },
+        "redact": {
+          "duration_ms": 0,
+          "sha256": "8f24289bfa7fd74a0e2079e16cb1c6099e0e6288123f4ab4ae67f4031c7124af"
+        },
+        "parse": {
+          "duration_ms": 8195,
+          "parse_confidence": 0.85,
+          "warnings": [
+            "education dates incomplete - only year provided",
+            "no institution provided for education entries",
+            "language inferred from name only"
+          ]
+        },
+        "classify": {
+          "duration_ms": 3245,
+          "isco_level": 4,
+          "confidence": 0.85
+        },
+        "score": {
+          "duration_ms": 4710,
+          "relevant_yoe_years": 3.0625,
+          "total_yoe_years": 7.583333333333333
+        },
+        "salary": {
+          "duration_ms": 13,
+          "percentile": 43.75
+        },
+        "recommend": {
+          "duration_ms": 12524,
+          "branch": "skill_up_within_role"
+        }
+      },
+      "total_duration_ms": 28694
+    }
+  }
+}

@@ -1,0 +1,180 @@
+{
+  "file": "mid_dev_4y.docx",
+  "ok": true,
+  "duration_s": 27.4,
+  "result": {
+    "cv": {
+      "roles": [
+        {
+          "title": "Software Engineer",
+          "company": "FinTech Plus",
+          "start_date": "2022-05-01",
+          "end_date": null,
+          "description": "Owned the payment ingestion service handling 50k tx/day. Reduced p95 latency by 35% by introducing async Postgres pool. Mentored 1 intern.",
+          "is_current": true,
+          "raw_dates": "05/2022 — present",
+          "isco_code": "2512",
+          "isco_confidence": 0.95
+        },
+        {
+          "title": "Junior Developer",
+          "company": "StartupX",
+          "start_date": "2020-06-01",
+          "end_date": "2022-04-01",
+          "description": "Built REST APIs in Flask; helped migrate to FastAPI. Wrote integration tests; maintained CI pipeline.",
+          "is_current": false,
+          "raw_dates": "06/2020 — 04/2022",
+          "isco_code": "2512",
+          "isco_confidence": 0.6649999999999999
+        }
+      ],
+      "skills": [
+        "python",
+        "fastapi",
+        "flask",
+        "postgresql",
+        "redis",
+        "docker",
+        "aws",
+        "kubernetes",
+        "git",
+        "pytest",
+        "github actions"
+      ],
+      "education": [
+        {
+          "degree": "Master's",
+          "field": "Software Engineering",
+          "institution": "CTU Prague",
+          "start_date": "2018-01-01",
+          "end_date": "2020-12-31"
+        }
+      ],
+      "languages": [],
+      "certifications": [],
+      "detected_language": "en",
+      "parse_confidence": 0.9,
+      "extraction_warnings": [
+        "education dates approximate: only year range provided"
+      ]
+    },
+    "classification": {
+      "isco_code": "2512",
+      "isco_level": 4,
+      "role_label": "Software developer",
+      "confidence": 0.95,
+      "top1_margin": 0.75,
+      "alternatives": [
+        "2521",
+        "2519",
+        "2529"
+      ],
+      "rollup_reason": null
+    },
+    "score": {
+      "relevant_experience": 55,
+      "skills_match": 70,
+      "impact_scope": 55,
+      "leadership_ownership_growth": 66,
+      "education": 90,
+      "total": 64,
+      "band": "Senior",
+      "confidence": "medium",
+      "confidence_reasons": [
+        "extraction warnings: education dates approximate: only year range provided"
+      ],
+      "evidence": {
+        "impact_scope": [
+          "Owned the payment ingestion service handling 50k tx/day.",
+          "Reduced p95 latency by 35% by introducing async Postgres pool."
+        ],
+        "leadership_ownership_growth": [
+          "Owned the payment ingestion service handling 50k tx/day.",
+          "Reduced p95 latency by 35% by introducing async Postgres pool.",
+          "Mentored 1 intern.",
+          "Junior Developer — StartupX, 06/2020 — 04/2022 → Software Engineer — FinTech Plus, 05/2022 — present",
+          "Built REST APIs in Flask; helped migrate to FastAPI.",
+          "Master's — Software Engineering, CTU Prague (2018–2020)"
+        ]
+      }
+    },
+    "salary": {
+      "point": 119487,
+      "low": 96668,
+      "high": 145531,
+      "percentile": 61.25,
+      "percentile_low": 46.25,
+      "percentile_high": 76.25,
+      "currency": "CZK",
+      "period": "month",
+      "confidence": "medium",
+      "confidence_reasons": [
+        "extraction warnings: education dates approximate: only year range provided",
+        "data: MZDOVA ISPV rok 2025"
+      ],
+      "isco_code": "2512",
+      "isco_level": 4,
+      "data_source": "MPSV ISPV",
+      "data_year": 2025
+    },
+    "growth_plan": {
+      "branch": "skill_up_within_role",
+      "target_salary": 155333,
+      "target_percentile": 79.67708964617034,
+      "required_score": 80,
+      "score_delta": 16,
+      "subscore_deltas": {
+        "relevant_experience": 0.0,
+        "skills_match": 19.8,
+        "impact_scope": 29.6,
+        "leadership_ownership_growth": 22.4,
+        "education": 6.6
+      },
+      "message": "+30% is reachable inside your current ISCO with a score increase of ~16 points (target P80).",
+      "actions": [
+        "Increase impact_scope by proposing and delivering a cross-team initiative—for example, build an observability framework (tracing, metrics dashboards) that two other engineering squads adopt, raising your service footprint from 50k to 200k+ transactions per day and demonstrating influence beyond your current domain.",
+        "Strengthen leadership_ownership_growth by taking formal tech-lead responsibility for the payment ingestion system: run sprint planning, conduct code reviews for 2–3 peers, and document architectural decisions in an RFC process, building on your current mentorship of 1 intern.",
+        "Boost skills_match by earning a professional certification in cloud-native architecture (e.g., AWS Certified Solutions Architect – Associate or Certified Kubernetes Administrator) and applying those patterns to migrate the payment service to an event-driven microservices design using Kafka or SQS.",
+        "Enhance education by completing an online specialization in distributed systems or data engineering (e.g., Coursera, edX), then publishing a technical blog post or internal tech talk that demonstrates your deepened expertise and raises your profile within FinTech Plus.",
+        "Expand impact_scope and leadership_ownership_growth together by volunteering to lead the on-call rotation for the payment platform, resolving 10+ production incidents over six months, and presenting quarterly reliability metrics to senior engineering leadership."
+      ]
+    },
+    "pipeline_meta": {
+      "steps": {
+        "extract": {
+          "duration_ms": 4
+        },
+        "redact": {
+          "duration_ms": 0,
+          "sha256": "6c8fed3f581d10a899022f5ad3d05dd286264bdf96e7869c073dae8a07f8b8be"
+        },
+        "parse": {
+          "duration_ms": 6880,
+          "parse_confidence": 0.9,
+          "warnings": [
+            "education dates approximate: only year range provided"
+          ]
+        },
+        "classify": {
+          "duration_ms": 6568,
+          "isco_level": 4,
+          "confidence": 0.95
+        },
+        "score": {
+          "duration_ms": 4369,
+          "relevant_yoe_years": 5.019166666666666,
+          "total_yoe_years": 5.833333333333333
+        },
+        "salary": {
+          "duration_ms": 24,
+          "percentile": 61.25
+        },
+        "recommend": {
+          "duration_ms": 9601,
+          "branch": "skill_up_within_role"
+        }
+      },
+      "total_duration_ms": 27449
+    }
+  }
+}

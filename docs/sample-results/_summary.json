@@ -1,0 +1,925 @@
+[
+  {
+    "file": "junior_dev_1y.docx",
+    "ok": true,
+    "duration_s": 20.9,
+    "result": {
+      "cv": {
+        "roles": [
+          {
+            "title": "Junior Developer",
+            "company": "TechCo",
+            "start_date": "2024-09-01",
+            "end_date": null,
+            "description": "Implemented features in Python/Django under senior supervision. Wrote unit tests with pytest. Participated in code reviews.",
+            "is_current": true,
+            "raw_dates": "09/2024 — present",
+            "isco_code": "2512",
+            "isco_confidence": 0.85
+          }
+        ],
+        "skills": [
+          "python",
+          "django",
+          "postgresql",
+          "git",
+          "pytest",
+          "docker"
+        ],
+        "education": [
+          {
+            "degree": "Bachelor's",
+            "field": "Computer Science",
+            "institution": "Charles University",
+            "start_date": "2021-01-01",
+            "end_date": "2024-01-01"
+          }
+        ],
+        "languages": [],
+        "certifications": [],
+        "detected_language": "en",
+        "parse_confidence": 0.95,
+        "extraction_warnings": [
+          "education dates extracted as year-only, set to January 1st"
+        ]
+      },
+      "classification": {
+        "isco_code": "2512",
+        "isco_level": 4,
+        "role_label": "Software developer",
+        "confidence": 0.85,
+        "top1_margin": 0.3,
+        "alternatives": [
+          "2513",
+          "2514",
+          "2519"
+        ],
+        "rollup_reason": null
+      },
+      "score": {
+        "relevant_experience": 21,
+        "skills_match": 66,
+        "impact_scope": 25,
+        "leadership_ownership_growth": 38,
+        "education": 75,
+        "total": 42,
+        "band": "Mid",
+        "confidence": "medium",
+        "confidence_reasons": [
+          "extraction warnings: education dates extracted as year-only, set to January 1st"
+        ],
+        "evidence": {
+          "impact_scope": [
+            "Implemented features in Python/Django under senior supervision",
+            "Wrote unit tests with pytest",
+            "Participated in code reviews"
+          ],
+          "leadership_ownership_growth": [
+            "Implemented features in Python/Django under senior supervision",
+            "Wrote unit tests with pytest",
+            "Participated in code reviews",
+            "Junior Developer — TechCo, 09/2024 — present",
+            "Bachelor's — Computer Science, Charles University (2021–2024)"
+          ]
+        }
+      },
+      "salary": {
+        "point": 81884,
+        "low": 63955,
+        "high": 99625,
+        "percentile": 33.75,
+        "percentile_low": 18.75,
+        "percentile_high": 48.75,
+        "currency": "CZK",
+        "period": "month",
+        "confidence": "medium",
+        "confidence_reasons": [
+          "extraction warnings: education dates extracted as year-only, set to January 1st",
+          "data: MZDOVA ISPV rok 2025"
+        ],
+        "isco_code": "2512",
+        "isco_level": 4,
+        "data_source": "MPSV ISPV",
+        "data_year": 2025
+      },
+      "growth_plan": {
+        "branch": "skill_up_within_role",
+        "target_salary": 106449,
+        "target_percentile": 53.271607960247714,
+        "required_score": 58,
+        "score_delta": 16,
+        "subscore_deltas": {
+          "relevant_experience": 0.0,
+          "skills_match": 14.2,
+          "impact_scope": 31.2,
+          "leadership_ownership_growth": 25.8,
+          "education": 10.4
+        },
+        "message": "+30% is reachable inside your current ISCO with a score increase of ~16 points (target P53).",
+        "actions": [
+          "Close the skills_match gap (+14.2) by earning certifications in cloud platforms (AWS Certified Developer Associate or Azure Developer) and learning Kubernetes, CI/CD pipelines (Jenkins/GitLab CI), and a modern frontend framework (React or Vue.js) to demonstrate full-stack capability beyond your current Python/Django stack.",
+          "Address the impact_scope deficit (+31.2) by volunteering to own a cross-functional project at TechCo—such as a customer-facing feature or internal tooling—documenting measurable outcomes (e.g., reduced deployment time by X%, improved test coverage to Y%) and presenting results to stakeholders outside your immediate team.",
+          "Boost leadership_ownership_growth (+25.8) by mentoring interns or junior hires, leading sprint retrospectives or technical design reviews, and initiating process improvements (e.g., automated testing, documentation standards) that you can quantify in future job applications.",
+          "Strengthen your education score (+10.4) by completing a recognized advanced certification (e.g., Google Professional Cloud Developer, MongoDB Certified Developer) or enrolling in a part-time master's program in Software Engineering or Data Science to signal deeper expertise and commitment to continuous learning."
+        ]
+      },
+      "pipeline_meta": {
+        "steps": {
+          "extract": {
+            "duration_ms": 7
+          },
+          "redact": {
+            "duration_ms": 1,
+            "sha256": "b13eedb5cf8d17a2ab7e7d482a4dc3618ffc2919f53a3ce9506a7d78d33da25c"
+          },
+          "parse": {
+            "duration_ms": 5603,
+            "parse_confidence": 0.95,
+            "warnings": [
+              "education dates extracted as year-only, set to January 1st"
+            ]
+          },
+          "classify": {
+            "duration_ms": 2460,
+            "isco_level": 4,
+            "confidence": 0.85
+          },
+          "score": {
+            "duration_ms": 3627,
+            "relevant_yoe_years": 1.4166666666666667,
+            "total_yoe_years": 1.6666666666666667
+          },
+          "salary": {
+            "duration_ms": 144,
+            "percentile": 33.75
+          },
+          "recommend": {
+            "duration_ms": 9102,
+            "branch": "skill_up_within_role"
+          }
+        },
+        "total_duration_ms": 20947
+      }
+    }
+  },
+  {
+    "file": "mid_dev_4y.docx",
+    "ok": true,
+    "duration_s": 27.4,
+    "result": {
+      "cv": {
+        "roles": [
+          {
+            "title": "Software Engineer",
+            "company": "FinTech Plus",
+            "start_date": "2022-05-01",
+            "end_date": null,
+            "description": "Owned the payment ingestion service handling 50k tx/day. Reduced p95 latency by 35% by introducing async Postgres pool. Mentored 1 intern.",
+            "is_current": true,
+            "raw_dates": "05/2022 — present",
+            "isco_code": "2512",
+            "isco_confidence": 0.95
+          },
+          {
+            "title": "Junior Developer",
+            "company": "StartupX",
+            "start_date": "2020-06-01",
+            "end_date": "2022-04-01",
+            "description": "Built REST APIs in Flask; helped migrate to FastAPI. Wrote integration tests; maintained CI pipeline.",
+            "is_current": false,
+            "raw_dates": "06/2020 — 04/2022",
+            "isco_code": "2512",
+            "isco_confidence": 0.6649999999999999
+          }
+        ],
+        "skills": [
+          "python",
+          "fastapi",
+          "flask",
+          "postgresql",
+          "redis",
+          "docker",
+          "aws",
+          "kubernetes",
+          "git",
+          "pytest",
+          "github actions"
+        ],
+        "education": [
+          {
+            "degree": "Master's",
+            "field": "Software Engineering",
+            "institution": "CTU Prague",
+            "start_date": "2018-01-01",
+            "end_date": "2020-12-31"
+          }
+        ],
+        "languages": [],
+        "certifications": [],
+        "detected_language": "en",
+        "parse_confidence": 0.9,
+        "extraction_warnings": [
+          "education dates approximate: only year range provided"
+        ]
+      },
+      "classification": {
+        "isco_code": "2512",
+        "isco_level": 4,
+        "role_label": "Software developer",
+        "confidence": 0.95,
+        "top1_margin": 0.75,
+        "alternatives": [
+          "2521",
+          "2519",
+          "2529"
+        ],
+        "rollup_reason": null
+      },
+      "score": {
+        "relevant_experience": 55,
+        "skills_match": 70,
+        "impact_scope": 55,
+        "leadership_ownership_growth": 66,
+        "education": 90,
+        "total": 64,
+        "band": "Senior",
+        "confidence": "medium",
+        "confidence_reasons": [
+          "extraction warnings: education dates approximate: only year range provided"
+        ],
+        "evidence": {
+          "impact_scope": [
+            "Owned the payment ingestion service handling 50k tx/day.",
+            "Reduced p95 latency by 35% by introducing async Postgres pool."
+          ],
+          "leadership_ownership_growth": [
+            "Owned the payment ingestion service handling 50k tx/day.",
+            "Reduced p95 latency by 35% by introducing async Postgres pool.",
+            "Mentored 1 intern.",
+            "Junior Developer — StartupX, 06/2020 — 04/2022 → Software Engineer — FinTech Plus, 05/2022 — present",
+            "Built REST APIs in Flask; helped migrate to FastAPI.",
+            "Master's — Software Engineering, CTU Prague (2018–2020)"
+          ]
+        }
+      },
+      "salary": {
+        "point": 119487,
+        "low": 96668,
+        "high": 145531,
+        "percentile": 61.25,
+        "percentile_low": 46.25,
+        "percentile_high": 76.25,
+        "currency": "CZK",
+        "period": "month",
+        "confidence": "medium",
+        "confidence_reasons": [
+          "extraction warnings: education dates approximate: only year range provided",
+          "data: MZDOVA ISPV rok 2025"
+        ],
+        "isco_code": "2512",
+        "isco_level": 4,
+        "data_source": "MPSV ISPV",
+        "data_year": 2025
+      },
+      "growth_plan": {
+        "branch": "skill_up_within_role",
+        "target_salary": 155333,
+        "target_percentile": 79.67708964617034,
+        "required_score": 80,
+        "score_delta": 16,
+        "subscore_deltas": {
+          "relevant_experience": 0.0,
+          "skills_match": 19.8,
+          "impact_scope": 29.6,
+          "leadership_ownership_growth": 22.4,
+          "education": 6.6
+        },
+        "message": "+30% is reachable inside your current ISCO with a score increase of ~16 points (target P80).",
+        "actions": [
+          "Increase impact_scope by proposing and delivering a cross-team initiative—for example, build an observability framework (tracing, metrics dashboards) that two other engineering squads adopt, raising your service footprint from 50k to 200k+ transactions per day and demonstrating influence beyond your current domain.",
+          "Strengthen leadership_ownership_growth by taking formal tech-lead responsibility for the payment ingestion system: run sprint planning, conduct code reviews for 2–3 peers, and document architectural decisions in an RFC process, building on your current mentorship of 1 intern.",
+          "Boost skills_match by earning a professional certification in cloud-native architecture (e.g., AWS Certified Solutions Architect – Associate or Certified Kubernetes Administrator) and applying those patterns to migrate the payment service to an event-driven microservices design using Kafka or SQS.",
+          "Enhance education by completing an online specialization in distributed systems or data engineering (e.g., Coursera, edX), then publishing a technical blog post or internal tech talk that demonstrates your deepened expertise and raises your profile within FinTech Plus.",
+          "Expand impact_scope and leadership_ownership_growth together by volunteering to lead the on-call rotation for the payment platform, resolving 10+ production incidents over six months, and presenting quarterly reliability metrics to senior engineering leadership."
+        ]
+      },
+      "pipeline_meta": {
+        "steps": {
+          "extract": {
+            "duration_ms": 4
+          },
+          "redact": {
+            "duration_ms": 0,
+            "sha256": "6c8fed3f581d10a899022f5ad3d05dd286264bdf96e7869c073dae8a07f8b8be"
+          },
+          "parse": {
+            "duration_ms": 6880,
+            "parse_confidence": 0.9,
+            "warnings": [
+              "education dates approximate: only year range provided"
+            ]
+          },
+          "classify": {
+            "duration_ms": 6568,
+            "isco_level": 4,
+            "confidence": 0.95
+          },
+          "score": {
+            "duration_ms": 4369,
+            "relevant_yoe_years": 5.019166666666666,
+            "total_yoe_years": 5.833333333333333
+          },
+          "salary": {
+            "duration_ms": 24,
+            "percentile": 61.25
+          },
+          "recommend": {
+            "duration_ms": 9601,
+            "branch": "skill_up_within_role"
+          }
+        },
+        "total_duration_ms": 27449
+      }
+    }
+  },
+  {
+    "file": "senior_dev_8y.docx",
+    "ok": true,
+    "duration_s": 26.5,
+    "result": {
+      "cv": {
+        "roles": [
+          {
+            "title": "Tech Lead",
+            "company": "Globex",
+            "start_date": "2022-01-01",
+            "end_date": null,
+            "description": "Led the platform team (5 engineers); owned architecture and roadmap. Designed event-driven microservices handling 2M req/day across 4 regions. Reduced infrastructure spend by $180k/year through right-sizing. Mentored 4 mid-level engineers; introduced design-doc practice.",
+            "is_current": true,
+            "raw_dates": "01/2022 — present",
+            "isco_code": "251",
+            "isco_confidence": 0.75
+          },
+          {
+            "title": "Senior Engineer",
+            "company": "Acme",
+            "start_date": "2018-03-01",
+            "end_date": "2021-12-01",
+            "description": "Led migration from monolith to services; cut p99 latency 60%. Owned the search subsystem; introduced observability with Prometheus/Grafana.",
+            "is_current": false,
+            "raw_dates": "03/2018 — 12/2021",
+            "isco_code": null,
+            "isco_confidence": 0.0
+          },
+          {
+            "title": "Software Engineer",
+            "company": "Acme",
+            "start_date": "2016-09-01",
+            "end_date": "2018-02-01",
+            "description": "Built core ingestion pipelines in Python and Go.",
+            "is_current": false,
+            "raw_dates": "09/2016 — 02/2018",
+            "isco_code": "251",
+            "isco_confidence": 0.5249999999999999
+          }
+        ],
+        "skills": [
+          "python",
+          "go",
+          "distributed systems",
+          "system design",
+          "kubernetes",
+          "docker",
+          "aws",
+          "terraform",
+          "kafka",
+          "postgresql",
+          "redis",
+          "microservices",
+          "ci/cd",
+          "mentoring",
+          "architecture"
+        ],
+        "education": [
+          {
+            "degree": "Master's",
+            "field": "Computer Science",
+            "institution": "CTU Prague",
+            "start_date": "2014-01-01",
+            "end_date": "2016-12-31"
+          }
+        ],
+        "languages": [
+          {
+            "code": "cs",
+            "proficiency": null
+          },
+          {
+            "code": "en",
+            "proficiency": null
+          }
+        ],
+        "certifications": [],
+        "detected_language": "en",
+        "parse_confidence": 0.95,
+        "extraction_warnings": [
+          "education dates only have year, used Jan 1st and Dec 31st as defaults"
+        ]
+      },
+      "classification": {
+        "isco_code": "251",
+        "isco_level": 3,
+        "role_label": "Software and applications developer NEC",
+        "confidence": 0.75,
+        "top1_margin": 0.35,
+        "alternatives": [
+          "2521",
+          "2529",
+          "2513"
+        ],
+        "rollup_reason": "low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit"
+      },
+      "score": {
+        "relevant_experience": 51,
+        "skills_match": 100,
+        "impact_scope": 75,
+        "leadership_ownership_growth": 87,
+        "education": 90,
+        "total": 79,
+        "band": "Senior",
+        "confidence": "low",
+        "confidence_reasons": [
+          "low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit",
+          "extraction warnings: education dates only have year, used Jan 1st and Dec 31st as defaults"
+        ],
+        "evidence": {
+          "impact_scope": [
+            "Designed event-driven microservices handling 2M req/day across 4 regions",
+            "Reduced infrastructure spend by $180k/year through right-sizing",
+            "Led migration from monolith to services; cut p99 latency 60%"
+          ],
+          "leadership_ownership_growth": [
+            "Led the platform team (5 engineers); owned architecture and roadmap",
+            "Reduced infrastructure spend by $180k/year through right-sizing",
+            "Mentored 4 mid-level engineers; introduced design-doc practice",
+            "Led migration from monolith to services; cut p99 latency 60%",
+            "Progression: Software Engineer (2016) → Senior Engineer (2018) → Tech Lead (2022)",
+            "Owned the search subsystem; introduced observability with Prometheus/Grafana"
+          ]
+        }
+      },
+      "salary": {
+        "point": 122534,
+        "low": 88046,
+        "high": 148305,
+        "percentile": 79.0,
+        "percentile_low": 54.0,
+        "percentile_high": 90.0,
+        "currency": "CZK",
+        "period": "month",
+        "confidence": "low",
+        "confidence_reasons": [
+          "low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit",
+          "extraction warnings: education dates only have year, used Jan 1st and Dec 31st as defaults",
+          "data: AGGREGATE ISPV rok 2025"
+        ],
+        "isco_code": "251",
+        "isco_level": 3,
+        "data_source": "MPSV ISPV",
+        "data_year": 2025
+      },
+      "growth_plan": {
+        "branch": "role_family_change",
+        "target_salary": 159294,
+        "target_percentile": 93.70493240281851,
+        "required_score": null,
+        "score_delta": null,
+        "subscore_deltas": {},
+        "message": "+30% target exceeds the top decile of your current ISCO group. Skill development inside this role is unlikely to deliver +30%. Consider role-family change, geography, industry, or compensation model.",
+        "actions": [
+          "Transition into an Engineering Manager role (ISCO 1330) by leveraging your current Tech Lead experience managing 5 engineers, mentoring 4 mid-levels, and owning team roadmaps; target high-growth tech companies or scale-ups where EM salaries range $150k–$200k.",
+          "Pivot to a Solutions Architect or Principal Architect position (ISCO 2511) by positioning your microservices architecture design (2M req/day, 4-region deployment) and cost-optimization wins ($180k savings) as enterprise-client-facing expertise; pursue consultancies or AWS/GCP partner firms.",
+          "Move into Product Management (ISCO 1219 or 2431) by reframing your platform roadmap ownership, cross-functional leadership of 5 engineers, and system-level business impact (latency reduction, cost savings) as product strategy skills; target B2B SaaS companies seeking technical PMs with deep engineering empathy.",
+          "Explore Technical Program Management (ISCO 2432) by highlighting your migration leadership (monolith-to-services), multi-region infrastructure coordination, and mentoring/design-doc process work; apply to FAANG or large fintech firms where TPMs earn $140k–$180k base plus equity."
+        ]
+      },
+      "pipeline_meta": {
+        "steps": {
+          "extract": {
+            "duration_ms": 9
+          },
+          "redact": {
+            "duration_ms": 0,
+            "sha256": "e38b750c466f321dffef92a709c7936ea1e6ce7e2ad762fbd20d7dd2c8846378"
+          },
+          "parse": {
+            "duration_ms": 8650,
+            "parse_confidence": 0.95,
+            "warnings": [
+              "education dates only have year, used Jan 1st and Dec 31st as defaults"
+            ]
+          },
+          "classify": {
+            "duration_ms": 3147,
+            "isco_level": 3,
+            "confidence": 0.75
+          },
+          "score": {
+            "duration_ms": 4605,
+            "relevant_yoe_years": 4.4624999999999995,
+            "total_yoe_years": 9.5
+          },
+          "salary": {
+            "duration_ms": 19,
+            "percentile": 79.0
+          },
+          "recommend": {
+            "duration_ms": 10059,
+            "branch": "role_family_change"
+          }
+        },
+        "total_duration_ms": 26492
+      }
+    }
+  },
+  {
+    "file": "nurse_to_dev_5y_2y.docx",
+    "ok": true,
+    "duration_s": 28.7,
+    "result": {
+      "cv": {
+        "roles": [
+          {
+            "title": "Software Developer",
+            "company": "HealthTech",
+            "start_date": "2023-06-01",
+            "end_date": null,
+            "description": "Build patient-facing web app in TypeScript/Next.js + Python backend. Bridge between clinical staff and engineering team.",
+            "is_current": true,
+            "raw_dates": "06/2023 — present",
+            "isco_code": "2512",
+            "isco_confidence": 0.85
+          },
+          {
+            "title": "Registered Nurse",
+            "company": "Motol Hospital",
+            "start_date": "2018-09-01",
+            "end_date": "2023-05-01",
+            "description": "ICU care; coordinated handoffs across 3 shifts. Trained 6 newly-graduated nurses.",
+            "is_current": false,
+            "raw_dates": "09/2018 — 05/2023",
+            "isco_code": null,
+            "isco_confidence": 0.0
+          }
+        ],
+        "skills": [
+          "python",
+          "typescript",
+          "next.js",
+          "postgresql",
+          "rest apis",
+          "git",
+          "docker",
+          "patient care",
+          "clinical workflow design"
+        ],
+        "education": [
+          {
+            "degree": "Bachelor's",
+            "field": "Nursing",
+            "institution": null,
+            "start_date": null,
+            "end_date": "2018-01-01"
+          },
+          {
+            "degree": "Coding bootcamp",
+            "field": null,
+            "institution": null,
+            "start_date": null,
+            "end_date": "2023-01-01"
+          }
+        ],
+        "languages": [
+          {
+            "code": "cs",
+            "proficiency": null
+          }
+        ],
+        "certifications": [],
+        "detected_language": "en",
+        "parse_confidence": 0.85,
+        "extraction_warnings": [
+          "education dates incomplete - only year provided",
+          "no institution provided for education entries",
+          "language inferred from name only"
+        ]
+      },
+      "classification": {
+        "isco_code": "2512",
+        "isco_level": 4,
+        "role_label": "Software Developer",
+        "confidence": 0.85,
+        "top1_margin": 0.25,
+        "alternatives": [
+          "2513",
+          "2514",
+          "2519"
+        ],
+        "rollup_reason": null
+      },
+      "score": {
+        "relevant_experience": 39,
+        "skills_match": 70,
+        "impact_scope": 35,
+        "leadership_ownership_growth": 56,
+        "education": 45,
+        "total": 50,
+        "band": "Mid",
+        "confidence": "medium",
+        "confidence_reasons": [
+          "extraction warnings: education dates incomplete - only year provided, no institution provided for education entries, language inferred from name only"
+        ],
+        "evidence": {
+          "impact_scope": [
+            "Build patient-facing web app in TypeScript/Next.js + Python backend.",
+            "Bridge between clinical staff and engineering team.",
+            "Trained 6 newly-graduated nurses."
+          ],
+          "leadership_ownership_growth": [
+            "Build patient-facing web app in TypeScript/Next.js + Python backend.",
+            "Bridge between clinical staff and engineering team.",
+            "Trained 6 newly-graduated nurses.",
+            "Registered Nurse — Motol Hospital, 09/2018 — 05/2023 (5 years sustained in nursing)",
+            "Coding bootcamp (2023) followed by Software Developer role 06/2023 — present (career change)",
+            "Coordinated handoffs across 3 shifts."
+          ]
+        }
+      },
+      "salary": {
+        "point": 93711,
+        "low": 75971,
+        "high": 115402,
+        "percentile": 43.75,
+        "percentile_low": 28.75,
+        "percentile_high": 58.75,
+        "currency": "CZK",
+        "period": "month",
+        "confidence": "medium",
+        "confidence_reasons": [
+          "extraction warnings: education dates incomplete - only year provided, no institution provided for education entries, language inferred from name only",
+          "data: MZDOVA ISPV rok 2025"
+        ],
+        "isco_code": "2512",
+        "isco_level": 4,
+        "data_source": "MPSV ISPV",
+        "data_year": 2025
+      },
+      "growth_plan": {
+        "branch": "skill_up_within_role",
+        "target_salary": 121824,
+        "target_percentile": 62.68040290798717,
+        "required_score": 65,
+        "score_delta": 15,
+        "subscore_deltas": {
+          "relevant_experience": 0.0,
+          "skills_match": 12.9,
+          "impact_scope": 28.0,
+          "leadership_ownership_growth": 19.0,
+          "education": 23.7
+        },
+        "message": "+30% is reachable inside your current ISCO with a score increase of ~15 points (target P63).",
+        "actions": [
+          "Complete a recognized cloud certification (AWS Solutions Architect Associate or Microsoft Azure Developer) and apply it immediately by migrating one backend service in your HealthTech app to serverless functions; this will directly address your 12.9-point skills_match gap and make you competitive for mid-level roles requiring cloud-native proficiency.",
+          "Lead the scoping, technical design, and delivery of one greenfield feature (e.g., multi-language support or GDPR-compliant patient data export) that serves at least 10,000 end users, document the business impact (adoption metrics, NPS lift), and present findings to product leadership; this 28-point impact_scope gain will require you to move beyond feature-level contributions to system-level ownership.",
+          "Volunteer to mentor one junior engineer joining your team, lead bi-weekly architecture review sessions with the clinical-engineering group (leveraging your unique bridge role from your CV), and formally propose one process improvement (e.g., incident response runbook); these leadership activities will close the 19-point leadership_ownership_growth gap and position you for senior IC or team-lead tracks.",
+          "Enroll in a part-time, accredited Master's degree in Computer Science or Software Engineering (online programs at UK's Open University or Czech Technical University) and complete at least two core modules in algorithms and distributed systems within 12 months; the 23.7-point education delta signals that degree-level CS credentials are essential to reach your €121,824 target in the Central European market."
+        ]
+      },
+      "pipeline_meta": {
+        "steps": {
+          "extract": {
+            "duration_ms": 5
+          },
+          "redact": {
+            "duration_ms": 0,
+            "sha256": "8f24289bfa7fd74a0e2079e16cb1c6099e0e6288123f4ab4ae67f4031c7124af"
+          },
+          "parse": {
+            "duration_ms": 8195,
+            "parse_confidence": 0.85,
+            "warnings": [
+              "education dates incomplete - only year provided",
+              "no institution provided for education entries",
+              "language inferred from name only"
+            ]
+          },
+          "classify": {
+            "duration_ms": 3245,
+            "isco_level": 4,
+            "confidence": 0.85
+          },
+          "score": {
+            "duration_ms": 4710,
+            "relevant_yoe_years": 3.0625,
+            "total_yoe_years": 7.583333333333333
+          },
+          "salary": {
+            "duration_ms": 13,
+            "percentile": 43.75
+          },
+          "recommend": {
+            "duration_ms": 12524,
+            "branch": "skill_up_within_role"
+          }
+        },
+        "total_duration_ms": 28694
+      }
+    }
+  },
+  {
+    "file": "buzzword_no_evidence.docx",
+    "ok": true,
+    "duration_s": 24.9,
+    "result": {
+      "cv": {
+        "roles": [
+          {
+            "title": "Chief Synergy Officer",
+            "company": "VisionCo",
+            "start_date": "2020-01-01",
+            "end_date": null,
+            "description": "Drove paradigm-shifting initiatives leveraging cutting-edge synergies. Spearheaded transformative outcomes through best-in-class methodologies. Enabled strategic alignment across cross-functional touchpoints.",
+            "is_current": true,
+            "raw_dates": "2020 — present",
+            "isco_code": "112",
+            "isco_confidence": 0.72
+          },
+          {
+            "title": "Senior Innovation Catalyst",
+            "company": "IdeaWorks",
+            "start_date": "2017-01-01",
+            "end_date": "2020-01-01",
+            "description": "Orchestrated holistic ecosystems of disruptive thought leadership. Empowered stakeholders via next-generation frameworks.",
+            "is_current": false,
+            "raw_dates": "2017 — 2020",
+            "isco_code": null,
+            "isco_confidence": 0.0
+          }
+        ],
+        "skills": [
+          "leadership",
+          "vision",
+          "strategy",
+          "innovation",
+          "transformation",
+          "synergy",
+          "alignment",
+          "empowerment"
+        ],
+        "education": [
+          {
+            "degree": "MBA",
+            "field": null,
+            "institution": "Famous Business School",
+            "start_date": null,
+            "end_date": "2017-01-01"
+          }
+        ],
+        "languages": [],
+        "certifications": [],
+        "detected_language": "en",
+        "parse_confidence": 0.75,
+        "extraction_warnings": [
+          "no specific months provided for dates, defaulting to January",
+          "no languages specified",
+          "no certifications found",
+          "skills are mostly soft/generic rather than technical"
+        ]
+      },
+      "classification": {
+        "isco_code": "112",
+        "isco_level": 3,
+        "role_label": "Managing director",
+        "confidence": 0.72,
+        "top1_margin": 0.25,
+        "alternatives": [
+          "2421",
+          "1330",
+          "2434"
+        ],
+        "rollup_reason": "low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit"
+      },
+      "score": {
+        "relevant_experience": 54,
+        "skills_match": 56,
+        "impact_scope": 15,
+        "leadership_ownership_growth": 35,
+        "education": 10,
+        "total": 38,
+        "band": "Junior",
+        "confidence": "low",
+        "confidence_reasons": [
+          "low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit",
+          "extraction warnings: no specific months provided for dates, defaulting to January, no languages specified, no certifications found, skills are mostly soft/generic rather than technical",
+          "skills_match used low-confidence fallback (no ISCO keyword set)"
+        ],
+        "evidence": {
+          "impact_scope": [
+            "Drove paradigm-shifting initiatives leveraging cutting-edge synergies",
+            "Orchestrated holistic ecosystems of disruptive thought leadership",
+            "Enabled strategic alignment across cross-functional touchpoints"
+          ],
+          "leadership_ownership_growth": [
+            "Chief Synergy Officer — VisionCo, 2020 — present",
+            "Senior Innovation Catalyst — IdeaWorks, 2017 — 2020",
+            "Spearheaded transformative outcomes through best-in-class methodologies",
+            "Empowered stakeholders via next-generation frameworks",
+            "MBA — Famous Business School (2017)"
+          ]
+        }
+      },
+      "salary": {
+        "point": 77206,
+        "low": 54881,
+        "high": 96863,
+        "percentile": 28.75,
+        "percentile_low": 10.0,
+        "percentile_high": 53.75,
+        "currency": "CZK",
+        "period": "month",
+        "confidence": "low",
+        "confidence_reasons": [
+          "low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit",
+          "extraction warnings: no specific months provided for dates, defaulting to January, no languages specified, no certifications found, skills are mostly soft/generic rather than technical",
+          "skills_match used low-confidence fallback (no ISCO keyword set)",
+          "data: AGGREGATE ISPV rok 2025"
+        ],
+        "isco_code": "112",
+        "isco_level": 3,
+        "data_source": "MPSV ISPV",
+        "data_year": 2025
+      },
+      "growth_plan": {
+        "branch": "skill_up_within_role",
+        "target_salary": 100368,
+        "target_percentile": 58.51948617461355,
+        "required_score": 62,
+        "score_delta": 24,
+        "subscore_deltas": {
+          "relevant_experience": 0.0,
+          "skills_match": 21.1,
+          "impact_scope": 40.8,
+          "leadership_ownership_growth": 31.2,
+          "education": 43.2
+        },
+        "message": "+30% is reachable inside your current ISCO with a score increase of ~24 points (target P59).",
+        "actions": [
+          "Enroll in a recognized executive leadership certification (e.g., Cornell Certificate in Executive Leadership or Harvard Advanced Leadership Initiative) within the next 3 months to close the 43.2-point education gap, supplementing your MBA with formal, credentialed training in C-suite strategic management.",
+          "Document and quantify the business impact of your 'paradigm-shifting initiatives' at VisionCo by attaching revenue growth figures, cost savings, market-share gains, or headcount/budget size you oversee (e.g., 'Led $20M P&L transformation' or 'Grew team from 15 to 60 FTEs'), then update your CV and LinkedIn to showcase measurable scope—this bridges the 40.8-point impact_scope and 31.2-point leadership_ownership_growth deltas.",
+          "Identify 3–4 high-demand technical or domain competencies for ISCO 112 executives (e.g., digital transformation, M&A integration, change management, or data-driven decision-making) and complete micro-credentials or projects in at least two of them by month 9, referencing these explicitly on your CV to address the 21.1-point skills_match gap.",
+          "Secure a board advisory seat, interim COO role, or consultancy engagement that requires P&L ownership or turnaround leadership within 6–9 months, leveraging your IdeaWorks and VisionCo track record to demonstrate expanded scope and accountability in your next CV iteration."
+        ]
+      },
+      "pipeline_meta": {
+        "steps": {
+          "extract": {
+            "duration_ms": 4
+          },
+          "redact": {
+            "duration_ms": 0,
+            "sha256": "58c69240e3e470acd3044e41d72c2f004a00294527aa1790008cf2c840158dd4"
+          },
+          "parse": {
+            "duration_ms": 6921,
+            "parse_confidence": 0.75,
+            "warnings": [
+              "no specific months provided for dates, defaulting to January",
+              "no languages specified",
+              "no certifications found",
+              "skills are mostly soft/generic rather than technical"
+            ]
+          },
+          "classify": {
+            "duration_ms": 2684,
+            "isco_level": 3,
+            "confidence": 0.72
+          },
+          "score": {
+            "duration_ms": 4132,
+            "relevant_yoe_years": 4.935,
+            "total_yoe_years": 9.333333333333334
+          },
+          "salary": {
+            "duration_ms": 19,
+            "percentile": 28.75
+          },
+          "recommend": {
+            "duration_ms": 11149,
+            "branch": "skill_up_within_role"
+          }
+        },
+        "total_duration_ms": 24911
+      }
+    }
+  }
+]

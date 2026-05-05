@@ -1,0 +1,163 @@
+{
+  "file": "junior_dev_1y.docx",
+  "ok": true,
+  "duration_s": 20.9,
+  "result": {
+    "cv": {
+      "roles": [
+        {
+          "title": "Junior Developer",
+          "company": "TechCo",
+          "start_date": "2024-09-01",
+          "end_date": null,
+          "description": "Implemented features in Python/Django under senior supervision. Wrote unit tests with pytest. Participated in code reviews.",
+          "is_current": true,
+          "raw_dates": "09/2024 — present",
+          "isco_code": "2512",
+          "isco_confidence": 0.85
+        }
+      ],
+      "skills": [
+        "python",
+        "django",
+        "postgresql",
+        "git",
+        "pytest",
+        "docker"
+      ],
+      "education": [
+        {
+          "degree": "Bachelor's",
+          "field": "Computer Science",
+          "institution": "Charles University",
+          "start_date": "2021-01-01",
+          "end_date": "2024-01-01"
+        }
+      ],
+      "languages": [],
+      "certifications": [],
+      "detected_language": "en",
+      "parse_confidence": 0.95,
+      "extraction_warnings": [
+        "education dates extracted as year-only, set to January 1st"
+      ]
+    },
+    "classification": {
+      "isco_code": "2512",
+      "isco_level": 4,
+      "role_label": "Software developer",
+      "confidence": 0.85,
+      "top1_margin": 0.3,
+      "alternatives": [
+        "2513",
+        "2514",
+        "2519"
+      ],
+      "rollup_reason": null
+    },
+    "score": {
+      "relevant_experience": 21,
+      "skills_match": 66,
+      "impact_scope": 25,
+      "leadership_ownership_growth": 38,
+      "education": 75,
+      "total": 42,
+      "band": "Mid",
+      "confidence": "medium",
+      "confidence_reasons": [
+        "extraction warnings: education dates extracted as year-only, set to January 1st"
+      ],
+      "evidence": {
+        "impact_scope": [
+          "Implemented features in Python/Django under senior supervision",
+          "Wrote unit tests with pytest",
+          "Participated in code reviews"
+        ],
+        "leadership_ownership_growth": [
+          "Implemented features in Python/Django under senior supervision",
+          "Wrote unit tests with pytest",
+          "Participated in code reviews",
+          "Junior Developer — TechCo, 09/2024 — present",
+          "Bachelor's — Computer Science, Charles University (2021–2024)"
+        ]
+      }
+    },
+    "salary": {
+      "point": 81884,
+      "low": 63955,
+      "high": 99625,
+      "percentile": 33.75,
+      "percentile_low": 18.75,
+      "percentile_high": 48.75,
+      "currency": "CZK",
+      "period": "month",
+      "confidence": "medium",
+      "confidence_reasons": [
+        "extraction warnings: education dates extracted as year-only, set to January 1st",
+        "data: MZDOVA ISPV rok 2025"
+      ],
+      "isco_code": "2512",
+      "isco_level": 4,
+      "data_source": "MPSV ISPV",
+      "data_year": 2025
+    },
+    "growth_plan": {
+      "branch": "skill_up_within_role",
+      "target_salary": 106449,
+      "target_percentile": 53.271607960247714,
+      "required_score": 58,
+      "score_delta": 16,
+      "subscore_deltas": {
+        "relevant_experience": 0.0,
+        "skills_match": 14.2,
+        "impact_scope": 31.2,
+        "leadership_ownership_growth": 25.8,
+        "education": 10.4
+      },
+      "message": "+30% is reachable inside your current ISCO with a score increase of ~16 points (target P53).",
+      "actions": [
+        "Close the skills_match gap (+14.2) by earning certifications in cloud platforms (AWS Certified Developer Associate or Azure Developer) and learning Kubernetes, CI/CD pipelines (Jenkins/GitLab CI), and a modern frontend framework (React or Vue.js) to demonstrate full-stack capability beyond your current Python/Django stack.",
+        "Address the impact_scope deficit (+31.2) by volunteering to own a cross-functional project at TechCo—such as a customer-facing feature or internal tooling—documenting measurable outcomes (e.g., reduced deployment time by X%, improved test coverage to Y%) and presenting results to stakeholders outside your immediate team.",
+        "Boost leadership_ownership_growth (+25.8) by mentoring interns or junior hires, leading sprint retrospectives or technical design reviews, and initiating process improvements (e.g., automated testing, documentation standards) that you can quantify in future job applications.",
+        "Strengthen your education score (+10.4) by completing a recognized advanced certification (e.g., Google Professional Cloud Developer, MongoDB Certified Developer) or enrolling in a part-time master's program in Software Engineering or Data Science to signal deeper expertise and commitment to continuous learning."
+      ]
+    },
+    "pipeline_meta": {
+      "steps": {
+        "extract": {
+          "duration_ms": 7
+        },
+        "redact": {
+          "duration_ms": 1,
+          "sha256": "b13eedb5cf8d17a2ab7e7d482a4dc3618ffc2919f53a3ce9506a7d78d33da25c"
+        },
+        "parse": {
+          "duration_ms": 5603,
+          "parse_confidence": 0.95,
+          "warnings": [
+            "education dates extracted as year-only, set to January 1st"
+          ]
+        },
+        "classify": {
+          "duration_ms": 2460,
+          "isco_level": 4,
+          "confidence": 0.85
+        },
+        "score": {
+          "duration_ms": 3627,
+          "relevant_yoe_years": 1.4166666666666667,
+          "total_yoe_years": 1.6666666666666667
+        },
+        "salary": {
+          "duration_ms": 144,
+          "percentile": 33.75
+        },
+        "recommend": {
+          "duration_ms": 9102,
+          "branch": "skill_up_within_role"
+        }
+      },
+      "total_duration_ms": 20947
+    }
+  }
+}

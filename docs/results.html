@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<title>Job Fit Estimator — Sample Results</title>
+<style>
+:root { --ink:#1a1a1a; --ink-soft:#4a4a4a; --rule:#e2e2dc; --paper:#fdfdfb;
+        --accent:#2563eb; --accent-soft:#eef2ff; --good:#047857; --good-soft:#ecfdf5;
+        --warn:#b45309; --warn-soft:#fef3c7; --code:#f6f6f2; --mono:'SF Mono',Menlo,monospace; }
+* { box-sizing: border-box; }
+body { font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif; color:var(--ink);
+       background:var(--paper); max-width:1080px; margin:0 auto; padding:48px 32px 80px; line-height:1.55; }
+header { border-bottom:2px solid var(--ink); padding-bottom:20px; margin-bottom:32px; }
+h1 { margin:0 0 6px; font-size:2rem; letter-spacing:-0.01em; }
+.subtitle { color:var(--ink-soft); margin:0; }
+h2 { font-size:1.4rem; margin:48px 0 12px; padding-bottom:6px; border-bottom:1px solid var(--rule); }
+h3 { font-size:1.1rem; margin:24px 0 8px; }
+table { border-collapse:collapse; width:100%; margin:12px 0 18px; font-size:0.93rem; }
+th, td { border-bottom:1px solid var(--rule); padding:8px 10px; text-align:left; vertical-align:top; }
+th { background:var(--code); font-weight:600; }
+.num { text-align:right; font-variant-numeric:tabular-nums; font-family:var(--mono); }
+.pill { display:inline-block; padding:2px 8px; border-radius:999px; font-size:0.72rem; font-weight:600;
+        letter-spacing:0.02em; }
+.pill-good { background:var(--good-soft); color:var(--good); }
+.pill-warn { background:var(--warn-soft); color:var(--warn); }
+.pill-info { background:var(--accent-soft); color:var(--accent); }
+.pill-fail { background:#fee2e2; color:#b91c1c; }
+.cv-card { border:1px solid var(--rule); border-radius:6px; padding:18px 22px; margin:18px 0;
+           background:white; }
+.cv-card h3 { margin:0 0 6px; font-size:1.1rem; }
+.cv-meta { color:var(--ink-soft); font-size:0.85rem; margin-bottom:12px; }
+.score-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:10px; margin:14px 0; }
+.score-cell { background:var(--code); border-radius:4px; padding:8px 10px; }
+.score-cell .label { font-size:0.7rem; color:var(--ink-soft); text-transform:uppercase;
+                     letter-spacing:0.04em; }
+.score-cell .value { font-size:1.3rem; font-weight:600; font-variant-numeric:tabular-nums;
+                     font-family:var(--mono); }
+.bar-track { background:var(--code); height:8px; border-radius:4px; overflow:hidden; margin:4px 0; }
+.bar-fill { background:var(--accent); height:100%; }
+.summary-row { display:grid; grid-template-columns:1.5fr 0.7fr 0.7fr 1.2fr 1fr 1fr; gap:10px;
+               align-items:center; padding:10px 0; border-bottom:1px solid var(--rule); font-size:0.9rem; }
+.summary-row.head { font-weight:600; background:var(--code); padding:10px; border-radius:4px;
+                    margin-bottom:4px; border:none; }
+.evidence { color:var(--ink-soft); font-size:0.88rem; padding:4px 0 4px 16px; border-left:3px solid var(--rule);
+            margin:4px 0; }
+.actions { margin:8px 0 0; padding-left:22px; }
+.actions li { margin-bottom:8px; font-size:0.92rem; }
+.detail { margin-top:10px; }
+.detail summary { cursor:pointer; color:var(--accent); font-size:0.88rem; }
+.detail pre { background:var(--code); border:1px solid var(--rule); padding:10px 14px; border-radius:4px;
+              font-family:var(--mono); font-size:0.78rem; overflow-x:auto; white-space:pre-wrap;
+              word-break:break-word; max-height:380px; overflow-y:auto; }
+.confidence { font-size:0.8rem; color:var(--ink-soft); margin-top:4px; }
+.error-box { background:#fef2f2; border:1px solid #fecaca; padding:14px 18px; border-radius:4px;
+             margin-top:8px; }
+.error-box pre { background:transparent; border:none; padding:0; font-size:0.78rem; color:#b91c1c; }
+.empty-state { padding:24px; background:var(--warn-soft); border:1px solid #fde68a; border-radius:6px;
+               margin-top:24px; }
+@media print {
+  body { max-width:none; padding:18px 24px; font-size:10.5pt; }
+  .cv-card { page-break-inside:avoid; break-inside:avoid; }
+  .actions li { page-break-inside:avoid; }
+  pre { page-break-inside:avoid; max-height:none !important; }
+}
+</style></head>
+<body>
+<header>
+  <h1>Job Fit Estimator — Sample Results</h1>
+  <p class="subtitle">Live pipeline output on the 5 synthetic CVs in <code>samples/cvs/</code></p>
+</header>
+<p style="color:var(--ink-soft)">5/5 CVs analysed successfully.</p><h2>Side-by-side summary</h2><div class="summary-row head"><div>CV</div><div>Score</div><div>Band</div><div>Salary</div><div>Branch</div><div>ISCO</div></div>
+<div class="summary-row"><div><code>junior_dev_1y.docx</code></div><div class="num">42/100</div><div><span class="pill pill-info">Mid</span></div><div class="num">81,884 CZK/mo</div><div><span class="pill pill-good">skill_up_within_role</span></div><div><code>2512</code> Software developer</div></div>
+<div class="summary-row"><div><code>mid_dev_4y.docx</code></div><div class="num">64/100</div><div><span class="pill pill-good">Senior</span></div><div class="num">119,487 CZK/mo</div><div><span class="pill pill-good">skill_up_within_role</span></div><div><code>2512</code> Software developer</div></div>
+<div class="summary-row"><div><code>senior_dev_8y.docx</code></div><div class="num">79/100</div><div><span class="pill pill-good">Senior</span></div><div class="num">122,534 CZK/mo</div><div><span class="pill pill-warn">role_family_change</span></div><div><code>251</code> Software and application</div></div>
+<div class="summary-row"><div><code>nurse_to_dev_5y_2y.docx</code></div><div class="num">50/100</div><div><span class="pill pill-info">Mid</span></div><div class="num">93,711 CZK/mo</div><div><span class="pill pill-good">skill_up_within_role</span></div><div><code>2512</code> Software Developer</div></div>
+<div class="summary-row"><div><code>buzzword_no_evidence.docx</code></div><div class="num">38/100</div><div><span class="pill pill-warn">Junior</span></div><div class="num">77,206 CZK/mo</div><div><span class="pill pill-good">skill_up_within_role</span></div><div><code>112</code> Managing director</div></div><h2>Per-CV detail</h2>
+<div class="cv-card">
+  <h3>junior_dev_1y.docx &nbsp; <span class="pill pill-info">Mid</span> &nbsp; <span class="pill pill-info">medium</span></h3>
+  <div class="cv-meta">
+    classified as <strong>Software developer</strong>
+    (ISCO <code>2512</code>, level 4,
+    confidence 0.85) &nbsp;·&nbsp;
+    pipeline took 20.9s &nbsp;·&nbsp;
+    1 role(s) parsed, 6 skills
+  </div>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Score breakdown — total 42/100</h4>
+  <div class="score-grid"><div class="score-cell"><div class="label">rel. exp</div><div class="value">21</div><div class="bar-track"><div class="bar-fill" style="width:21%"></div></div></div><div class="score-cell"><div class="label">skills</div><div class="value">66</div><div class="bar-track"><div class="bar-fill" style="width:66%"></div></div></div><div class="score-cell"><div class="label">impact</div><div class="value">25</div><div class="bar-track"><div class="bar-fill" style="width:25%"></div></div></div><div class="score-cell"><div class="label">lead/own</div><div class="value">38</div><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div></div><div class="score-cell"><div class="label">education</div><div class="value">75</div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Salary estimate</h4>
+  <table>
+    <tr>
+      <td>Point estimate</td><td class="num">81,884 CZK/mo</td>
+      <td>at percentile</td><td class="num">P34</td>
+    </tr>
+    <tr>
+      <td>Range</td><td class="num">63,955 – 99,625 CZK</td>
+      <td>P19 – P49</td><td><span class="pill pill-info">medium</span></td>
+    </tr>
+    <tr>
+      <td>Source</td><td colspan="3">MPSV ISPV 2025 · ISCO <code>2512</code> (level 4)</td>
+    </tr>
+  </table>
+  <div class="confidence">Confidence reasons: <ul><li>extraction warnings: education dates extracted as year-only, set to January 1st</li></ul></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Evidence quoted by the LLM</h4>
+  <div><strong style="font-size:0.85rem">impact_scope</strong><div class="evidence">Implemented features in Python/Django under senior supervision</div><div class="evidence">Wrote unit tests with pytest</div><div class="evidence">Participated in code reviews</div></div>
+  <div style="margin-top:8px"><strong style="font-size:0.85rem">leadership_ownership_growth</strong><div class="evidence">Implemented features in Python/Django under senior supervision</div><div class="evidence">Wrote unit tests with pytest</div><div class="evidence">Participated in code reviews</div><div class="evidence">Junior Developer — TechCo, 09/2024 — present</div><div class="evidence">Bachelor&#x27;s — Computer Science, Charles University (2021–2024)</div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">+30% growth plan <span class="pill pill-good">skill_up_within_role</span></h4>
+  <p style="margin:4px 0 8px;font-size:0.92rem;">+30% is reachable inside your current ISCO with a score increase of ~16 points (target P53).</p>
+  <table style="font-size:0.88rem;width:auto;">
+    <tr><td>Target salary</td><td class="num">106,449 CZK/mo</td></tr>
+    <tr><td>Target percentile</td><td class='num'>P53</td></tr>
+    <tr><td>Required score</td><td class='num'>58</td></tr>
+    <tr><td>Score delta</td><td class='num'>+16</td></tr>
+  </table>
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Subscore deltas needed</h4>
+  <table style="font-size:0.88rem;max-width:380px"><tr><td>skills_match</td><td class='num'>+14.2</td></tr><tr><td>impact_scope</td><td class='num'>+31.2</td></tr><tr><td>leadership_ownership_growth</td><td class='num'>+25.8</td></tr><tr><td>education</td><td class='num'>+10.4</td></tr></table>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Recommended actions (4)</h4>
+  <ol class="actions"><li>Close the skills_match gap (+14.2) by earning certifications in cloud platforms (AWS Certified Developer Associate or Azure Developer) and learning Kubernetes, CI/CD pipelines (Jenkins/GitLab CI), and a modern frontend framework (React or Vue.js) to demonstrate full-stack capability beyond your current Python/Django stack.</li><li>Address the impact_scope deficit (+31.2) by volunteering to own a cross-functional project at TechCo—such as a customer-facing feature or internal tooling—documenting measurable outcomes (e.g., reduced deployment time by X%, improved test coverage to Y%) and presenting results to stakeholders outside your immediate team.</li><li>Boost leadership_ownership_growth (+25.8) by mentoring interns or junior hires, leading sprint retrospectives or technical design reviews, and initiating process improvements (e.g., automated testing, documentation standards) that you can quantify in future job applications.</li><li>Strengthen your education score (+10.4) by completing a recognized advanced certification (e.g., Google Professional Cloud Developer, MongoDB Certified Developer) or enrolling in a part-time master&#x27;s program in Software Engineering or Data Science to signal deeper expertise and commitment to continuous learning.</li></ol>
+
+  <details class="detail">
+    <summary>Full ResultJson</summary>
+    <pre>{
+  &quot;cv&quot;: {
+    &quot;roles&quot;: [
+      {
+        &quot;title&quot;: &quot;Junior Developer&quot;,
+        &quot;company&quot;: &quot;TechCo&quot;,
+        &quot;start_date&quot;: &quot;2024-09-01&quot;,
+        &quot;end_date&quot;: null,
+        &quot;description&quot;: &quot;Implemented features in Python/Django under senior supervision. Wrote unit tests with pytest. Participated in code reviews.&quot;,
+        &quot;is_current&quot;: true,
+        &quot;raw_dates&quot;: &quot;09/2024 — present&quot;,
+        &quot;isco_code&quot;: &quot;2512&quot;,
+        &quot;isco_confidence&quot;: 0.85
+      }
+    ],
+    &quot;skills&quot;: [
+      &quot;python&quot;,
+      &quot;django&quot;,
+      &quot;postgresql&quot;,
+      &quot;git&quot;,
+      &quot;pytest&quot;,
+      &quot;docker&quot;
+    ],
+    &quot;education&quot;: [
+      {
+        &quot;degree&quot;: &quot;Bachelor&#x27;s&quot;,
+        &quot;field&quot;: &quot;Computer Science&quot;,
+        &quot;institution&quot;: &quot;Charles University&quot;,
+        &quot;start_date&quot;: &quot;2021-01-01&quot;,
+        &quot;end_date&quot;: &quot;2024-01-01&quot;
+      }
+    ],
+    &quot;languages&quot;: [],
+    &quot;certifications&quot;: [],
+    &quot;detected_language&quot;: &quot;en&quot;,
+    &quot;parse_confidence&quot;: 0.95,
+    &quot;extraction_warnings&quot;: [
+      &quot;education dates extracted as year-only, set to January 1st&quot;
+    ]
+  },
+  &quot;classification&quot;: {
+    &quot;isco_code&quot;: &quot;2512&quot;,
+    &quot;isco_level&quot;: 4,
+    &quot;role_label&quot;: &quot;Software developer&quot;,
+    &quot;confidence&quot;: 0.85,
+    &quot;top1_margin&quot;: 0.3,
+    &quot;alternatives&quot;: [
+      &quot;2513&quot;,
+      &quot;2514&quot;,
+      &quot;2519&quot;
+    ],
+    &quot;rollup_reason&quot;: null
+  },
+  &quot;score&quot;: {
+    &quot;relevant_experience&quot;: 21,
+    &quot;skills_match&quot;: 66,
+    &quot;impact_scope&quot;: 25,
+    &quot;leadership_ownership_growth&quot;: 38,
+    &quot;education&quot;: 75,
+    &quot;total&quot;: 42,
+    &quot;band&quot;: &quot;Mid&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;extraction warnings: education dates extracted as year-only, set to January 1st&quot;
+    ],
+    &quot;evidence&quot;: {
+      &quot;impact_scope&quot;: [
+        &quot;Implemented features in Python/Django under senior supervision&quot;,
+        &quot;Wrote unit tests with pytest&quot;,
+        &quot;Participated in code reviews&quot;
+      ],
+      &quot;leadership_ownership_growth&quot;: [
+        &quot;Implemented features in Python/Django under senior supervision&quot;,
+        &quot;Wrote unit tests with pytest&quot;,
+        &quot;Participated in code reviews&quot;,
+        &quot;Junior Developer — TechCo, 09/2024 — present&quot;,
+        &quot;Bachelor&#x27;s — Computer Science, Charles University (2021–2024)&quot;
+      ]
+    }
+  },
+  &quot;salary&quot;: {
+    &quot;point&quot;: 81884,
+    &quot;low&quot;: 63955,
+    &quot;high&quot;: 99625,
+    &quot;percentile&quot;: 33.75,
+    &quot;percentile_low&quot;: 18.75,
+    &quot;percentile_high&quot;: 48.75,
+    &quot;currency&quot;: &quot;CZK&quot;,
+    &quot;period&quot;: &quot;month&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;extraction warnings: education dates extracted as year-only, set to January 1st&quot;,
+      &quot;data: MZDOVA ISPV rok 2025&quot;
+    ],
+    &quot;isco_code&quot;: &quot;2512&quot;,
+    &quot;isco_level&quot;: 4,
+    &quot;data_source&quot;: &quot;MPSV ISPV&quot;,
+    &quot;data_year&quot;: 2025
+  },
+  &quot;growth_plan&quot;: {
+    &quot;branch&quot;: &quot;skill_up_within_role&quot;,
+    &quot;target_salary&quot;: 106449,
+    &quot;target_percentile&quot;: 53.271607960247714,
+    &quot;required_score&quot;: 58,
+    &quot;score_delta&quot;: 16,
+    &quot;subscore_deltas&quot;: {
+      &quot;relevant_experience&quot;: 0.0,
+      &quot;skills_match&quot;: 14.2,
+      &quot;impact_scope&quot;: 31.2,
+      &quot;leadership_ownership_growth&quot;: 25.8,
+      &quot;education&quot;: 10.4
+    },
+    &quot;message&quot;: &quot;+30% is reachable inside your current ISCO with a score increase of ~16 points (target P53).&quot;,
+    &quot;actions&quot;: [
+      &quot;Close the skills_match gap (+14.2) by earning certifications in cloud platforms (AWS Certified Developer Associate or Azure Developer) and learning Kubernetes, CI/CD pipelines (Jenkins/GitLab CI), and a modern frontend framework (React or Vue.js) to demonstrate full-stack capability beyond your current Python/Django stack.&quot;,
+      &quot;Address the impact_scope deficit (+31.2) by volunteering to own a cross-functional project at TechCo—such as a customer-facing feature or internal tooling—documenting measurable outcomes (e.g., reduced deployment time by X%, improved test coverage to Y%) and presenting results to stakeholders outside your immediate team.&quot;,
+      &quot;Boost leadership_ownership_growth (+25.8) by mentoring interns or junior hires, leading sprint retrospectives or technical design reviews, and initiating process improvements (e.g., automated testing, documentation standards) that you can quantify in future job applications.&quot;,
+      &quot;Strengthen your education score (+10.4) by completing a recognized advanced certification (e.g., Google Professional Cloud Developer, MongoDB Certified Developer) or enrolling in a part-time master&#x27;s program in Software Engineering or Data Science to signal deeper expertise and commitment to continuous learning.&quot;
+    ]
+  },
+  &quot;pipeline_meta&quot;: {
+    &quot;steps&quot;: {
+      &quot;extract&quot;: {
+        &quot;duration_ms&quot;: 7
+      },
+      &quot;redact&quot;: {
+        &quot;duration_ms&quot;: 1,
+        &quot;sha256&quot;: &quot;b13eedb5cf8d17a2ab7e7d482a4dc3618ffc2919f53a3ce9506a7d78d33da25c&quot;
+      },
+      &quot;parse&quot;: {
+        &quot;duration_ms&quot;: 5603,
+        &quot;parse_confidence&quot;: 0.95,
+        &quot;warnings&quot;: [
+          &quot;education dates extracted as year-only, set to January 1st&quot;
+        ]
+      },
+      &quot;classify&quot;: {
+        &quot;duration_ms&quot;: 2460,
+        &quot;isco_level&quot;: 4,
+        &quot;confidence&quot;: 0.85
+      },
+      &quot;score&quot;: {
+        &quot;duration_ms&quot;: 3627,
+        &quot;relevant_yoe_years&quot;: 1.4166666666666667,
+        &quot;total_yoe_years&quot;: 1.6666666666666667
+      },
+      &quot;salary&quot;: {
+        &quot;duration_ms&quot;: 144,
+        &quot;percentile&quot;: 33.75
+      },
+      &quot;recommend&quot;: {
+        &quot;duration_ms&quot;: 9102,
+        &quot;branch&quot;: &quot;skill_up_within_role&quot;
+      }
+    },
+    &quot;total_duration_ms&quot;: 20947
+  }
+}</pre>
+  </details>
+</div>
+
+
+<div class="cv-card">
+  <h3>mid_dev_4y.docx &nbsp; <span class="pill pill-good">Senior</span> &nbsp; <span class="pill pill-info">medium</span></h3>
+  <div class="cv-meta">
+    classified as <strong>Software developer</strong>
+    (ISCO <code>2512</code>, level 4,
+    confidence 0.95) &nbsp;·&nbsp;
+    pipeline took 27.4s &nbsp;·&nbsp;
+    2 role(s) parsed, 11 skills
+  </div>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Score breakdown — total 64/100</h4>
+  <div class="score-grid"><div class="score-cell"><div class="label">rel. exp</div><div class="value">55</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div></div><div class="score-cell"><div class="label">skills</div><div class="value">70</div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></div><div class="score-cell"><div class="label">impact</div><div class="value">55</div><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div></div><div class="score-cell"><div class="label">lead/own</div><div class="value">66</div><div class="bar-track"><div class="bar-fill" style="width:66%"></div></div></div><div class="score-cell"><div class="label">education</div><div class="value">90</div><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Salary estimate</h4>
+  <table>
+    <tr>
+      <td>Point estimate</td><td class="num">119,487 CZK/mo</td>
+      <td>at percentile</td><td class="num">P61</td>
+    </tr>
+    <tr>
+      <td>Range</td><td class="num">96,668 – 145,531 CZK</td>
+      <td>P46 – P76</td><td><span class="pill pill-info">medium</span></td>
+    </tr>
+    <tr>
+      <td>Source</td><td colspan="3">MPSV ISPV 2025 · ISCO <code>2512</code> (level 4)</td>
+    </tr>
+  </table>
+  <div class="confidence">Confidence reasons: <ul><li>extraction warnings: education dates approximate: only year range provided</li></ul></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Evidence quoted by the LLM</h4>
+  <div><strong style="font-size:0.85rem">impact_scope</strong><div class="evidence">Owned the payment ingestion service handling 50k tx/day.</div><div class="evidence">Reduced p95 latency by 35% by introducing async Postgres pool.</div></div>
+  <div style="margin-top:8px"><strong style="font-size:0.85rem">leadership_ownership_growth</strong><div class="evidence">Owned the payment ingestion service handling 50k tx/day.</div><div class="evidence">Reduced p95 latency by 35% by introducing async Postgres pool.</div><div class="evidence">Mentored 1 intern.</div><div class="evidence">Junior Developer — StartupX, 06/2020 — 04/2022 → Software Engineer — FinTech Plus, 05/2022 — present</div><div class="evidence">Built REST APIs in Flask; helped migrate to FastAPI.</div><div class="evidence">Master&#x27;s — Software Engineering, CTU Prague (2018–2020)</div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">+30% growth plan <span class="pill pill-good">skill_up_within_role</span></h4>
+  <p style="margin:4px 0 8px;font-size:0.92rem;">+30% is reachable inside your current ISCO with a score increase of ~16 points (target P80).</p>
+  <table style="font-size:0.88rem;width:auto;">
+    <tr><td>Target salary</td><td class="num">155,333 CZK/mo</td></tr>
+    <tr><td>Target percentile</td><td class='num'>P80</td></tr>
+    <tr><td>Required score</td><td class='num'>80</td></tr>
+    <tr><td>Score delta</td><td class='num'>+16</td></tr>
+  </table>
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Subscore deltas needed</h4>
+  <table style="font-size:0.88rem;max-width:380px"><tr><td>skills_match</td><td class='num'>+19.8</td></tr><tr><td>impact_scope</td><td class='num'>+29.6</td></tr><tr><td>leadership_ownership_growth</td><td class='num'>+22.4</td></tr><tr><td>education</td><td class='num'>+6.6</td></tr></table>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Recommended actions (5)</h4>
+  <ol class="actions"><li>Increase impact_scope by proposing and delivering a cross-team initiative—for example, build an observability framework (tracing, metrics dashboards) that two other engineering squads adopt, raising your service footprint from 50k to 200k+ transactions per day and demonstrating influence beyond your current domain.</li><li>Strengthen leadership_ownership_growth by taking formal tech-lead responsibility for the payment ingestion system: run sprint planning, conduct code reviews for 2–3 peers, and document architectural decisions in an RFC process, building on your current mentorship of 1 intern.</li><li>Boost skills_match by earning a professional certification in cloud-native architecture (e.g., AWS Certified Solutions Architect – Associate or Certified Kubernetes Administrator) and applying those patterns to migrate the payment service to an event-driven microservices design using Kafka or SQS.</li><li>Enhance education by completing an online specialization in distributed systems or data engineering (e.g., Coursera, edX), then publishing a technical blog post or internal tech talk that demonstrates your deepened expertise and raises your profile within FinTech Plus.</li><li>Expand impact_scope and leadership_ownership_growth together by volunteering to lead the on-call rotation for the payment platform, resolving 10+ production incidents over six months, and presenting quarterly reliability metrics to senior engineering leadership.</li></ol>
+
+  <details class="detail">
+    <summary>Full ResultJson</summary>
+    <pre>{
+  &quot;cv&quot;: {
+    &quot;roles&quot;: [
+      {
+        &quot;title&quot;: &quot;Software Engineer&quot;,
+        &quot;company&quot;: &quot;FinTech Plus&quot;,
+        &quot;start_date&quot;: &quot;2022-05-01&quot;,
+        &quot;end_date&quot;: null,
+        &quot;description&quot;: &quot;Owned the payment ingestion service handling 50k tx/day. Reduced p95 latency by 35% by introducing async Postgres pool. Mentored 1 intern.&quot;,
+        &quot;is_current&quot;: true,
+        &quot;raw_dates&quot;: &quot;05/2022 — present&quot;,
+        &quot;isco_code&quot;: &quot;2512&quot;,
+        &quot;isco_confidence&quot;: 0.95
+      },
+      {
+        &quot;title&quot;: &quot;Junior Developer&quot;,
+        &quot;company&quot;: &quot;StartupX&quot;,
+        &quot;start_date&quot;: &quot;2020-06-01&quot;,
+        &quot;end_date&quot;: &quot;2022-04-01&quot;,
+        &quot;description&quot;: &quot;Built REST APIs in Flask; helped migrate to FastAPI. Wrote integration tests; maintained CI pipeline.&quot;,
+        &quot;is_current&quot;: false,
+        &quot;raw_dates&quot;: &quot;06/2020 — 04/2022&quot;,
+        &quot;isco_code&quot;: &quot;2512&quot;,
+        &quot;isco_confidence&quot;: 0.6649999999999999
+      }
+    ],
+    &quot;skills&quot;: [
+      &quot;python&quot;,
+      &quot;fastapi&quot;,
+      &quot;flask&quot;,
+      &quot;postgresql&quot;,
+      &quot;redis&quot;,
+      &quot;docker&quot;,
+      &quot;aws&quot;,
+      &quot;kubernetes&quot;,
+      &quot;git&quot;,
+      &quot;pytest&quot;,
+      &quot;github actions&quot;
+    ],
+    &quot;education&quot;: [
+      {
+        &quot;degree&quot;: &quot;Master&#x27;s&quot;,
+        &quot;field&quot;: &quot;Software Engineering&quot;,
+        &quot;institution&quot;: &quot;CTU Prague&quot;,
+        &quot;start_date&quot;: &quot;2018-01-01&quot;,
+        &quot;end_date&quot;: &quot;2020-12-31&quot;
+      }
+    ],
+    &quot;languages&quot;: [],
+    &quot;certifications&quot;: [],
+    &quot;detected_language&quot;: &quot;en&quot;,
+    &quot;parse_confidence&quot;: 0.9,
+    &quot;extraction_warnings&quot;: [
+      &quot;education dates approximate: only year range provided&quot;
+    ]
+  },
+  &quot;classification&quot;: {
+    &quot;isco_code&quot;: &quot;2512&quot;,
+    &quot;isco_level&quot;: 4,
+    &quot;role_label&quot;: &quot;Software developer&quot;,
+    &quot;confidence&quot;: 0.95,
+    &quot;top1_margin&quot;: 0.75,
+    &quot;alternatives&quot;: [
+      &quot;2521&quot;,
+      &quot;2519&quot;,
+      &quot;2529&quot;
+    ],
+    &quot;rollup_reason&quot;: null
+  },
+  &quot;score&quot;: {
+    &quot;relevant_experience&quot;: 55,
+    &quot;skills_match&quot;: 70,
+    &quot;impact_scope&quot;: 55,
+    &quot;leadership_ownership_growth&quot;: 66,
+    &quot;education&quot;: 90,
+    &quot;total&quot;: 64,
+    &quot;band&quot;: &quot;Senior&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;extraction warnings: education dates approximate: only year range provided&quot;
+    ],
+    &quot;evidence&quot;: {
+      &quot;impact_scope&quot;: [
+        &quot;Owned the payment ingestion service handling 50k tx/day.&quot;,
+        &quot;Reduced p95 latency by 35% by introducing async Postgres pool.&quot;
+      ],
+      &quot;leadership_ownership_growth&quot;: [
+        &quot;Owned the payment ingestion service handling 50k tx/day.&quot;,
+        &quot;Reduced p95 latency by 35% by introducing async Postgres pool.&quot;,
+        &quot;Mentored 1 intern.&quot;,
+        &quot;Junior Developer — StartupX, 06/2020 — 04/2022 → Software Engineer — FinTech Plus, 05/2022 — present&quot;,
+        &quot;Built REST APIs in Flask; helped migrate to FastAPI.&quot;,
+        &quot;Master&#x27;s — Software Engineering, CTU Prague (2018–2020)&quot;
+      ]
+    }
+  },
+  &quot;salary&quot;: {
+    &quot;point&quot;: 119487,
+    &quot;low&quot;: 96668,
+    &quot;high&quot;: 145531,
+    &quot;percentile&quot;: 61.25,
+    &quot;percentile_low&quot;: 46.25,
+    &quot;percentile_high&quot;: 76.25,
+    &quot;currency&quot;: &quot;CZK&quot;,
+    &quot;period&quot;: &quot;month&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;extraction warnings: education dates approximate: only year range provided&quot;,
+      &quot;data: MZDOVA ISPV rok 2025&quot;
+    ],
+    &quot;isco_code&quot;: &quot;2512&quot;,
+    &quot;isco_level&quot;: 4,
+    &quot;data_source&quot;: &quot;MPSV ISPV&quot;,
+    &quot;data_year&quot;: 2025
+  },
+  &quot;growth_plan&quot;: {
+    &quot;branch&quot;: &quot;skill_up_within_role&quot;,
+    &quot;target_salary&quot;: 155333,
+    &quot;target_percentile&quot;: 79.67708964617034,
+    &quot;required_score&quot;: 80,
+    &quot;score_delta&quot;: 16,
+    &quot;subscore_deltas&quot;: {
+      &quot;relevant_experience&quot;: 0.0,
+      &quot;skills_match&quot;: 19.8,
+      &quot;impact_scope&quot;: 29.6,
+      &quot;leadership_ownership_growth&quot;: 22.4,
+      &quot;education&quot;: 6.6
+    },
+    &quot;message&quot;: &quot;+30% is reachable inside your current ISCO with a score increase of ~16 points (target P80).&quot;,
+    &quot;actions&quot;: [
+      &quot;Increase impact_scope by proposing and delivering a cross-team initiative—for example, build an observability framework (tracing, metrics dashboards) that two other engineering squads adopt, raising your service footprint from 50k to 200k+ transactions per day and demonstrating influence beyond your current domain.&quot;,
+      &quot;Strengthen leadership_ownership_growth by taking formal tech-lead responsibility for the payment ingestion system: run sprint planning, conduct code reviews for 2–3 peers, and document architectural decisions in an RFC process, building on your current mentorship of 1 intern.&quot;,
+      &quot;Boost skills_match by earning a professional certification in cloud-native architecture (e.g., AWS Certified Solutions Architect – Associate or Certified Kubernetes Administrator) and applying those patterns to migrate the payment service to an event-driven microservices design using Kafka or SQS.&quot;,
+      &quot;Enhance education by completing an online specialization in distributed systems or data engineering (e.g., Coursera, edX), then publishing a technical blog post or internal tech talk that demonstrates your deepened expertise and raises your profile within FinTech Plus.&quot;,
+      &quot;Expand impact_scope and leadership_ownership_growth together by volunteering to lead the on-call rotation for the payment platform, resolving 10+ production incidents over six months, and presenting quarterly reliability metrics to senior engineering leadership.&quot;
+    ]
+  },
+  &quot;pipeline_meta&quot;: {
+    &quot;steps&quot;: {
+      &quot;extract&quot;: {
+        &quot;duration_ms&quot;: 4
+      },
+      &quot;redact&quot;: {
+        &quot;duration_ms&quot;: 0,
+        &quot;sha256&quot;: &quot;6c8fed3f581d10a899022f5ad3d05dd286264bdf96e7869c073dae8a07f8b8be&quot;
+      },
+      &quot;parse&quot;: {
+        &quot;duration_ms&quot;: 6880,
+        &quot;parse_confidence&quot;: 0.9,
+        &quot;warnings&quot;: [
+          &quot;education dates approximate: only year range provided&quot;
+        ]
+      },
+      &quot;classify&quot;: {
+        &quot;duration_ms&quot;: 6568,
+        &quot;isco_level&quot;: 4,
+        &quot;confidence&quot;: 0.95
+      },
+      &quot;score&quot;: {
+        &quot;duration_ms&quot;: 4369,
+        &quot;relevant_yoe_years&quot;: 5.019166666666666,
+        &quot;total_yoe_years&quot;: 5.833333333333333
+      },
+      &quot;salary&quot;: {
+        &quot;duration_ms&quot;: 24,
+        &quot;percentile&quot;: 61.25
+      },
+      &quot;recommend&quot;: {
+        &quot;duration_ms&quot;: 9601,
+        &quot;branch&quot;: &quot;skill_up_within_role&quot;
+      }
+    },
+    &quot;total_duration_ms&quot;: 27449
+  }
+}</pre>
+  </details>
+</div>
+
+
+<div class="cv-card">
+  <h3>senior_dev_8y.docx &nbsp; <span class="pill pill-good">Senior</span> &nbsp; <span class="pill pill-warn">low</span></h3>
+  <div class="cv-meta">
+    classified as <strong>Software and applications developer NEC</strong>
+    (ISCO <code>251</code>, level 3,
+    confidence 0.75) &nbsp;·&nbsp;
+    pipeline took 26.5s &nbsp;·&nbsp;
+    3 role(s) parsed, 15 skills
+  </div>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Score breakdown — total 79/100</h4>
+  <div class="score-grid"><div class="score-cell"><div class="label">rel. exp</div><div class="value">51</div><div class="bar-track"><div class="bar-fill" style="width:51%"></div></div></div><div class="score-cell"><div class="label">skills</div><div class="value">100</div><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div></div><div class="score-cell"><div class="label">impact</div><div class="value">75</div><div class="bar-track"><div class="bar-fill" style="width:75%"></div></div></div><div class="score-cell"><div class="label">lead/own</div><div class="value">87</div><div class="bar-track"><div class="bar-fill" style="width:87%"></div></div></div><div class="score-cell"><div class="label">education</div><div class="value">90</div><div class="bar-track"><div class="bar-fill" style="width:90%"></div></div></div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Salary estimate</h4>
+  <table>
+    <tr>
+      <td>Point estimate</td><td class="num">122,534 CZK/mo</td>
+      <td>at percentile</td><td class="num">P79</td>
+    </tr>
+    <tr>
+      <td>Range</td><td class="num">88,046 – 148,305 CZK</td>
+      <td>P54 – P90</td><td><span class="pill pill-warn">low</span></td>
+    </tr>
+    <tr>
+      <td>Source</td><td colspan="3">MPSV ISPV 2025 · ISCO <code>251</code> (level 3)</td>
+    </tr>
+  </table>
+  <div class="confidence">Confidence reasons: <ul><li>low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit</li><li>extraction warnings: education dates only have year, used Jan 1st and Dec 31st as defaults</li></ul></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Evidence quoted by the LLM</h4>
+  <div><strong style="font-size:0.85rem">impact_scope</strong><div class="evidence">Designed event-driven microservices handling 2M req/day across 4 regions</div><div class="evidence">Reduced infrastructure spend by $180k/year through right-sizing</div><div class="evidence">Led migration from monolith to services; cut p99 latency 60%</div></div>
+  <div style="margin-top:8px"><strong style="font-size:0.85rem">leadership_ownership_growth</strong><div class="evidence">Led the platform team (5 engineers); owned architecture and roadmap</div><div class="evidence">Reduced infrastructure spend by $180k/year through right-sizing</div><div class="evidence">Mentored 4 mid-level engineers; introduced design-doc practice</div><div class="evidence">Led migration from monolith to services; cut p99 latency 60%</div><div class="evidence">Progression: Software Engineer (2016) → Senior Engineer (2018) → Tech Lead (2022)</div><div class="evidence">Owned the search subsystem; introduced observability with Prometheus/Grafana</div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">+30% growth plan <span class="pill pill-warn">role_family_change</span></h4>
+  <p style="margin:4px 0 8px;font-size:0.92rem;">+30% target exceeds the top decile of your current ISCO group. Skill development inside this role is unlikely to deliver +30%. Consider role-family change, geography, industry, or compensation model.</p>
+  <table style="font-size:0.88rem;width:auto;">
+    <tr><td>Target salary</td><td class="num">159,294 CZK/mo</td></tr>
+    <tr><td>Target percentile</td><td class='num'>P94</td></tr>
+    
+    
+  </table>
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Subscore deltas needed</h4>
+  <table style="font-size:0.88rem;max-width:380px"><tr><td colspan='2' style='color:var(--ink-soft)'>(branch not skill_up — no subscore deltas)</td></tr></table>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Recommended actions (4)</h4>
+  <ol class="actions"><li>Transition into an Engineering Manager role (ISCO 1330) by leveraging your current Tech Lead experience managing 5 engineers, mentoring 4 mid-levels, and owning team roadmaps; target high-growth tech companies or scale-ups where EM salaries range $150k–$200k.</li><li>Pivot to a Solutions Architect or Principal Architect position (ISCO 2511) by positioning your microservices architecture design (2M req/day, 4-region deployment) and cost-optimization wins ($180k savings) as enterprise-client-facing expertise; pursue consultancies or AWS/GCP partner firms.</li><li>Move into Product Management (ISCO 1219 or 2431) by reframing your platform roadmap ownership, cross-functional leadership of 5 engineers, and system-level business impact (latency reduction, cost savings) as product strategy skills; target B2B SaaS companies seeking technical PMs with deep engineering empathy.</li><li>Explore Technical Program Management (ISCO 2432) by highlighting your migration leadership (monolith-to-services), multi-region infrastructure coordination, and mentoring/design-doc process work; apply to FAANG or large fintech firms where TPMs earn $140k–$180k base plus equity.</li></ol>
+
+  <details class="detail">
+    <summary>Full ResultJson</summary>
+    <pre>{
+  &quot;cv&quot;: {
+    &quot;roles&quot;: [
+      {
+        &quot;title&quot;: &quot;Tech Lead&quot;,
+        &quot;company&quot;: &quot;Globex&quot;,
+        &quot;start_date&quot;: &quot;2022-01-01&quot;,
+        &quot;end_date&quot;: null,
+        &quot;description&quot;: &quot;Led the platform team (5 engineers); owned architecture and roadmap. Designed event-driven microservices handling 2M req/day across 4 regions. Reduced infrastructure spend by $180k/year through right-sizing. Mentored 4 mid-level engineers; introduced design-doc practice.&quot;,
+        &quot;is_current&quot;: true,
+        &quot;raw_dates&quot;: &quot;01/2022 — present&quot;,
+        &quot;isco_code&quot;: &quot;251&quot;,
+        &quot;isco_confidence&quot;: 0.75
+      },
+      {
+        &quot;title&quot;: &quot;Senior Engineer&quot;,
+        &quot;company&quot;: &quot;Acme&quot;,
+        &quot;start_date&quot;: &quot;2018-03-01&quot;,
+        &quot;end_date&quot;: &quot;2021-12-01&quot;,
+        &quot;description&quot;: &quot;Led migration from monolith to services; cut p99 latency 60%. Owned the search subsystem; introduced observability with Prometheus/Grafana.&quot;,
+        &quot;is_current&quot;: false,
+        &quot;raw_dates&quot;: &quot;03/2018 — 12/2021&quot;,
+        &quot;isco_code&quot;: null,
+        &quot;isco_confidence&quot;: 0.0
+      },
+      {
+        &quot;title&quot;: &quot;Software Engineer&quot;,
+        &quot;company&quot;: &quot;Acme&quot;,
+        &quot;start_date&quot;: &quot;2016-09-01&quot;,
+        &quot;end_date&quot;: &quot;2018-02-01&quot;,
+        &quot;description&quot;: &quot;Built core ingestion pipelines in Python and Go.&quot;,
+        &quot;is_current&quot;: false,
+        &quot;raw_dates&quot;: &quot;09/2016 — 02/2018&quot;,
+        &quot;isco_code&quot;: &quot;251&quot;,
+        &quot;isco_confidence&quot;: 0.5249999999999999
+      }
+    ],
+    &quot;skills&quot;: [
+      &quot;python&quot;,
+      &quot;go&quot;,
+      &quot;distributed systems&quot;,
+      &quot;system design&quot;,
+      &quot;kubernetes&quot;,
+      &quot;docker&quot;,
+      &quot;aws&quot;,
+      &quot;terraform&quot;,
+      &quot;kafka&quot;,
+      &quot;postgresql&quot;,
+      &quot;redis&quot;,
+      &quot;microservices&quot;,
+      &quot;ci/cd&quot;,
+      &quot;mentoring&quot;,
+      &quot;architecture&quot;
+    ],
+    &quot;education&quot;: [
+      {
+        &quot;degree&quot;: &quot;Master&#x27;s&quot;,
+        &quot;field&quot;: &quot;Computer Science&quot;,
+        &quot;institution&quot;: &quot;CTU Prague&quot;,
+        &quot;start_date&quot;: &quot;2014-01-01&quot;,
+        &quot;end_date&quot;: &quot;2016-12-31&quot;
+      }
+    ],
+    &quot;languages&quot;: [
+      {
+        &quot;code&quot;: &quot;cs&quot;,
+        &quot;proficiency&quot;: null
+      },
+      {
+        &quot;code&quot;: &quot;en&quot;,
+        &quot;proficiency&quot;: null
+      }
+    ],
+    &quot;certifications&quot;: [],
+    &quot;detected_language&quot;: &quot;en&quot;,
+    &quot;parse_confidence&quot;: 0.95,
+    &quot;extraction_warnings&quot;: [
+      &quot;education dates only have year, used Jan 1st and Dec 31st as defaults&quot;
+    ]
+  },
+  &quot;classification&quot;: {
+    &quot;isco_code&quot;: &quot;251&quot;,
+    &quot;isco_level&quot;: 3,
+    &quot;role_label&quot;: &quot;Software and applications developer NEC&quot;,
+    &quot;confidence&quot;: 0.75,
+    &quot;top1_margin&quot;: 0.35,
+    &quot;alternatives&quot;: [
+      &quot;2521&quot;,
+      &quot;2529&quot;,
+      &quot;2513&quot;
+    ],
+    &quot;rollup_reason&quot;: &quot;low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit&quot;
+  },
+  &quot;score&quot;: {
+    &quot;relevant_experience&quot;: 51,
+    &quot;skills_match&quot;: 100,
+    &quot;impact_scope&quot;: 75,
+    &quot;leadership_ownership_growth&quot;: 87,
+    &quot;education&quot;: 90,
+    &quot;total&quot;: 79,
+    &quot;band&quot;: &quot;Senior&quot;,
+    &quot;confidence&quot;: &quot;low&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit&quot;,
+      &quot;extraction warnings: education dates only have year, used Jan 1st and Dec 31st as defaults&quot;
+    ],
+    &quot;evidence&quot;: {
+      &quot;impact_scope&quot;: [
+        &quot;Designed event-driven microservices handling 2M req/day across 4 regions&quot;,
+        &quot;Reduced infrastructure spend by $180k/year through right-sizing&quot;,
+        &quot;Led migration from monolith to services; cut p99 latency 60%&quot;
+      ],
+      &quot;leadership_ownership_growth&quot;: [
+        &quot;Led the platform team (5 engineers); owned architecture and roadmap&quot;,
+        &quot;Reduced infrastructure spend by $180k/year through right-sizing&quot;,
+        &quot;Mentored 4 mid-level engineers; introduced design-doc practice&quot;,
+        &quot;Led migration from monolith to services; cut p99 latency 60%&quot;,
+        &quot;Progression: Software Engineer (2016) → Senior Engineer (2018) → Tech Lead (2022)&quot;,
+        &quot;Owned the search subsystem; introduced observability with Prometheus/Grafana&quot;
+      ]
+    }
+  },
+  &quot;salary&quot;: {
+    &quot;point&quot;: 122534,
+    &quot;low&quot;: 88046,
+    &quot;high&quot;: 148305,
+    &quot;percentile&quot;: 79.0,
+    &quot;percentile_low&quot;: 54.0,
+    &quot;percentile_high&quot;: 90.0,
+    &quot;currency&quot;: &quot;CZK&quot;,
+    &quot;period&quot;: &quot;month&quot;,
+    &quot;confidence&quot;: &quot;low&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;low classification confidence (conf=0.75, margin=0.35); rolled from 4-digit to 3-digit&quot;,
+      &quot;extraction warnings: education dates only have year, used Jan 1st and Dec 31st as defaults&quot;,
+      &quot;data: AGGREGATE ISPV rok 2025&quot;
+    ],
+    &quot;isco_code&quot;: &quot;251&quot;,
+    &quot;isco_level&quot;: 3,
+    &quot;data_source&quot;: &quot;MPSV ISPV&quot;,
+    &quot;data_year&quot;: 2025
+  },
+  &quot;growth_plan&quot;: {
+    &quot;branch&quot;: &quot;role_family_change&quot;,
+    &quot;target_salary&quot;: 159294,
+    &quot;target_percentile&quot;: 93.70493240281851,
+    &quot;required_score&quot;: null,
+    &quot;score_delta&quot;: null,
+    &quot;subscore_deltas&quot;: {},
+    &quot;message&quot;: &quot;+30% target exceeds the top decile of your current ISCO group. Skill development inside this role is unlikely to deliver +30%. Consider role-family change, geography, industry, or compensation model.&quot;,
+    &quot;actions&quot;: [
+      &quot;Transition into an Engineering Manager role (ISCO 1330) by leveraging your current Tech Lead experience managing 5 engineers, mentoring 4 mid-levels, and owning team roadmaps; target high-growth tech companies or scale-ups where EM salaries range $150k–$200k.&quot;,
+      &quot;Pivot to a Solutions Architect or Principal Architect position (ISCO 2511) by positioning your microservices architecture design (2M req/day, 4-region deployment) and cost-optimization wins ($180k savings) as enterprise-client-facing expertise; pursue consultancies or AWS/GCP partner firms.&quot;,
+      &quot;Move into Product Management (ISCO 1219 or 2431) by reframing your platform roadmap ownership, cross-functional leadership of 5 engineers, and system-level business impact (latency reduction, cost savings) as product strategy skills; target B2B SaaS companies seeking technical PMs with deep engineering empathy.&quot;,
+      &quot;Explore Technical Program Management (ISCO 2432) by highlighting your migration leadership (monolith-to-services), multi-region infrastructure coordination, and mentoring/design-doc process work; apply to FAANG or large fintech firms where TPMs earn $140k–$180k base plus equity.&quot;
+    ]
+  },
+  &quot;pipeline_meta&quot;: {
+    &quot;steps&quot;: {
+      &quot;extract&quot;: {
+        &quot;duration_ms&quot;: 9
+      },
+      &quot;redact&quot;: {
+        &quot;duration_ms&quot;: 0,
+        &quot;sha256&quot;: &quot;e38b750c466f321dffef92a709c7936ea1e6ce7e2ad762fbd20d7dd2c8846378&quot;
+      },
+      &quot;parse&quot;: {
+        &quot;duration_ms&quot;: 8650,
+        &quot;parse_confidence&quot;: 0.95,
+        &quot;warnings&quot;: [
+          &quot;education dates only have year, used Jan 1st and Dec 31st as defaults&quot;
+        ]
+      },
+      &quot;classify&quot;: {
+        &quot;duration_ms&quot;: 3147,
+        &quot;isco_level&quot;: 3,
+        &quot;confidence&quot;: 0.75
+      },
+      &quot;score&quot;: {
+        &quot;duration_ms&quot;: 4605,
+        &quot;relevant_yoe_years&quot;: 4.4624999999999995,
+        &quot;total_yoe_years&quot;: 9.5
+      },
+      &quot;salary&quot;: {
+        &quot;duration_ms&quot;: 19,
+        &quot;percentile&quot;: 79.0
+      },
+      &quot;recommend&quot;: {
+        &quot;duration_ms&quot;: 10059,
+        &quot;branch&quot;: &quot;role_family_change&quot;
+      }
+    },
+    &quot;total_duration_ms&quot;: 26492
+  }
+}</pre>
+  </details>
+</div>
+
+
+<div class="cv-card">
+  <h3>nurse_to_dev_5y_2y.docx &nbsp; <span class="pill pill-info">Mid</span> &nbsp; <span class="pill pill-info">medium</span></h3>
+  <div class="cv-meta">
+    classified as <strong>Software Developer</strong>
+    (ISCO <code>2512</code>, level 4,
+    confidence 0.85) &nbsp;·&nbsp;
+    pipeline took 28.7s &nbsp;·&nbsp;
+    2 role(s) parsed, 9 skills
+  </div>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Score breakdown — total 50/100</h4>
+  <div class="score-grid"><div class="score-cell"><div class="label">rel. exp</div><div class="value">39</div><div class="bar-track"><div class="bar-fill" style="width:39%"></div></div></div><div class="score-cell"><div class="label">skills</div><div class="value">70</div><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div></div><div class="score-cell"><div class="label">impact</div><div class="value">35</div><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div></div><div class="score-cell"><div class="label">lead/own</div><div class="value">56</div><div class="bar-track"><div class="bar-fill" style="width:56%"></div></div></div><div class="score-cell"><div class="label">education</div><div class="value">45</div><div class="bar-track"><div class="bar-fill" style="width:45%"></div></div></div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Salary estimate</h4>
+  <table>
+    <tr>
+      <td>Point estimate</td><td class="num">93,711 CZK/mo</td>
+      <td>at percentile</td><td class="num">P44</td>
+    </tr>
+    <tr>
+      <td>Range</td><td class="num">75,971 – 115,402 CZK</td>
+      <td>P29 – P59</td><td><span class="pill pill-info">medium</span></td>
+    </tr>
+    <tr>
+      <td>Source</td><td colspan="3">MPSV ISPV 2025 · ISCO <code>2512</code> (level 4)</td>
+    </tr>
+  </table>
+  <div class="confidence">Confidence reasons: <ul><li>extraction warnings: education dates incomplete - only year provided, no institution provided for education entries, language inferred from name only</li></ul></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Evidence quoted by the LLM</h4>
+  <div><strong style="font-size:0.85rem">impact_scope</strong><div class="evidence">Build patient-facing web app in TypeScript/Next.js + Python backend.</div><div class="evidence">Bridge between clinical staff and engineering team.</div><div class="evidence">Trained 6 newly-graduated nurses.</div></div>
+  <div style="margin-top:8px"><strong style="font-size:0.85rem">leadership_ownership_growth</strong><div class="evidence">Build patient-facing web app in TypeScript/Next.js + Python backend.</div><div class="evidence">Bridge between clinical staff and engineering team.</div><div class="evidence">Trained 6 newly-graduated nurses.</div><div class="evidence">Registered Nurse — Motol Hospital, 09/2018 — 05/2023 (5 years sustained in nursing)</div><div class="evidence">Coding bootcamp (2023) followed by Software Developer role 06/2023 — present (career change)</div><div class="evidence">Coordinated handoffs across 3 shifts.</div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">+30% growth plan <span class="pill pill-good">skill_up_within_role</span></h4>
+  <p style="margin:4px 0 8px;font-size:0.92rem;">+30% is reachable inside your current ISCO with a score increase of ~15 points (target P63).</p>
+  <table style="font-size:0.88rem;width:auto;">
+    <tr><td>Target salary</td><td class="num">121,824 CZK/mo</td></tr>
+    <tr><td>Target percentile</td><td class='num'>P63</td></tr>
+    <tr><td>Required score</td><td class='num'>65</td></tr>
+    <tr><td>Score delta</td><td class='num'>+15</td></tr>
+  </table>
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Subscore deltas needed</h4>
+  <table style="font-size:0.88rem;max-width:380px"><tr><td>skills_match</td><td class='num'>+12.9</td></tr><tr><td>impact_scope</td><td class='num'>+28.0</td></tr><tr><td>leadership_ownership_growth</td><td class='num'>+19.0</td></tr><tr><td>education</td><td class='num'>+23.7</td></tr></table>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Recommended actions (4)</h4>
+  <ol class="actions"><li>Complete a recognized cloud certification (AWS Solutions Architect Associate or Microsoft Azure Developer) and apply it immediately by migrating one backend service in your HealthTech app to serverless functions; this will directly address your 12.9-point skills_match gap and make you competitive for mid-level roles requiring cloud-native proficiency.</li><li>Lead the scoping, technical design, and delivery of one greenfield feature (e.g., multi-language support or GDPR-compliant patient data export) that serves at least 10,000 end users, document the business impact (adoption metrics, NPS lift), and present findings to product leadership; this 28-point impact_scope gain will require you to move beyond feature-level contributions to system-level ownership.</li><li>Volunteer to mentor one junior engineer joining your team, lead bi-weekly architecture review sessions with the clinical-engineering group (leveraging your unique bridge role from your CV), and formally propose one process improvement (e.g., incident response runbook); these leadership activities will close the 19-point leadership_ownership_growth gap and position you for senior IC or team-lead tracks.</li><li>Enroll in a part-time, accredited Master&#x27;s degree in Computer Science or Software Engineering (online programs at UK&#x27;s Open University or Czech Technical University) and complete at least two core modules in algorithms and distributed systems within 12 months; the 23.7-point education delta signals that degree-level CS credentials are essential to reach your €121,824 target in the Central European market.</li></ol>
+
+  <details class="detail">
+    <summary>Full ResultJson</summary>
+    <pre>{
+  &quot;cv&quot;: {
+    &quot;roles&quot;: [
+      {
+        &quot;title&quot;: &quot;Software Developer&quot;,
+        &quot;company&quot;: &quot;HealthTech&quot;,
+        &quot;start_date&quot;: &quot;2023-06-01&quot;,
+        &quot;end_date&quot;: null,
+        &quot;description&quot;: &quot;Build patient-facing web app in TypeScript/Next.js + Python backend. Bridge between clinical staff and engineering team.&quot;,
+        &quot;is_current&quot;: true,
+        &quot;raw_dates&quot;: &quot;06/2023 — present&quot;,
+        &quot;isco_code&quot;: &quot;2512&quot;,
+        &quot;isco_confidence&quot;: 0.85
+      },
+      {
+        &quot;title&quot;: &quot;Registered Nurse&quot;,
+        &quot;company&quot;: &quot;Motol Hospital&quot;,
+        &quot;start_date&quot;: &quot;2018-09-01&quot;,
+        &quot;end_date&quot;: &quot;2023-05-01&quot;,
+        &quot;description&quot;: &quot;ICU care; coordinated handoffs across 3 shifts. Trained 6 newly-graduated nurses.&quot;,
+        &quot;is_current&quot;: false,
+        &quot;raw_dates&quot;: &quot;09/2018 — 05/2023&quot;,
+        &quot;isco_code&quot;: null,
+        &quot;isco_confidence&quot;: 0.0
+      }
+    ],
+    &quot;skills&quot;: [
+      &quot;python&quot;,
+      &quot;typescript&quot;,
+      &quot;next.js&quot;,
+      &quot;postgresql&quot;,
+      &quot;rest apis&quot;,
+      &quot;git&quot;,
+      &quot;docker&quot;,
+      &quot;patient care&quot;,
+      &quot;clinical workflow design&quot;
+    ],
+    &quot;education&quot;: [
+      {
+        &quot;degree&quot;: &quot;Bachelor&#x27;s&quot;,
+        &quot;field&quot;: &quot;Nursing&quot;,
+        &quot;institution&quot;: null,
+        &quot;start_date&quot;: null,
+        &quot;end_date&quot;: &quot;2018-01-01&quot;
+      },
+      {
+        &quot;degree&quot;: &quot;Coding bootcamp&quot;,
+        &quot;field&quot;: null,
+        &quot;institution&quot;: null,
+        &quot;start_date&quot;: null,
+        &quot;end_date&quot;: &quot;2023-01-01&quot;
+      }
+    ],
+    &quot;languages&quot;: [
+      {
+        &quot;code&quot;: &quot;cs&quot;,
+        &quot;proficiency&quot;: null
+      }
+    ],
+    &quot;certifications&quot;: [],
+    &quot;detected_language&quot;: &quot;en&quot;,
+    &quot;parse_confidence&quot;: 0.85,
+    &quot;extraction_warnings&quot;: [
+      &quot;education dates incomplete - only year provided&quot;,
+      &quot;no institution provided for education entries&quot;,
+      &quot;language inferred from name only&quot;
+    ]
+  },
+  &quot;classification&quot;: {
+    &quot;isco_code&quot;: &quot;2512&quot;,
+    &quot;isco_level&quot;: 4,
+    &quot;role_label&quot;: &quot;Software Developer&quot;,
+    &quot;confidence&quot;: 0.85,
+    &quot;top1_margin&quot;: 0.25,
+    &quot;alternatives&quot;: [
+      &quot;2513&quot;,
+      &quot;2514&quot;,
+      &quot;2519&quot;
+    ],
+    &quot;rollup_reason&quot;: null
+  },
+  &quot;score&quot;: {
+    &quot;relevant_experience&quot;: 39,
+    &quot;skills_match&quot;: 70,
+    &quot;impact_scope&quot;: 35,
+    &quot;leadership_ownership_growth&quot;: 56,
+    &quot;education&quot;: 45,
+    &quot;total&quot;: 50,
+    &quot;band&quot;: &quot;Mid&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;extraction warnings: education dates incomplete - only year provided, no institution provided for education entries, language inferred from name only&quot;
+    ],
+    &quot;evidence&quot;: {
+      &quot;impact_scope&quot;: [
+        &quot;Build patient-facing web app in TypeScript/Next.js + Python backend.&quot;,
+        &quot;Bridge between clinical staff and engineering team.&quot;,
+        &quot;Trained 6 newly-graduated nurses.&quot;
+      ],
+      &quot;leadership_ownership_growth&quot;: [
+        &quot;Build patient-facing web app in TypeScript/Next.js + Python backend.&quot;,
+        &quot;Bridge between clinical staff and engineering team.&quot;,
+        &quot;Trained 6 newly-graduated nurses.&quot;,
+        &quot;Registered Nurse — Motol Hospital, 09/2018 — 05/2023 (5 years sustained in nursing)&quot;,
+        &quot;Coding bootcamp (2023) followed by Software Developer role 06/2023 — present (career change)&quot;,
+        &quot;Coordinated handoffs across 3 shifts.&quot;
+      ]
+    }
+  },
+  &quot;salary&quot;: {
+    &quot;point&quot;: 93711,
+    &quot;low&quot;: 75971,
+    &quot;high&quot;: 115402,
+    &quot;percentile&quot;: 43.75,
+    &quot;percentile_low&quot;: 28.75,
+    &quot;percentile_high&quot;: 58.75,
+    &quot;currency&quot;: &quot;CZK&quot;,
+    &quot;period&quot;: &quot;month&quot;,
+    &quot;confidence&quot;: &quot;medium&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;extraction warnings: education dates incomplete - only year provided, no institution provided for education entries, language inferred from name only&quot;,
+      &quot;data: MZDOVA ISPV rok 2025&quot;
+    ],
+    &quot;isco_code&quot;: &quot;2512&quot;,
+    &quot;isco_level&quot;: 4,
+    &quot;data_source&quot;: &quot;MPSV ISPV&quot;,
+    &quot;data_year&quot;: 2025
+  },
+  &quot;growth_plan&quot;: {
+    &quot;branch&quot;: &quot;skill_up_within_role&quot;,
+    &quot;target_salary&quot;: 121824,
+    &quot;target_percentile&quot;: 62.68040290798717,
+    &quot;required_score&quot;: 65,
+    &quot;score_delta&quot;: 15,
+    &quot;subscore_deltas&quot;: {
+      &quot;relevant_experience&quot;: 0.0,
+      &quot;skills_match&quot;: 12.9,
+      &quot;impact_scope&quot;: 28.0,
+      &quot;leadership_ownership_growth&quot;: 19.0,
+      &quot;education&quot;: 23.7
+    },
+    &quot;message&quot;: &quot;+30% is reachable inside your current ISCO with a score increase of ~15 points (target P63).&quot;,
+    &quot;actions&quot;: [
+      &quot;Complete a recognized cloud certification (AWS Solutions Architect Associate or Microsoft Azure Developer) and apply it immediately by migrating one backend service in your HealthTech app to serverless functions; this will directly address your 12.9-point skills_match gap and make you competitive for mid-level roles requiring cloud-native proficiency.&quot;,
+      &quot;Lead the scoping, technical design, and delivery of one greenfield feature (e.g., multi-language support or GDPR-compliant patient data export) that serves at least 10,000 end users, document the business impact (adoption metrics, NPS lift), and present findings to product leadership; this 28-point impact_scope gain will require you to move beyond feature-level contributions to system-level ownership.&quot;,
+      &quot;Volunteer to mentor one junior engineer joining your team, lead bi-weekly architecture review sessions with the clinical-engineering group (leveraging your unique bridge role from your CV), and formally propose one process improvement (e.g., incident response runbook); these leadership activities will close the 19-point leadership_ownership_growth gap and position you for senior IC or team-lead tracks.&quot;,
+      &quot;Enroll in a part-time, accredited Master&#x27;s degree in Computer Science or Software Engineering (online programs at UK&#x27;s Open University or Czech Technical University) and complete at least two core modules in algorithms and distributed systems within 12 months; the 23.7-point education delta signals that degree-level CS credentials are essential to reach your €121,824 target in the Central European market.&quot;
+    ]
+  },
+  &quot;pipeline_meta&quot;: {
+    &quot;steps&quot;: {
+      &quot;extract&quot;: {
+        &quot;duration_ms&quot;: 5
+      },
+      &quot;redact&quot;: {
+        &quot;duration_ms&quot;: 0,
+        &quot;sha256&quot;: &quot;8f24289bfa7fd74a0e2079e16cb1c6099e0e6288123f4ab4ae67f4031c7124af&quot;
+      },
+      &quot;parse&quot;: {
+        &quot;duration_ms&quot;: 8195,
+        &quot;parse_confidence&quot;: 0.85,
+        &quot;warnings&quot;: [
+          &quot;education dates incomplete - only year provided&quot;,
+          &quot;no institution provided for education entries&quot;,
+          &quot;language inferred from name only&quot;
+        ]
+      },
+      &quot;classify&quot;: {
+        &quot;duration_ms&quot;: 3245,
+        &quot;isco_level&quot;: 4,
+        &quot;confidence&quot;: 0.85
+      },
+      &quot;score&quot;: {
+        &quot;duration_ms&quot;: 4710,
+        &quot;relevant_yoe_years&quot;: 3.0625,
+        &quot;total_yoe_years&quot;: 7.583333333333333
+      },
+      &quot;salary&quot;: {
+        &quot;duration_ms&quot;: 13,
+        &quot;percentile&quot;: 43.75
+      },
+      &quot;recommend&quot;: {
+        &quot;duration_ms&quot;: 12524,
+        &quot;branch&quot;: &quot;skill_up_within_role&quot;
+      }
+    },
+    &quot;total_duration_ms&quot;: 28694
+  }
+}</pre>
+  </details>
+</div>
+
+
+<div class="cv-card">
+  <h3>buzzword_no_evidence.docx &nbsp; <span class="pill pill-warn">Junior</span> &nbsp; <span class="pill pill-warn">low</span></h3>
+  <div class="cv-meta">
+    classified as <strong>Managing director</strong>
+    (ISCO <code>112</code>, level 3,
+    confidence 0.72) &nbsp;·&nbsp;
+    pipeline took 24.9s &nbsp;·&nbsp;
+    2 role(s) parsed, 8 skills
+  </div>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Score breakdown — total 38/100</h4>
+  <div class="score-grid"><div class="score-cell"><div class="label">rel. exp</div><div class="value">54</div><div class="bar-track"><div class="bar-fill" style="width:54%"></div></div></div><div class="score-cell"><div class="label">skills</div><div class="value">56</div><div class="bar-track"><div class="bar-fill" style="width:56%"></div></div></div><div class="score-cell"><div class="label">impact</div><div class="value">15</div><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div></div><div class="score-cell"><div class="label">lead/own</div><div class="value">35</div><div class="bar-track"><div class="bar-fill" style="width:35%"></div></div></div><div class="score-cell"><div class="label">education</div><div class="value">10</div><div class="bar-track"><div class="bar-fill" style="width:10%"></div></div></div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Salary estimate</h4>
+  <table>
+    <tr>
+      <td>Point estimate</td><td class="num">77,206 CZK/mo</td>
+      <td>at percentile</td><td class="num">P29</td>
+    </tr>
+    <tr>
+      <td>Range</td><td class="num">54,881 – 96,863 CZK</td>
+      <td>P10 – P54</td><td><span class="pill pill-warn">low</span></td>
+    </tr>
+    <tr>
+      <td>Source</td><td colspan="3">MPSV ISPV 2025 · ISCO <code>112</code> (level 3)</td>
+    </tr>
+  </table>
+  <div class="confidence">Confidence reasons: <ul><li>low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit</li><li>extraction warnings: no specific months provided for dates, defaulting to January, no languages specified, no certifications found, skills are mostly soft/generic rather than technical</li><li>skills_match used low-confidence fallback (no ISCO keyword set)</li></ul></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Evidence quoted by the LLM</h4>
+  <div><strong style="font-size:0.85rem">impact_scope</strong><div class="evidence">Drove paradigm-shifting initiatives leveraging cutting-edge synergies</div><div class="evidence">Orchestrated holistic ecosystems of disruptive thought leadership</div><div class="evidence">Enabled strategic alignment across cross-functional touchpoints</div></div>
+  <div style="margin-top:8px"><strong style="font-size:0.85rem">leadership_ownership_growth</strong><div class="evidence">Chief Synergy Officer — VisionCo, 2020 — present</div><div class="evidence">Senior Innovation Catalyst — IdeaWorks, 2017 — 2020</div><div class="evidence">Spearheaded transformative outcomes through best-in-class methodologies</div><div class="evidence">Empowered stakeholders via next-generation frameworks</div><div class="evidence">MBA — Famous Business School (2017)</div></div>
+
+  <h4 style="margin:18px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">+30% growth plan <span class="pill pill-good">skill_up_within_role</span></h4>
+  <p style="margin:4px 0 8px;font-size:0.92rem;">+30% is reachable inside your current ISCO with a score increase of ~24 points (target P59).</p>
+  <table style="font-size:0.88rem;width:auto;">
+    <tr><td>Target salary</td><td class="num">100,368 CZK/mo</td></tr>
+    <tr><td>Target percentile</td><td class='num'>P59</td></tr>
+    <tr><td>Required score</td><td class='num'>62</td></tr>
+    <tr><td>Score delta</td><td class='num'>+24</td></tr>
+  </table>
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Subscore deltas needed</h4>
+  <table style="font-size:0.88rem;max-width:380px"><tr><td>skills_match</td><td class='num'>+21.1</td></tr><tr><td>impact_scope</td><td class='num'>+40.8</td></tr><tr><td>leadership_ownership_growth</td><td class='num'>+31.2</td></tr><tr><td>education</td><td class='num'>+43.2</td></tr></table>
+
+  <h4 style="margin:14px 0 4px;font-size:0.78rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:0.04em;">Recommended actions (4)</h4>
+  <ol class="actions"><li>Enroll in a recognized executive leadership certification (e.g., Cornell Certificate in Executive Leadership or Harvard Advanced Leadership Initiative) within the next 3 months to close the 43.2-point education gap, supplementing your MBA with formal, credentialed training in C-suite strategic management.</li><li>Document and quantify the business impact of your &#x27;paradigm-shifting initiatives&#x27; at VisionCo by attaching revenue growth figures, cost savings, market-share gains, or headcount/budget size you oversee (e.g., &#x27;Led $20M P&amp;L transformation&#x27; or &#x27;Grew team from 15 to 60 FTEs&#x27;), then update your CV and LinkedIn to showcase measurable scope—this bridges the 40.8-point impact_scope and 31.2-point leadership_ownership_growth deltas.</li><li>Identify 3–4 high-demand technical or domain competencies for ISCO 112 executives (e.g., digital transformation, M&amp;A integration, change management, or data-driven decision-making) and complete micro-credentials or projects in at least two of them by month 9, referencing these explicitly on your CV to address the 21.1-point skills_match gap.</li><li>Secure a board advisory seat, interim COO role, or consultancy engagement that requires P&amp;L ownership or turnaround leadership within 6–9 months, leveraging your IdeaWorks and VisionCo track record to demonstrate expanded scope and accountability in your next CV iteration.</li></ol>
+
+  <details class="detail">
+    <summary>Full ResultJson</summary>
+    <pre>{
+  &quot;cv&quot;: {
+    &quot;roles&quot;: [
+      {
+        &quot;title&quot;: &quot;Chief Synergy Officer&quot;,
+        &quot;company&quot;: &quot;VisionCo&quot;,
+        &quot;start_date&quot;: &quot;2020-01-01&quot;,
+        &quot;end_date&quot;: null,
+        &quot;description&quot;: &quot;Drove paradigm-shifting initiatives leveraging cutting-edge synergies. Spearheaded transformative outcomes through best-in-class methodologies. Enabled strategic alignment across cross-functional touchpoints.&quot;,
+        &quot;is_current&quot;: true,
+        &quot;raw_dates&quot;: &quot;2020 — present&quot;,
+        &quot;isco_code&quot;: &quot;112&quot;,
+        &quot;isco_confidence&quot;: 0.72
+      },
+      {
+        &quot;title&quot;: &quot;Senior Innovation Catalyst&quot;,
+        &quot;company&quot;: &quot;IdeaWorks&quot;,
+        &quot;start_date&quot;: &quot;2017-01-01&quot;,
+        &quot;end_date&quot;: &quot;2020-01-01&quot;,
+        &quot;description&quot;: &quot;Orchestrated holistic ecosystems of disruptive thought leadership. Empowered stakeholders via next-generation frameworks.&quot;,
+        &quot;is_current&quot;: false,
+        &quot;raw_dates&quot;: &quot;2017 — 2020&quot;,
+        &quot;isco_code&quot;: null,
+        &quot;isco_confidence&quot;: 0.0
+      }
+    ],
+    &quot;skills&quot;: [
+      &quot;leadership&quot;,
+      &quot;vision&quot;,
+      &quot;strategy&quot;,
+      &quot;innovation&quot;,
+      &quot;transformation&quot;,
+      &quot;synergy&quot;,
+      &quot;alignment&quot;,
+      &quot;empowerment&quot;
+    ],
+    &quot;education&quot;: [
+      {
+        &quot;degree&quot;: &quot;MBA&quot;,
+        &quot;field&quot;: null,
+        &quot;institution&quot;: &quot;Famous Business School&quot;,
+        &quot;start_date&quot;: null,
+        &quot;end_date&quot;: &quot;2017-01-01&quot;
+      }
+    ],
+    &quot;languages&quot;: [],
+    &quot;certifications&quot;: [],
+    &quot;detected_language&quot;: &quot;en&quot;,
+    &quot;parse_confidence&quot;: 0.75,
+    &quot;extraction_warnings&quot;: [
+      &quot;no specific months provided for dates, defaulting to January&quot;,
+      &quot;no languages specified&quot;,
+      &quot;no certifications found&quot;,
+      &quot;skills are mostly soft/generic rather than technical&quot;
+    ]
+  },
+  &quot;classification&quot;: {
+    &quot;isco_code&quot;: &quot;112&quot;,
+    &quot;isco_level&quot;: 3,
+    &quot;role_label&quot;: &quot;Managing director&quot;,
+    &quot;confidence&quot;: 0.72,
+    &quot;top1_margin&quot;: 0.25,
+    &quot;alternatives&quot;: [
+      &quot;2421&quot;,
+      &quot;1330&quot;,
+      &quot;2434&quot;
+    ],
+    &quot;rollup_reason&quot;: &quot;low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit&quot;
+  },
+  &quot;score&quot;: {
+    &quot;relevant_experience&quot;: 54,
+    &quot;skills_match&quot;: 56,
+    &quot;impact_scope&quot;: 15,
+    &quot;leadership_ownership_growth&quot;: 35,
+    &quot;education&quot;: 10,
+    &quot;total&quot;: 38,
+    &quot;band&quot;: &quot;Junior&quot;,
+    &quot;confidence&quot;: &quot;low&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit&quot;,
+      &quot;extraction warnings: no specific months provided for dates, defaulting to January, no languages specified, no certifications found, skills are mostly soft/generic rather than technical&quot;,
+      &quot;skills_match used low-confidence fallback (no ISCO keyword set)&quot;
+    ],
+    &quot;evidence&quot;: {
+      &quot;impact_scope&quot;: [
+        &quot;Drove paradigm-shifting initiatives leveraging cutting-edge synergies&quot;,
+        &quot;Orchestrated holistic ecosystems of disruptive thought leadership&quot;,
+        &quot;Enabled strategic alignment across cross-functional touchpoints&quot;
+      ],
+      &quot;leadership_ownership_growth&quot;: [
+        &quot;Chief Synergy Officer — VisionCo, 2020 — present&quot;,
+        &quot;Senior Innovation Catalyst — IdeaWorks, 2017 — 2020&quot;,
+        &quot;Spearheaded transformative outcomes through best-in-class methodologies&quot;,
+        &quot;Empowered stakeholders via next-generation frameworks&quot;,
+        &quot;MBA — Famous Business School (2017)&quot;
+      ]
+    }
+  },
+  &quot;salary&quot;: {
+    &quot;point&quot;: 77206,
+    &quot;low&quot;: 54881,
+    &quot;high&quot;: 96863,
+    &quot;percentile&quot;: 28.75,
+    &quot;percentile_low&quot;: 10.0,
+    &quot;percentile_high&quot;: 53.75,
+    &quot;currency&quot;: &quot;CZK&quot;,
+    &quot;period&quot;: &quot;month&quot;,
+    &quot;confidence&quot;: &quot;low&quot;,
+    &quot;confidence_reasons&quot;: [
+      &quot;low classification confidence (conf=0.72, margin=0.25); rolled from 4-digit to 3-digit&quot;,
+      &quot;extraction warnings: no specific months provided for dates, defaulting to January, no languages specified, no certifications found, skills are mostly soft/generic rather than technical&quot;,
+      &quot;skills_match used low-confidence fallback (no ISCO keyword set)&quot;,
+      &quot;data: AGGREGATE ISPV rok 2025&quot;
+    ],
+    &quot;isco_code&quot;: &quot;112&quot;,
+    &quot;isco_level&quot;: 3,
+    &quot;data_source&quot;: &quot;MPSV ISPV&quot;,
+    &quot;data_year&quot;: 2025
+  },
+  &quot;growth_plan&quot;: {
+    &quot;branch&quot;: &quot;skill_up_within_role&quot;,
+    &quot;target_salary&quot;: 100368,
+    &quot;target_percentile&quot;: 58.51948617461355,
+    &quot;required_score&quot;: 62,
+    &quot;score_delta&quot;: 24,
+    &quot;subscore_deltas&quot;: {
+      &quot;relevant_experience&quot;: 0.0,
+      &quot;skills_match&quot;: 21.1,
+      &quot;impact_scope&quot;: 40.8,
+      &quot;leadership_ownership_growth&quot;: 31.2,
+      &quot;education&quot;: 43.2
+    },
+    &quot;message&quot;: &quot;+30% is reachable inside your current ISCO with a score increase of ~24 points (target P59).&quot;,
+    &quot;actions&quot;: [
+      &quot;Enroll in a recognized executive leadership certification (e.g., Cornell Certificate in Executive Leadership or Harvard Advanced Leadership Initiative) within the next 3 months to close the 43.2-point education gap, supplementing your MBA with formal, credentialed training in C-suite strategic management.&quot;,
+      &quot;Document and quantify the business impact of your &#x27;paradigm-shifting initiatives&#x27; at VisionCo by attaching revenue growth figures, cost savings, market-share gains, or headcount/budget size you oversee (e.g., &#x27;Led $20M P&amp;L transformation&#x27; or &#x27;Grew team from 15 to 60 FTEs&#x27;), then update your CV and LinkedIn to showcase measurable scope—this bridges the 40.8-point impact_scope and 31.2-point leadership_ownership_growth deltas.&quot;,
+      &quot;Identify 3–4 high-demand technical or domain competencies for ISCO 112 executives (e.g., digital transformation, M&amp;A integration, change management, or data-driven decision-making) and complete micro-credentials or projects in at least two of them by month 9, referencing these explicitly on your CV to address the 21.1-point skills_match gap.&quot;,
+      &quot;Secure a board advisory seat, interim COO role, or consultancy engagement that requires P&amp;L ownership or turnaround leadership within 6–9 months, leveraging your IdeaWorks and VisionCo track record to demonstrate expanded scope and accountability in your next CV iteration.&quot;
+    ]
+  },
+  &quot;pipeline_meta&quot;: {
+    &quot;steps&quot;: {
+      &quot;extract&quot;: {
+        &quot;duration_ms&quot;: 4
+      },
+      &quot;redact&quot;: {
+        &quot;duration_ms&quot;: 0,
+        &quot;sha256&quot;: &quot;58c69240e3e470acd3044e41d72c2f004a00294527aa1790008cf2c840158dd4&quot;
+      },
+      &quot;parse&quot;: {
+        &quot;duration_ms&quot;: 6921,
+        &quot;parse_confidence&quot;: 0.75,
+        &quot;warnings&quot;: [
+          &quot;no specific months provided for dates, defaulting to January&quot;,
+          &quot;no languages specified&quot;,
+          &quot;no certifications found&quot;,
+          &quot;skills are mostly soft/generic rather than technical&quot;
+        ]
+      },
+      &quot;classify&quot;: {
+        &quot;duration_ms&quot;: 2684,
+        &quot;isco_level&quot;: 3,
+        &quot;confidence&quot;: 0.72
+      },
+      &quot;score&quot;: {
+        &quot;duration_ms&quot;: 4132,
+        &quot;relevant_yoe_years&quot;: 4.935,
+        &quot;total_yoe_years&quot;: 9.333333333333334
+      },
+      &quot;salary&quot;: {
+        &quot;duration_ms&quot;: 19,
+        &quot;percentile&quot;: 28.75
+      },
+      &quot;recommend&quot;: {
+        &quot;duration_ms&quot;: 11149,
+        &quot;branch&quot;: &quot;skill_up_within_role&quot;
+      }
+    },
+    &quot;total_duration_ms&quot;: 24911
+  }
+}</pre>
+  </details>
+</div>
+
+<footer style="margin-top:60px;padding-top:18px;border-top:1px solid var(--rule);
+              color:#888;font-size:0.85rem">
+  Generated by <code>scripts/build_results_report.py</code> from
+  <code>docs/sample-results/_summary.json</code>.
+  Re-run <code>uv run python scripts/run_all_samples.py</code> to refresh.
+</footer>
+</body></html>
