@@ -106,8 +106,8 @@ if uploaded is not None:
                 if v > 0:
                     st.write(f"- {k}: +{v}")
         st.write("**Actions:**")
-        for a in gp.actions:
-            st.checkbox(a, key=f"action-{hash(a)}")
+        for i, a in enumerate(gp.actions):
+            st.checkbox(a, key=f"action-{i}")
 
     # Debug expander
     with st.expander("Debug: pipeline meta + ResultJson"):
